@@ -1,22 +1,38 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-// eslint-disable-next-line
 import { addToCart, removeFromCart } from '../actions/cartAction.js';
 import MessageBox from '../components/MessageBox'
+import '../css/cart.css'
 
 export default function CartScreen(props) {
     const productID = props.match.params.id;
-    const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
+    const quantity = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
 
     useEffect(() => {
         if (productID) {
-            dispatch(addToCart(productID, qty));
+            dispatch(addToCart(productID, quantity));
         }
-    }, [dispatch, productID, qty]);
+    }, [dispatch, productID, quantity]);
+
+    const qtyHandler = (type, item) => {
+        if (type === 'plus') {
+            if (item.qty >= item.countInStock) {
+                //setQty(1)
+                alert(`Chỉ còn ${item.countInStock} sản phẩm trong kho`)
+            }
+            else {
+                dispatch(addToCart(item.id, (item.qty + 1)))
+            }
+        }
+        else {
+            const a = item.qty - 1 < 1 ? 1 : item.qty - 1
+            dispatch(addToCart(item.id, a))
+        }
+    }
 
     const removeFromCartHandler = (id) => {
         dispatch(removeFromCart(id));
@@ -45,8 +61,8 @@ export default function CartScreen(props) {
                                                 <div className="min-30">
                                                     <Link to={`/products/${item.id}`}>{item.name}</Link>
                                                 </div>
-                                                <div>
-                                                    <select value={item.qty} onChange={e => dispatch(addToCart(item.id, Number(e.target.value)))}>
+                                                <div className="quantity-container">
+                                                    {/* <select value={item.qty} onChange={e => dispatch(addToCart(item.id, Number(e.target.value)))}>
                                                         {
                                                             [...Array(item.countInStock).keys()].map((x) => (
                                                                 <option key={x + 1} value={x + 1}>
@@ -54,7 +70,10 @@ export default function CartScreen(props) {
                                                                 </option>
                                                             ))
                                                         }
-                                                    </select>
+                                                    </select> */}
+                                                    <div className="icon-minus" onClick={() => qtyHandler('minus', item)}><i class="fas fa-minus"></i></div>
+                                                    <div className="qty">{item.qty}</div>
+                                                    <div className="icon-plus" onClick={() => qtyHandler('plus', item)}><i class="fas fa-plus"></i></div>
                                                 </div>
                                                 <div>{item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                                 <div>

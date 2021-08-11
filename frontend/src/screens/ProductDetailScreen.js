@@ -14,6 +14,20 @@ export default function ProductDetailScreen(props) {
     const productDetails = useSelector((state) => state.productDetail);
     const { loading, error, product } = productDetails;
 
+    const qtyHandler = (type) => {
+        if (type === 'plus') {
+            if (qty >= product.countInStock) {
+                alert(`Chỉ còn ${product.countInStock} sản phẩm trong kho`)
+            }
+            else {
+                setQty(qty + 1)
+            }
+        }
+        else {
+            setQty(qty - 1 < 1 ? 1 : qty - 1)
+        }
+    }
+
     useEffect(() => {
         dispatch(productDetail(productID));
     }, [dispatch, productID]);
@@ -70,7 +84,7 @@ export default function ProductDetailScreen(props) {
                                                 <li>
                                                     <div className="">
                                                         <div>Số lượng</div>
-                                                        <div>
+                                                        <div className="quantity-container">
                                                             {/* <select value={qty} onChange={(e) => setQty(e.target.value)}>
                                                                 {[...Array(product.countInStock).keys()].map((x) => (
                                                                     <option key={x + 1} value={x + 1}>
@@ -78,7 +92,10 @@ export default function ProductDetailScreen(props) {
                                                                     </option>
                                                                 ))}
                                                             </select> */}
-                                                            <input type="number" className="" value="1" min="1" max={product.countInStock} />
+                                                            {/* <input type="number" className="" value="1" min="1" max={product.countInStock} /> */}
+                                                            <div className="icon-minus" onClick={() => qtyHandler('minus')}><i class="fas fa-minus"></i></div>
+                                                            <div className="qty">{qty}</div>
+                                                            <div className="icon-plus" onClick={() => qtyHandler('plus')}><i class="fas fa-plus"></i></div>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -94,6 +111,6 @@ export default function ProductDetailScreen(props) {
                     </div>
                 </div >)
             }
-        </div>
+        </div >
     );
 }
