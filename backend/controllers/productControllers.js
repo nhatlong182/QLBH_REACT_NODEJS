@@ -7,13 +7,23 @@ export const getAllProducts = async (req, res) => {
         const startIndex = (page - 1) * limit;
         // const endIndex = page * limit
 
-
-
-        const count = await Product.countDocuments();
+        const count = await Product.countDocuments({});
 
         const products = await Product.find().limit(limit).skip(startIndex).exec();
 
-        res.send({ page, limit, pages: Math.ceil(count / page), products });
+        res.send({ page, limit, pages: Math.ceil(count / limit), products });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "Loi server!!!" });
+    }
+}
+
+export const getRandomProducts = async (req, res) => {
+    try {
+        //db.products.aggregate([{$sample: {size: 5}}]);
+        const products = await Product.aggregate([{ $sample: { size: 10 } }]);
+
+        res.send(products);
     } catch (error) {
         console.error(error);
         res.status(500).send({ message: "Loi server!!!" });
@@ -29,4 +39,9 @@ export const getProductDetail = async (req, res) => {
         console.error(error);
         res.status(500).send({ message: "Loi server!!!" });
     }
+}
+
+export const getCategories = async (req, res) => {
+    const categories = await Product.find().distinct('category');
+    res.send(categories);
 }

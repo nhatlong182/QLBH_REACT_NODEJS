@@ -21,7 +21,6 @@ export default function CartScreen(props) {
     const qtyHandler = (type, item) => {
         if (type === 'plus') {
             if (item.qty >= item.countInStock) {
-                //setQty(1)
                 alert(`Chỉ còn ${item.countInStock} sản phẩm trong kho`)
             }
             else {

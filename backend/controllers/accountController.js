@@ -23,12 +23,15 @@ export const signin = async (req, res) => {
                 _id: user._id,
                 name: user.name,
                 email: user.email,
+                sex: user.sex,
+                avatar: user.avatar,
                 isAdmin: user.isAdmin,
                 isWebmaster: user.isWebmaster,
                 token: initToken(user)
             })
+            return;
         }
-        return;
+
     }
     res.status(401).send({ message: 'Sai tài khoản hoặc mật khẩu!!!' })
 }

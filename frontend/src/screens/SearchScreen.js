@@ -1,25 +1,23 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { listProducts } from '../actions/productAction.js';
+
 import Product from '../components/Product.js'
 import LoadingBox from '../components/LoadingBox.js'
 import MessageBox from '../components/MessageBox.js'
-import { useDispatch, useSelector } from 'react-redux';
-import { TopSellerProducts } from '../actions/productAction.js';
 
-export default function HomeScreen() {
+export default function SearchScreen() {
+
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(TopSellerProducts());
+        dispatch(listProducts());
     }, [dispatch]);
 
     return (
         <div>
-            <div className="">
-                <img className="slider" src="/images/slider_1.jpg" alt="slider"></img>
-            </div>
-            <h2>Một số sản phẩm nổi bật</h2>
             {
                 loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
                     <div className="row center">
@@ -30,7 +28,6 @@ export default function HomeScreen() {
                         }
                     </div>
             }
-
         </div>
     )
 }

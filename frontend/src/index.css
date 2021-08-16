@@ -79,7 +79,8 @@ button:hover {
   border: 0.1rem black solid;
 }
 button.primary {
-  background-color: #f0c040;
+  background-color: #0e0d0d;
+  color: white;
 }
 button.block {
   width: 100%;
@@ -130,6 +131,10 @@ img.large {
 .banner img {
   width: 100%;
 }
+/*slider*/
+.slider {
+  width: 100%;
+}
 
 /*Alert*/
 .success {
@@ -150,4 +155,19 @@ img.large {
 .alert-danger {
   color: red;
   background-color: #ffe0e0e0;
+}
+/* Pagination */
+
+.pagination a {
+  padding: 1rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #a4a4a4 solid;
+  font-size: 1.6rem;
+  font-family: Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.pagination a.active {
+  font-weight: bold;
 }
