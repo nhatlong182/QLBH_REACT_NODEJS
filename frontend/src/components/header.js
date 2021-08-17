@@ -8,6 +8,7 @@ import UserIcon from '../assets/user.png'
 import "../css/header.css"
 
 export default function Header() {
+    // eslint-disable-next-line
     const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
     const Cart = useSelector((state) => state.cart);
@@ -37,9 +38,9 @@ export default function Header() {
             <div>
                 <div className="dropdown">
                     <Link to="/search">
-                        Sản phẩm <i className="fa fa-caret-down"></i>{' '}
+                        Sản phẩm
                     </Link>
-                    <ul className="dropdown-content">
+                    {/* <ul className="dropdown-content">
                         <li>
                             <Link to="/search/category/pants">Quần</Link>
                         </li>
@@ -47,7 +48,7 @@ export default function Header() {
                             <Link to="/search/category/shirts">Áo</Link>
                         </li>
 
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
             <div>
@@ -78,6 +79,7 @@ export default function Header() {
                     <Link to="/signin"><img className="userIcon" src={UserIcon} alt="user icon" /></Link>
                 )}
             </div>
+
         </header>
     )
 }

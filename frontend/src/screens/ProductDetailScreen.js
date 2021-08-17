@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productDetail } from '../actions/productAction.js';
 import LoadingBox from '../components/LoadingBox.js';
 import MessageBox from '../components/MessageBox.js'
-import Rating from '../components/Rating.js'
 import '../css/productDetail.css'
 
 export default function ProductDetailScreen(props) {
@@ -43,19 +42,13 @@ export default function ProductDetailScreen(props) {
                 (<div>
                     <Link to="/">Trở lại trang chủ</Link>
                     <div className="row top">
-                        <div className="">
+                        <div>
                             <img className="aaa" src={product.image} alt={product.name}></img>
                         </div>
-                        <div className="">
+                        <div>
                             <ul>
                                 <li>
                                     <h1>{product.name}</h1>
-                                </li>
-                                <li>
-                                    <Rating
-                                        rating={product.rating}
-                                        numReviews={product.numReviews}
-                                    ></Rating>
                                 </li>
                                 <li>Giá: {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</li>
                                 <li>
@@ -63,17 +56,17 @@ export default function ProductDetailScreen(props) {
                                 </li>
                             </ul>
                         </div>
-                        <div className="">
-                            <div className="">
+                        <div>
+                            <div>
                                 <ul>
                                     <li>
-                                        <div className="">
+                                        <div>
                                             <div>Giá</div>
                                             <div className="price">{product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                         </div>
                                     </li>
                                     <li>
-                                        <div className="">
+                                        <div >
                                             <div>Trạng thái</div>
                                             <div>{product.countInStock > 0 ? <span className="success">Còn hàng</span> : <span className="error">Hết hàng</span>}</div>
                                         </div>
@@ -82,7 +75,7 @@ export default function ProductDetailScreen(props) {
                                         product.countInStock > 0 && (
                                             <>
                                                 <li>
-                                                    <div className="">
+                                                    <div >
                                                         <div>Số lượng</div>
                                                         <div className="quantity-container">
                                                             {/* <select value={qty} onChange={(e) => setQty(e.target.value)}>
@@ -93,9 +86,9 @@ export default function ProductDetailScreen(props) {
                                                                 ))}
                                                             </select> */}
                                                             {/* <input type="number" className="" value="1" min="1" max={product.countInStock} /> */}
-                                                            <div className="icon-minus" onClick={() => qtyHandler('minus')}><i class="fas fa-minus"></i></div>
+                                                            <div className="icon-minus" onClick={() => qtyHandler('minus')}><i className="fas fa-minus"></i></div>
                                                             <div className="qty">{qty}</div>
-                                                            <div className="icon-plus" onClick={() => qtyHandler('plus')}><i class="fas fa-plus"></i></div>
+                                                            <div className="icon-plus" onClick={() => qtyHandler('plus')}><i className="fas fa-plus"></i></div>
                                                         </div>
                                                     </div>
                                                 </li>

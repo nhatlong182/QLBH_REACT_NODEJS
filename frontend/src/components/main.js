@@ -26,6 +26,11 @@ export default function Main() {
                     exact
                 ></Route>
                 <Route
+                    path="/search/pageNumber/:pageNumber"
+                    component={SearchScreen}
+                    exact
+                ></Route>
+                <Route
                     path="/search/category/:category/pageNumber/:pageNumber"
                     component={SearchScreen}
                     exact

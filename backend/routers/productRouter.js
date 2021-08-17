@@ -8,4 +8,6 @@ productRouter.get('/', getAllProducts);
 productRouter.get('/categories', getCategories);
 productRouter.get('/:id', getProductDetail);
 
+
+
 export default productRouter;

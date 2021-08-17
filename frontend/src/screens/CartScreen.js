@@ -70,9 +70,9 @@ export default function CartScreen(props) {
                                                             ))
                                                         }
                                                     </select> */}
-                                                    <div className="icon-minus" onClick={() => qtyHandler('minus', item)}><i class="fas fa-minus"></i></div>
+                                                    <div className="icon-minus" onClick={() => qtyHandler('minus', item)}><i className="fas fa-minus"></i></div>
                                                     <div className="qty">{item.qty}</div>
-                                                    <div className="icon-plus" onClick={() => qtyHandler('plus', item)}><i class="fas fa-plus"></i></div>
+                                                    <div className="icon-plus" onClick={() => qtyHandler('plus', item)}><i className="fas fa-plus"></i></div>
                                                 </div>
                                                 <div>{item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                                 <div>

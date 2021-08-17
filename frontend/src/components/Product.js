@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Rating from './Rating.js'
 import '../css/products.css'
 
 export default function Product(props) {
@@ -15,7 +14,7 @@ export default function Product(props) {
                 <Link to={`/products/${product._id}`}>
                     <h2>{product.name}</h2>
                 </Link>
-                <Rating rating={product.rating}></Rating>
+
                 <div className="price">{product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
             </div>
 

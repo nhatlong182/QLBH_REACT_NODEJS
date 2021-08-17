@@ -3,15 +3,15 @@ import Product from '../components/Product.js'
 import LoadingBox from '../components/LoadingBox.js'
 import MessageBox from '../components/MessageBox.js'
 import { useDispatch, useSelector } from 'react-redux';
-import { TopSellerProducts } from '../actions/productAction.js';
+import { popularProducts } from '../actions/productAction.js';
 
 export default function HomeScreen() {
-    const productList = useSelector((state) => state.productList);
+    const productList = useSelector((state) => state.homeProductList);
     const { loading, error, products } = productList;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(TopSellerProducts());
+        dispatch(popularProducts());
     }, [dispatch]);
 
     return (
@@ -24,7 +24,7 @@ export default function HomeScreen() {
                 loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
                     <div className="row center">
                         {
-                            products.map(product => (
+                            products?.map(product => (
                                 <Product key={product._id} product={product}></Product>
                             ))
                         }
