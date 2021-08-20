@@ -36,6 +36,40 @@ export const signin = async (req, res) => {
     res.status(401).send({ message: 'Sai tài khoản hoặc mật khẩu!!!' })
 }
 
+export const register = async (req, res) => {
+    const user = await Account.findOne({ email: req.body.email })
+
+    if (user) {
+        res.status(500).send({ message: 'Địa chỉ email đã tồn tại!!!' })
+
+    } else {
+        try {
+            const user = new Account({
+                name: req.body.name,
+                email: req.body.email,
+                phone: req.body.phone,
+                sex: req.body.sex,
+                avatar: req.body.avatar,
+                password: bcrypt.hashSync(req.body.password, 8),
+            });
+            const createdUser = await user.save();
+            res.send({
+                _id: createdUser._id,
+                name: createdUser.name,
+                email: createdUser.email,
+                phone: createdUser.phone,
+                sex: createdUser.sex,
+                avatar: createdUser.avatar,
+                isAdmin: createdUser.isAdmin,
+                isWebmaster: createdUser.isWebmaster,
+                token: initToken(createdUser),
+            });
+        } catch (error) {
+            res.status(500).send({ message: 'Lỗi server!!!' })
+        }
+    }
+}
+
 
 
 export const getAllAccounts = async (req, res) => {

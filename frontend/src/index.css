@@ -171,3 +171,17 @@ img.large {
 .pagination a.active {
   font-weight: bold;
 }
+
+/*****/
+.popular_title {
+  font-size: x-large;
+  text-align: center;
+}
+
+.popular_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 15%;
+  max-width: 1350px;
+}

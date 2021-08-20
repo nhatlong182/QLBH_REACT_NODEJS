@@ -19,10 +19,10 @@ export default function HomeScreen() {
             <div className="">
                 <img className="slider" src="/images/slider_1.jpg" alt="slider"></img>
             </div>
-            <h2>Một số sản phẩm nổi bật</h2>
+            <h2 className="popular_title">Sản phẩm nổi bật</h2>
             {
                 loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
-                    <div className="row center">
+                    <div className="popular_container">
                         {
                             products?.map(product => (
                                 <Product key={product._id} product={product}></Product>

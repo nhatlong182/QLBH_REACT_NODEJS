@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productDetail } from '../actions/productAction.js';
+import { addToCart } from '../actions/cartAction.js';
+
 import LoadingBox from '../components/LoadingBox.js';
 import MessageBox from '../components/MessageBox.js'
 import '../css/productDetail.css'
+
 
 export default function ProductDetailScreen(props) {
     const dispatch = useDispatch();
@@ -33,7 +36,8 @@ export default function ProductDetailScreen(props) {
 
 
     const addToCartHandler = () => {
-        props.history.push(`/cart/${productID}?qty=${qty}`);
+        // props.history.push(`/cart/${productID}?qty=${qty}`);
+        dispatch(addToCart(productID, qty));
     }
 
     return (
@@ -78,14 +82,6 @@ export default function ProductDetailScreen(props) {
                                                     <div >
                                                         <div>Số lượng</div>
                                                         <div className="quantity-container">
-                                                            {/* <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                                                                {[...Array(product.countInStock).keys()].map((x) => (
-                                                                    <option key={x + 1} value={x + 1}>
-                                                                        {x + 1}
-                                                                    </option>
-                                                                ))}
-                                                            </select> */}
-                                                            {/* <input type="number" className="" value="1" min="1" max={product.countInStock} /> */}
                                                             <div className="icon-minus" onClick={() => qtyHandler('minus')}><i className="fas fa-minus"></i></div>
                                                             <div className="qty">{qty}</div>
                                                             <div className="icon-plus" onClick={() => qtyHandler('plus')}><i className="fas fa-plus"></i></div>

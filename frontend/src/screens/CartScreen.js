@@ -61,15 +61,6 @@ export default function CartScreen(props) {
                                                     <Link to={`/products/${item.id}`}>{item.name}</Link>
                                                 </div>
                                                 <div className="quantity-container">
-                                                    {/* <select value={item.qty} onChange={e => dispatch(addToCart(item.id, Number(e.target.value)))}>
-                                                        {
-                                                            [...Array(item.countInStock).keys()].map((x) => (
-                                                                <option key={x + 1} value={x + 1}>
-                                                                    {x + 1}
-                                                                </option>
-                                                            ))
-                                                        }
-                                                    </select> */}
                                                     <div className="icon-minus" onClick={() => qtyHandler('minus', item)}><i className="fas fa-minus"></i></div>
                                                     <div className="qty">{item.qty}</div>
                                                     <div className="icon-plus" onClick={() => qtyHandler('plus', item)}><i className="fas fa-plus"></i></div>
@@ -94,7 +85,7 @@ export default function CartScreen(props) {
                                 : {cartItems.reduce((a, c) => a + c.price * c.qty, 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h2>
                         </li>
                         <li>
-                            <button type="button" className="primary block" onClick={checkoutHandler} disabled={cartItems.length === 0}> Thanh toán</button>
+                            <button type="button" className="primary block" onClick={checkoutHandler} disabled={cartItems.length === 0}> Đặt hàng</button>
                         </li>
                     </ul>
                 </div>

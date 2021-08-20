@@ -11,3 +11,10 @@
 .form label {
   margin: 1rem 0;
 }
+
+.form .male {
+  margin: 1.2rem 1rem;
+}
+.form .sex {
+  flex-direction: row;
+}

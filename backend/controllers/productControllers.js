@@ -21,7 +21,7 @@ export const getAllProducts = async (req, res) => {
 export const getRandomProducts = async (req, res) => {
     try {
         //db.products.aggregate([{$sample: {size: 5}}]);
-        const products = await Product.aggregate([{ $sample: { size: 10 } }]);
+        const products = await Product.aggregate([{ $sample: { size: 8 } }]);
 
         res.send(products);
     } catch (error) {
