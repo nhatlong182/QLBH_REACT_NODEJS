@@ -53,9 +53,9 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+/* a:hover {
   color: #ff8000;
-}
+} */
 ul {
   padding: 0;
   margin: 0;
@@ -111,7 +111,7 @@ button.block {
 /* Image */
 
 img {
-  border-radius: 0.5rem;
+  /* border-radius: 0.5rem; */
 }
 
 img.small {

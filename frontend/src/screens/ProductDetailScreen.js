@@ -41,76 +41,80 @@ export default function ProductDetailScreen(props) {
         <div>
             {loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
                 (<div>
-                    <Link to="/">Trở lại trang chủ</Link>
+                    {/* <Link to="/">Trở lại trang chủ</Link> */}
                     <div className="row top">
-                        <div className="">
-                            <img className="aaa" src={product.image} alt={product.name}></img>
+                        <div className="col-2">
+                            <img className="pic_detail" src={product.image} alt={product.name}></img>
                         </div>
-                        <div className="">
+                        <div className="detail">
                             <ul>
                                 <li>
-                                    <h1>{product.name}</h1>
+                                    <h1 className="name_detail">{product.name}</h1>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Rating
                                         rating={product.rating}
                                         numReviews={product.numReviews}
                                     ></Rating>
-                                </li>
-                                <li>Giá: {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</li>
+                                </li> */}
+                                <li className="price_detail">Giá: {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</li>
                                 <li>
-                                    <p>Mô tả: {product.description} </p>
+                                    <p className="desc">Mô tả: {product.description} </p>
                                 </li>
                             </ul>
-                        </div>
-                        <div className="">
-                            <div className="">
-                                <ul>
-                                    <li>
+                            <ul>
+                                    {/* <li>
                                         <div className="">
                                             <div>Giá</div>
-                                            <div className="price">{product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
+                                            <div className="">{product.price}.000đ</div>
                                         </div>
-                                    </li>
+                                    </li> */}
                                     <li>
-                                        <div className="">
-                                            <div>Trạng thái</div>
-                                            <div>{product.countInStock > 0 ? <span className="success">Còn hàng</span> : <span className="error">Hết hàng</span>}</div>
-                                        </div>
+                                        <div className="status">
+                                            {/* <div>Trạng thái</div> */}
+                                            <div>Trạng thái: {product.countInStock > 0 ? <span className="success">Còn hàng</span> : <span className="error">Hết hàng</span>}</div>
+                
+                                        </div>                                      
                                     </li>
+                                    {/* <li>
+                                        <button className="c">aaaaaaaaaa </button>
+                                    </li> */}
+                                   
                                     {
                                         product.countInStock > 0 && (
                                             <>
                                                 <li>
-                                                    <div className="">
+                                                    <div className="stock">
                                                         <div>Số lượng</div>
-                                                        <div className="quantity-container">
-                                                            {/* <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                                                                {[...Array(product.countInStock).keys()].map((x) => (
+                                                        <div className="quantity-container">   
+                                                             {/* <select className="a" value={qty} onChange={(e) => setQty(e.target.value)}>
+                                                                {[...Array(20).keys()].map((x) => (
                                                                     <option key={x + 1} value={x + 1}>
                                                                         {x + 1}
                                                                     </option>
                                                                 ))}
                                                             </select> */}
-                                                            {/* <input type="number" className="" value="1" min="1" max={product.countInStock} /> */}
-                                                            <div className="icon-minus" onClick={() => qtyHandler('minus')}><i class="fas fa-minus"></i></div>
-                                                            <div className="qty">{qty}</div>
-                                                            <div className="icon-plus" onClick={() => qtyHandler('plus')}><i class="fas fa-plus"></i></div>
+
+                                                            <div className="icon_detail-" onClick={() => qtyHandler('minus')}><i class="fas fa-minus"></i></div>
+                                                            <div className="qty_detail">{qty}</div>
+                                                            <div className="icon_detailplus" onClick={() => qtyHandler('plus')}><i class="fas fa-plus"></i></div>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <button onClick={addToCartHandler} className="primary block">Thêm vào giỏ hàng</button>
+                                                    <button onClick={addToCartHandler} className="btn">Thêm vào giỏ hàng</button>
                                                 </li>
                                             </>
                                         )
                                     }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div >)
+                            </ul>
+                        </div>                                              
+                    </div>                   
+                </div >)               
             }
-        </div >
+        </div>
     );
 }
+
+
+
