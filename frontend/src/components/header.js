@@ -34,22 +34,9 @@ export default function Header() {
                     <i className="fa fa-bars"></i>
                 </button>
                 <Link className="logo" to="/">PL-STORE</Link>
-            </div>
-            <div>
-                <div className="dropdown">
-                    <Link to="/search">
-                        Sản phẩm
-                    </Link>
-                    {/* <ul className="dropdown-content">
-                        <li>
-                            <Link to="/search/category/pants">Quần</Link>
-                        </li>
-                        <li>
-                            <Link to="/search/category/shirts">Áo</Link>
-                        </li>
-
-                    </ul> */}
-                </div>
+                <Link to="/category">
+                    Sản phẩm
+                </Link>
             </div>
             <div>
                 <Link to="/cart">

@@ -1,6 +1,6 @@
 header {
   grid-area: header;
-  background-color: black;
+  background-color: #262626;
 }
 header a {
   color: #ffffff;
@@ -61,19 +61,6 @@ a.logo {
   display: block;
 }
 
-/* Aside */
-aside {
-  position: fixed;
-  width: 100rem;
-  height: 100vh;
-  background-color: #efefef;
-  z-index: 1000;
-  transform: translateX(-30rem);
-  transition: all 0.5s;
-}
-aside.open {
-  transform: translateX(0);
-}
 button.open-sidebar {
   position: relative;
   font-size: 3rem;
@@ -86,15 +73,42 @@ button.open-sidebar {
 button.open-sidebar:hover {
   border-color: #ffffff;
 }
-/* aside ul {
-  padding: 0;
-  list-style: none;
+
+@media only screen and (max-width: 375px) {
+  a.logo {
+    font-size: 2rem;
+  }
+
+  .cartIcon {
+    width: 25px;
+    cursor: pointer;
+    margin-right: 1.5rem;
+  }
+
+  .userIcon {
+    width: 25px;
+  }
+
+  button.open-sidebar {
+    font-size: 2rem;
+  }
 }
-aside li {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+@media only screen and (min-width: 376px) and (max-width: 1024px) {
+  a.logo {
+    font-size: 2.5rem;
+  }
+
+  .cartIcon {
+    width: 27px;
+    cursor: pointer;
+    margin-right: 1.5rem;
+  }
+
+  .userIcon {
+    width: 27px;
+  }
+
+  button.open-sidebar {
+    font-size: 2.5rem;
+  }
 }
-button.close-sidebar {
-  padding: 0.3rem 0.8rem;
-} */

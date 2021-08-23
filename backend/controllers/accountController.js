@@ -11,9 +11,32 @@ const initToken = (user) => {
             email: user.email,
             isAdmin: user.isAdmin,
             isWebmaster: user.isWebmaster,
-        }, 'mabimat', { expiresIn: '1d' }
+        },
+        process.env.JWT_SECRET || 'mabimat',
+        { expiresIn: '1d' }
     )
 }
+
+export const isAuth = (req, res, next) => {
+    const authorization = req.headers.authorization;
+    if (authorization) {
+        const token = authorization.split(' ')[1]; // Bearer XXXXXX
+        jwt.verify(
+            token,
+            process.env.JWT_SECRET || 'mabimat',
+            (err, decode) => {
+                if (err) {
+                    res.status(401).send({ message: 'Token hết thời gian hiệu lực' });
+                } else {
+                    req.user = decode;
+                    next();
+                }
+            }
+        );
+    } else {
+        res.status(401).send({ message: 'Vui lòng đăng nhập để thực hiện chức năng này' });
+    }
+};
 
 export const signin = async (req, res) => {
     const user = await Account.findOne({ email: req.body.email })

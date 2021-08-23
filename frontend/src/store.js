@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { homeProductListReducer, productDetailReducer, productListReducer } from './reducers/productReducer.js';
+import { homePopularListReducer, homeSaleOffListReducer, productDetailReducer, productListReducer } from './reducers/productReducer.js';
 import { cartReducer } from './reducers/cartReducer.js';
 import { userRegisterReducer, userSigninReducer } from './reducers/userReducer.js';
 
@@ -10,7 +10,8 @@ const initialState = {
 };
 
 const reducer = combineReducers({
-    homeProductList: homeProductListReducer,
+    popularProductList: homePopularListReducer,
+    saleOffProductList: homeSaleOffListReducer,
     productList: productListReducer,
     productDetail: productDetailReducer,
     cart: cartReducer,

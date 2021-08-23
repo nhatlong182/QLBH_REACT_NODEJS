@@ -41,6 +41,8 @@ const data = {
             rating: 4,
             numReviews: 10,
             description: 'Animal Crossing New Horizons',
+            isSale: true,
+            saleOff: 40,
         },
         {
             name: 'Áo Thun UT Animal Crossing White',
@@ -52,6 +54,8 @@ const data = {
             rating: 4,
             numReviews: 10,
             description: 'Animal Crossing New Horizons',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun UT Animal Crossing Navy',
@@ -63,6 +67,8 @@ const data = {
             rating: 5,
             numReviews: 17,
             description: 'Animal Crossing New Horizons',
+            isSale: true,
+            saleOff: 40,
         },
         {
             name: 'Áo Thun PEANUTS UT OLIVE',
@@ -74,6 +80,8 @@ const data = {
             rating: 4,
             numReviews: 14,
             description: 'Thiết kế thuộc New Arrivals 08/2021',
+            isSale: true,
+            saleOff: 20,
         },
         {
             name: 'Áo Thun PEANUTS SHORT BLACK',
@@ -85,6 +93,8 @@ const data = {
             rating: 4,
             numReviews: 10,
             description: 'Thiết kế thuộc New Arrivals 08/2021',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun EANUTS UT BEIGE',
@@ -96,6 +106,8 @@ const data = {
             rating: 4,
             numReviews: 15,
             description: 'Thiết kế thuộc New Arrivals 08/2021',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun PEANUTS UT WHITE',
@@ -107,6 +119,8 @@ const data = {
             rating: 5,
             numReviews: 12,
             description: 'Thiết kế thuộc New Arrivals 08/2021',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun UT Basquiat',
@@ -118,6 +132,8 @@ const data = {
             rating: 3,
             numReviews: 20,
             description: 'Thiết kế thuộc New Arrivals 08/2021',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun UT Andy Warhol',
@@ -129,6 +145,8 @@ const data = {
             rating: 4,
             numReviews: 5,
             description: 'Thiết kế thuộc New Arrivals 08/2021',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun UT The Brands',
@@ -140,6 +158,8 @@ const data = {
             rating: 4,
             numReviews: 10,
             description: 'high quality product',
+            isSale: true,
+            saleOff: 30,
         },
         {
             name: 'Áo Thun UT MARVEL Essentials',

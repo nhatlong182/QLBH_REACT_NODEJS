@@ -16,6 +16,108 @@
   margin-bottom: 0.5rem;
 }
 
-.price {
+.product-name {
+  color: #262626;
+}
+
+.price-normal {
   font-size: 2rem;
+}
+
+.price-container {
+  display: flex;
+  /* justify-content: left; */
+}
+.price-old {
+  margin-left: 1rem;
+  margin-top: 0.2rem;
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
+}
+.price-new {
+  font-weight: bold;
+  font-size: large;
+}
+
+.smart {
+  width: 55px;
+  height: 19px;
+  line-height: 19px;
+  box-sizing: content-box;
+  position: absolute;
+  background-image: url(//bizweb.dktcdn.net/100/331/067/themes/823156/assets/i_sale.png?1626659691410);
+  color: #fff;
+  font-size: 13px;
+  font-family: "MavenPro Medium";
+  text-align: center;
+  text-transform: none;
+}
+
+@media only screen and (max-width: 375px) {
+  .card {
+    border: 0.1rem #c0c0c0 solid;
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    width: 130px;
+    height: 30rem;
+  }
+  .card-body {
+    word-break: break-all;
+  }
+  .product-name {
+    font-size: small;
+  }
+  .price {
+    font-size: 14px;
+  }
+  .price-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .price-old {
+    margin-left: 2rem;
+    margin-top: 0.2rem;
+    text-decoration-line: line-through;
+    text-decoration-style: solid;
+    font-size: small;
+  }
+  .price-new {
+    font-weight: bold;
+    font-size: large;
+  }
+}
+@media only screen and (min-width: 376px) and (max-width: 1024px) {
+  .card {
+    border: 0.1rem #c0c0c0 solid;
+    background-color: #f8f8f8;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    width: 130px;
+    height: 30rem;
+  }
+  .card-body {
+    word-break: break-all;
+  }
+  .product-name {
+    font-size: small;
+  }
+  .price {
+    font-size: 14px;
+  }
+  .price-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .price-old {
+    margin-left: 2rem;
+    margin-top: 0.2rem;
+    text-decoration-line: line-through;
+    text-decoration-style: solid;
+    font-size: small;
+  }
+  .price-new {
+    font-weight: bold;
+    font-size: large;
+  }
 }

@@ -1,15 +1,26 @@
 import axios from 'axios';
-import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS } from '../constants.js';
+import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
 
 export const popularProducts = () => async (dispatch) => {
     dispatch({
         type: PRODUCT_RANDOM_REQUEST,
     })
     try {
-        const { data } = await axios.get(`/api/products/home`)
+        const { data } = await axios.get(`/api/products/popular`)
         dispatch({ type: PRODUCT_RANDOM_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: PRODUCT_RANDOM_FAIL, payload: error.message });
+    }
+}
+export const saleOffProducts = () => async (dispatch) => {
+    dispatch({
+        type: PRODUCT_SALEOFF_REQUEST,
+    })
+    try {
+        const { data } = await axios.get(`/api/products/saleOff`)
+        dispatch({ type: PRODUCT_SALEOFF_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({ type: PRODUCT_SALEOFF_FAIL, payload: error.message });
     }
 }
 

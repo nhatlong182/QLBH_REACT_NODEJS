@@ -1,0 +1,37 @@
+.popular_title {
+  font-size: x-large;
+  text-align: center;
+}
+
+.popular_sub_title {
+  font-size: small;
+  text-align: center;
+  color: #ffac4b;
+  margin-top: -2rem;
+}
+
+.popular_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 15%;
+  max-width: 1350px;
+}
+
+/* @media only screen and (max-width: 375px) {
+  .popular_container {
+    margin-left: 3%;
+  }
+} */
+
+@media only screen and (max-width: 1024px) {
+  .popular_container {
+    margin-left: 2%;
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1508px) {
+  .popular_container {
+    margin-left: 5%;
+  }
+}

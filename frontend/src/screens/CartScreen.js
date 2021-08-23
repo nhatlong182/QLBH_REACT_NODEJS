@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../actions/cartAction.js';
@@ -6,17 +6,17 @@ import MessageBox from '../components/MessageBox'
 import '../css/cart.css'
 
 export default function CartScreen(props) {
-    const productID = props.match.params.id;
-    const quantity = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
+    // const productID = props.match.params.id;
+    // const quantity = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
 
-    useEffect(() => {
-        if (productID) {
-            dispatch(addToCart(productID, quantity));
-        }
-    }, [dispatch, productID, quantity]);
+    // useEffect(() => {
+    //     if (productID) {
+    //         dispatch(addToCart(productID, quantity));
+    //     }
+    // }, [dispatch, productID, quantity]);
 
     const qtyHandler = (type, item) => {
         if (type === 'plus') {
@@ -37,9 +37,7 @@ export default function CartScreen(props) {
         dispatch(removeFromCart(id));
     }
     const checkoutHandler = () => {
-        //props.history.push(`/signin?redirect=shipping`);
-        console.log(props);
-        console.log(cart);
+        props.history.push(`/signin?redirect=shipping`);
     }
 
     return (

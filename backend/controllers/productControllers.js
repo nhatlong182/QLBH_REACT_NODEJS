@@ -21,7 +21,27 @@ export const getAllProducts = async (req, res) => {
 export const getRandomProducts = async (req, res) => {
     try {
         //db.products.aggregate([{$sample: {size: 5}}]);
-        const products = await Product.aggregate([{ $sample: { size: 8 } }]);
+        const products = await Product.aggregate([{ $match: { isSale: false } }, { $sample: { size: 8 } },]);
+
+        res.send(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "Loi server!!!" });
+    }
+}
+export const getSaleOffProducts = async (req, res) => {
+    try {
+        const products = await Product.aggregate([{ $match: { isSale: true } }, { $sample: { size: 4 } },]);
+
+        res.send(products);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "Loi server!!!" });
+    }
+}
+export const getAllSaleOffProducts = async (req, res) => {
+    try {
+        const products = await Product.find({ isSale: true });
 
         res.send(products);
     } catch (error) {

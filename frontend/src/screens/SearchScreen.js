@@ -21,7 +21,7 @@ export default function SearchScreen() {
         // const sortOrder = filter.order || order;
         // const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
         // const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
-        return `/search/pageNumber/${filterPage}`;
+        return `/category/pageNumber/${filterPage}`;
     };
 
 

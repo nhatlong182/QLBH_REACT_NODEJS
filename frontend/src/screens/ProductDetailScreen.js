@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productDetail } from '../actions/productAction.js';
 import { addToCart } from '../actions/cartAction.js';
@@ -44,58 +43,54 @@ export default function ProductDetailScreen(props) {
         <div>
             {loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
                 (<div>
-                    <Link to="/">Trở lại trang chủ</Link>
                     <div className="row top">
-                        <div>
-                            <img className="aaa" src={product.image} alt={product.name}></img>
+                        <div className="col-2">
+                            <img className="pic_detail" src={product.image} alt={product.name}></img>
                         </div>
-                        <div>
+                        <div className="detail">
                             <ul>
                                 <li>
-                                    <h1>{product.name}</h1>
+                                    <h1 className="name_detail">{product.name}</h1>
                                 </li>
-                                <li>Giá: {product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</li>
+                                <li>{product.isSale ? (
+                                    <div className="detail-price-container">
+                                        <span className="detail-price-title">Giá:</span>
+                                        <span className="detail-price-new">{(product.price - (product.price * product.saleOff / 100)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
+                                        <span className="detail-price-old">{(product.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
+                                        <span className="discount_">-40%</span>
+                                    </div>
+                                ) : (<span className="price">Giá: {(product.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>)}
+                                </li>
                                 <li>
-                                    <p>Mô tả: {product.description} </p>
+                                    <p className="desc">Mô tả: {product.description} </p>
                                 </li>
                             </ul>
-                        </div>
-                        <div>
-                            <div>
-                                <ul>
-                                    <li>
-                                        <div>
-                                            <div>Giá</div>
-                                            <div className="price">{product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div >
-                                            <div>Trạng thái</div>
-                                            <div>{product.countInStock > 0 ? <span className="success">Còn hàng</span> : <span className="error">Hết hàng</span>}</div>
-                                        </div>
-                                    </li>
-                                    {
-                                        product.countInStock > 0 && (
-                                            <>
-                                                <li>
-                                                    <div >
-                                                        <div>Số lượng</div>
-                                                        <div className="quantity-container">
-                                                            <div className="icon-minus" onClick={() => qtyHandler('minus')}><i className="fas fa-minus"></i></div>
-                                                            <div className="qty">{qty}</div>
-                                                            <div className="icon-plus" onClick={() => qtyHandler('plus')}><i className="fas fa-plus"></i></div>
-                                                        </div>
+                            <ul>
+                                <li>
+                                    <div >
+                                        <div>Trạng thái: {product.countInStock > 0 ? <span className="success">Còn hàng</span> : <span className="error">Hết hàng</span>}</div>
+                                    </div>
+                                </li>
+                                {
+                                    product.countInStock > 0 && (
+                                        <>
+                                            <li>
+                                                <div className="stock">
+                                                    <div>Số lượng</div>
+                                                    <div className="quantity-container">
+                                                        <div className="icon-minus" onClick={() => qtyHandler('minus')}><i className="fas fa-minus"></i></div>
+                                                        <div className="qty">{qty}</div>
+                                                        <div className="icon-plus" onClick={() => qtyHandler('plus')}><i className="fas fa-plus"></i></div>
                                                     </div>
-                                                </li>
-                                                <li>
-                                                    <button onClick={addToCartHandler} className="primary block">Thêm vào giỏ hàng</button>
-                                                </li>
-                                            </>
-                                        )
-                                    }
-                                </ul>
-                            </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <button onClick={addToCartHandler} className="btn">Thêm vào giỏ hàng</button>
+                                            </li>
+                                        </>
+                                    )
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div >)

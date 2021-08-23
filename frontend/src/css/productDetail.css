@@ -1,10 +1,3 @@
-.aaa {
-  width: 500px;
-}
-.aa {
-  left: 400px;
-}
-
 .quantity-container {
   display: flex;
   flex-wrap: wrap;
@@ -18,3 +11,278 @@
   margin-left: 2rem;
   cursor: pointer;
 }
+
+.detail-price-container {
+  display: flex;
+}
+.detail-price-new {
+  margin-left: 1rem;
+  margin-top: -0.2rem;
+  font-weight: bold;
+  font-size: large;
+}
+.detail-price-old {
+  margin-left: 1rem;
+  margin-top: -0.1rem;
+  text-decoration-line: line-through;
+  text-decoration-style: solid;
+}
+
+.discount_ {
+  width: 53px;
+  height: 23px;
+  line-height: 23px;
+  position: absolute;
+  background-image: url(//bizweb.dktcdn.net/100/331/067/themes/823156/assets/img_discount.png?1626659691410);
+  margin-left: 21rem;
+  margin-top: -0.5rem;
+  color: #ffac4b;
+  font-size: 14px;
+  font-family: "MavenPro Medium";
+  text-align: center;
+  text-transform: none;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.pic_detail {
+  width: 70%;
+  margin-top: 50px;
+  margin-left: 120px;
+}
+
+.detail {
+  flex: 2 1 50rem;
+  margin-top: 180px;
+  /* background-color:antiquewhite; */
+  margin-left: -50px;
+}
+
+.name_detail {
+  font-size: 2.8em;
+  font-weight: border;
+  line-height: 5rem;
+}
+
+.price_detail {
+  margin-top: -40px;
+  font-size: 1.7em;
+}
+
+.quantity-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.icon_detail- {
+  font-size: 1.7rem;
+  margin-right: 1.8rem;
+  cursor: pointer;
+}
+
+.icon_detailplus {
+  font-size: 1.7rem;
+  margin-left: 1.8rem;
+  cursor: pointer;
+}
+
+.desc {
+  word-break: break-all;
+  margin-top: -8px;
+  font-size: 1.7rem;
+  line-height: 2.5rem;
+}
+
+.status {
+  margin-top: -10px;
+}
+
+.btn {
+  background-color: rgb(0, 0, 0);
+  width: 70%;
+  padding: 14px 30px;
+  padding: 0.6rem;
+  border: 0.06rem solid #000;
+  font-size: 18px;
+  color: white;
+  border-radius: 0%;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.error {
+  font-weight: border;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+.a {
+  margin-top: 2px;
+  width: 6.4rem;
+  padding: 0.6rem;
+  border: 0.06rem solid #000;
+}
+
+@media only screen and (max-width: 375px) {
+  .pic_detail {
+    width: 60%;
+    margin-left: 75px;
+  }
+
+  .detail {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 1.01rem;
+    line-height: 2rem;
+    margin-bottom: 100px;
+  }
+
+  .name_detail {
+    font-size: 2.5rem;
+  }
+
+  .price {
+    font-size: 2.5rem;
+  }
+
+  .desc {
+    word-break: break-word;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    margin-top: 15px;
+  }
+
+  .detail-price-title {
+    font-size: large;
+  }
+
+  .detail-price-new {
+    margin-left: 1rem;
+    margin-top: 0rem;
+    font-weight: bold;
+    font-size: large;
+  }
+  .detail-price-old {
+    font-size: small;
+  }
+  .discount_ {
+    margin-left: 20rem;
+  }
+
+  .status {
+    font-size: 1.6rem;
+  }
+
+  .stock {
+    margin-top: 10px;
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 14px;
+    width: 75%;
+    line-height: 2rem;
+    margin-left: 2rem;
+  }
+}
+
+@media only screen and (min-width: 376px) and (max-width: 949px) {
+  .pic_detail {
+    width: 70%;
+    margin-left: 65px;
+  }
+  .detail {
+    margin-left: 20px;
+    margin-top: 1px;
+    margin-bottom: 200px;
+  }
+
+  .name_detail {
+    font-size: 4rem;
+  }
+
+  .price {
+    font-size: 3rem;
+  }
+
+  .desc {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .status {
+    font-size: 2.5rem;
+  }
+
+  .stock {
+    font-size: 2.6rem;
+  }
+
+  .a {
+    width: 15%;
+    font-size: 2.5rem;
+  }
+
+  .btn {
+    font-size: 24px;
+    width: 75%;
+    line-height: 3.3rem;
+  }
+
+  .error {
+    margin-bottom: 100px;
+  }
+}
+
+/* @media only screen and (min-width: 781px) and (width: 993px) {
+  .pic_detail {
+    margin-top: 3rem;
+    width: 75%;
+    margin-left: 130px;
+  }
+  .detail {
+    font-size: 2.1rem;
+    margin-top: 30px;
+    margin-left: 25px;
+    margin-bottom: 100px;
+    background-color: pink;
+  }
+
+  .name_detail {
+    margin-top: 6rem;
+  }
+
+  .price {
+    font-size: 3.5rem;
+  }
+
+  .desc {
+    margin-top: 2rem;
+    font-size: 3rem;
+  }
+
+  .status {
+    font-size: 3.5rem;
+  }
+
+  .stock {
+    font-size: 3.7rem;
+  }
+
+  .a {
+    width: 20%;
+    font-size: 3rem;
+  }
+
+  .btn {
+    font-size: 30px;
+    width: 75%;
+    line-height: 4.6rem;
+    margin-top: 10px;
+    margin-left: 5rem;
+  }
+} */

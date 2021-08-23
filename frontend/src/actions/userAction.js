@@ -7,6 +7,9 @@ export const signin = (email, password) => async (dispatch) => {
         const { data } = await axios.post('/api/accounts/signin', { email, password });
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         sessionStorage.setItem('userInfo', JSON.stringify(data));
+        if (data.isAdmin || data.isWebmaster) {
+            document.location.href = '/admin';
+        }
     } catch (error) {
         dispatch({
             type: USER_SIGNIN_FAIL,
@@ -30,9 +33,12 @@ export const register = (name, email, phone, sex, avatar, password) => async (di
         const { data } = await axios.post('/api/accounts/register', { name, email, phone, sex, avatar, password });
 
         dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        // dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        // sessionStorage.setItem('userInfo', JSON.stringify(data));
 
-        sessionStorage.setItem('userInfo', JSON.stringify(data));
+        alert("Đăng ký tài khoản thành công!!!")
+        document.location.href = '/signin';
+
     } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
