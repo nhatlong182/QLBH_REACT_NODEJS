@@ -47,6 +47,7 @@ export default function CartScreen(props) {
         <div className="row-top">
             <div className="col2">
                 <h1 className="spcart">Giỏ hàng</h1>
+                {/* <hr className="hr-margin-1"></hr>                   */}
                 {
                     cartItems.length === 0 ? <MessageBox> Giỏ hàng rỗng. <Link to="/">Tiếp tục mua sắm</Link> </MessageBox>
                         : (
@@ -54,6 +55,7 @@ export default function CartScreen(props) {
                                 {
                                     cartItems.map((item) => (
                                         <li key={item.id}>
+                                           
                                             <div className="aaa">
                                                 <div className="hinh">
                                                     <img className="picc" src={item.image} alt={item.name}></img>
@@ -87,12 +89,15 @@ export default function CartScreen(props) {
                             </ul>
                         )
                 }
+                {/* <hr className="hr-margin-2"></hr>  */}
+                
             </div>
+               
             <div className="subtotal">
                 <div className="sub_detail">
                     <ul>
                         <li>
-                            <h2>Tạm tính ({cartItems.reduce((a, c) => a + c.qty, 0)} sản phẩm)
+                            <h2 className="sub_text">Tạm tính ({cartItems.reduce((a, c) => a + c.qty, 0)} sản phẩm)
                                 : {cartItems.reduce((a, c) => a + c.price * c.qty, 0).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</h2>
                         </li>
                         <li>
