@@ -33,7 +33,7 @@
   height: 23px;
   line-height: 23px;
   position: absolute;
-  background-image: url(//bizweb.dktcdn.net/100/331/067/themes/823156/assets/img_discount.png?1626659691410);
+  background-image: url("../assets/img_discount.png");
   margin-left: 21rem;
   margin-top: -0.5rem;
   color: #ffac4b;
@@ -121,10 +121,8 @@
 }
 
 .a {
-  margin-top: 2px;
-  width: 6.4rem;
-  padding: 0.6rem;
-  border: 0.06rem solid #000;
+  background-color: black;
+  opacity: 0.5;
 }
 
 @media only screen and (max-width: 375px) {

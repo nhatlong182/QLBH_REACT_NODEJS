@@ -17,26 +17,7 @@ const initToken = (user) => {
     )
 }
 
-export const isAuth = (req, res, next) => {
-    const authorization = req.headers.authorization;
-    if (authorization) {
-        const token = authorization.split(' ')[1]; // Bearer XXXXXX
-        jwt.verify(
-            token,
-            process.env.JWT_SECRET || 'mabimat',
-            (err, decode) => {
-                if (err) {
-                    res.status(401).send({ message: 'Token hết thời gian hiệu lực' });
-                } else {
-                    req.user = decode;
-                    next();
-                }
-            }
-        );
-    } else {
-        res.status(401).send({ message: 'Vui lòng đăng nhập để thực hiện chức năng này' });
-    }
-};
+
 
 export const signin = async (req, res) => {
     const user = await Account.findOne({ email: req.body.email })
@@ -44,9 +25,7 @@ export const signin = async (req, res) => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
             res.send({
                 _id: user._id,
-                name: user.name,
                 email: user.email,
-                sex: user.sex,
                 avatar: user.avatar,
                 isAdmin: user.isAdmin,
                 isWebmaster: user.isWebmaster,
@@ -106,12 +85,13 @@ export const getAllAccounts = async (req, res) => {
 }
 
 export const getDetailAccount = async (req, res) => {
-    try {
-        const account = await Account.findById(req.params.id);
+    //req.user từ hàm isAuth
+
+    const account = await Account.findById(req.user._id);
+    if (account) {
         res.send(account);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send({ message: "Lỗi server không tìm thấy chi tiết tài khoản!!!" });
+    } else {
+        res.status(404).send({ message: 'Lỗi server không tìm thấy chi tiết tài khoản!!!' });
     }
 }
 

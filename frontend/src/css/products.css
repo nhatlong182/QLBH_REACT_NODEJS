@@ -45,7 +45,7 @@
   line-height: 19px;
   box-sizing: content-box;
   position: absolute;
-  background-image: url(//bizweb.dktcdn.net/100/331/067/themes/823156/assets/i_sale.png?1626659691410);
+  background-image: url("../assets/i_sale.png");
   color: #fff;
   font-size: 13px;
   font-family: "MavenPro Medium";

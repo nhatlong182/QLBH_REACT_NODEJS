@@ -1,5 +1,5 @@
 import axios from "axios";
-import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT } from "../constants.js"
+import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT } from "../constants.js"
 
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
@@ -47,5 +47,24 @@ export const register = (name, email, phone, sex, avatar, password) => async (di
                     ? error.response.data.message
                     : error.message,
         });
+    }
+};
+
+export const detailsUser = (userId) => async (dispatch, getState) => {
+    dispatch({ type: USER_DETAILS_REQUEST, payload: userId });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.get(`/api/accounts/${userId}`, {
+            headers: { Authorization: `Bearer ${userInfo?.token}` },
+        });
+        dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: USER_DETAILS_FAIL, payload: message });
     }
 };

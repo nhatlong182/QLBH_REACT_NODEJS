@@ -1,14 +1,30 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-// import { useSelector } from 'react-redux';
+import swal from 'sweetalert';
+import { useDispatch, useSelector } from 'react-redux';
+import { createOrder } from '../actions/orderAction.js';
+import { ORDER_CREATE_RESET } from '../constants.js';
+
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 
 import "../css/shippingAddress.css"
 
-export default function ShippingAddressScreen() {
+export default function ShippingAddressScreen(props) {
 
-    // const cart = useSelector((state) => state.cart);
-    // const { shippingAddress } = cart;
+    const cart = useSelector((state) => state.cart);
+
+    const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
+    cart.itemsPrice = toPrice(
+        cart.cartItems.reduce((sum, i) => sum + i.qty * i.price, 0)
+    );
+    cart.shippingPrice = 0;
+    cart.totalPrice = cart.itemsPrice + cart.shippingPrice;
+
+    const orderCreate = useSelector((state) => state.orderCreate);
+    const { loading, success, error, order } = orderCreate;
+
 
     const [data, setData] = useState([]);
 
@@ -21,6 +37,9 @@ export default function ShippingAddressScreen() {
     const [isDisable, setIsDisable] = useState(true);
     const [arrayDistricts, setArrayDistricts] = useState([]);
 
+    const dispatch = useDispatch();
+
+
 
     const selectHandler = (e) => {
         setCity(e.target.value)
@@ -30,11 +49,31 @@ export default function ShippingAddressScreen() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(fullName)
-        console.log(phone)
-        console.log(address, district, city)
-        console.log(" ")
+        const shippingAddress = {}
+        shippingAddress.fullName = fullName
+        shippingAddress.phone = phone
+        shippingAddress.address = address
+        shippingAddress.city = city
+        shippingAddress.district = district
+        cart.shippingAddress = shippingAddress
+
+        dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
+
     };
+
+    useEffect(() => {
+        if (success) {
+            swal({
+                text: "Đăt hàng thành công!!!",
+                icon: "success",
+                button: false,
+                timer: 1500,
+            });
+            props.history.push(`/order/${order._id}`);
+
+            dispatch({ type: ORDER_CREATE_RESET });
+        }
+    }, [dispatch, success, order, props.history])
 
     useEffect(() => {
         async function fetchAPI() {
@@ -47,7 +86,12 @@ export default function ShippingAddressScreen() {
     return (
         <div>
             <div className="left">
+                <label></label>
                 <form className="form" onSubmit={submitHandler}>
+                    <label>
+                        {loading && <LoadingBox></LoadingBox>}
+                        {error && <MessageBox variant="danger">{error}</MessageBox>}
+                    </label>
                     <div>
                         <h1>Thông tin mua hàng</h1>
                     </div>
@@ -87,10 +131,9 @@ export default function ShippingAddressScreen() {
                             required
                         ></input>
                     </div>
-
                     <div className='option-custom'>
                         <label htmlFor="city">Tỉnh thành</label>
-                        <select id='city' className='select-input' value={city} onChange={(e) => selectHandler(e)}>
+                        <select id='city' className='select-input' value={city} onChange={selectHandler}>
                             <option key={0} value={''}> {"---"}</option>
                             {data.map((item, index) => (
                                 <option key={index} value={item.name}> {item.name} </option>
@@ -102,7 +145,7 @@ export default function ShippingAddressScreen() {
                         <select id='district' className='select-input' value={district} onChange={(e) => setDistrict(e.target.value)} disabled={isDisable}>
                             <option key={0} value={''}> {"---"}</option>
                             {arrayDistricts.map((item, index) => (
-                                <option key={index} value={item.name}> {item.name}</option>
+                                <option key={index} value={item.name}> {item.name} </option>
                             ))}
                         </select>
                     </div>
@@ -113,6 +156,7 @@ export default function ShippingAddressScreen() {
                         </button>
                     </div>
                 </form>
+
             </div>
         </div >
     )

@@ -6,17 +6,10 @@ import MessageBox from '../components/MessageBox'
 import '../css/cart.css'
 
 export default function CartScreen(props) {
-    // const productID = props.match.params.id;
-    // const quantity = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
-    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
 
-    // useEffect(() => {
-    //     if (productID) {
-    //         dispatch(addToCart(productID, quantity));
-    //     }
-    // }, [dispatch, productID, quantity]);
+    const dispatch = useDispatch();
 
     const qtyHandler = (type, item) => {
         if (type === 'plus') {

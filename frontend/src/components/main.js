@@ -3,7 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import AdminScreen from '../screens/AdminScreen.js';
 import CartScreen from '../screens/CartScreen.js';
 import HomeScreen from '../screens/HomeScreen.js'
+import OrderDetailScreen from '../screens/OrderDetailScreen.js';
 import ProductDetailScreen from '../screens/ProductDetailScreen.js'
+import ProfileScreen from '../screens/ProfileScreen.js';
 import RegisterScreen from '../screens/RegisterScreen.js';
 import SearchScreen from '../screens/SearchScreen.js';
 import ShippingAddressScreen from '../screens/ShippingAddressScreen.js';
@@ -18,6 +20,7 @@ export default function Main() {
                 <Route path="/signin" component={SinginScreen}></Route>
                 <Route path="/register" component={RegisterScreen}></Route>
                 <Route path="/shipping" component={ShippingAddressScreen}></Route>
+                <Route path="/order/:id" component={OrderDetailScreen}></Route>
 
                 <Route
                     path="/category"
@@ -40,6 +43,11 @@ export default function Main() {
                     exact
                 ></Route>
 
+
+                <Route
+                    path="/profile"
+                    component={ProfileScreen}
+                ></Route>
                 <Route
                     path="/admin"
                     component={AdminScreen}

@@ -11,7 +11,7 @@ export default function HomeScreen() {
     const { loading, error, products } = popularProduct;
 
     const saleOffProduct = useSelector((state) => state.saleOffProductList)
-    const { saleProduct } = saleOffProduct;
+    const { loading: loadingSales, error: errorSale, saleProduct } = saleOffProduct;
 
     const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ export default function HomeScreen() {
                 <h2 className="popular_title">ĐANG KHUYẾN MÃI</h2>
                 <h3 className="popular_sub_title">Giảm giá</h3>
                 {
-                    loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
+                    loadingSales ? <LoadingBox></LoadingBox> : errorSale ? <MessageBox variant="danger">{error}</MessageBox> :
                         <div className="popular_container">
                             {
                                 saleProduct?.map(product => (
