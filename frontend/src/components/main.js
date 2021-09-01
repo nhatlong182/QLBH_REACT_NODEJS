@@ -10,6 +10,8 @@ import RegisterScreen from '../screens/RegisterScreen.js';
 import SearchScreen from '../screens/SearchScreen.js';
 import ShippingAddressScreen from '../screens/ShippingAddressScreen.js';
 import SinginScreen from '../screens/SigninScreen.js'
+import AdminRoute from './AdminRoute.js';
+import PrivateRoute from './PrivateRoute.js';
 
 export default function Main() {
     return (
@@ -19,7 +21,7 @@ export default function Main() {
                 <Route path="/products/:id" component={ProductDetailScreen} exact></Route>
                 <Route path="/signin" component={SinginScreen}></Route>
                 <Route path="/register" component={RegisterScreen}></Route>
-                <Route path="/shipping" component={ShippingAddressScreen}></Route>
+                <PrivateRoute path="/shipping" component={ShippingAddressScreen}></PrivateRoute>
                 <Route path="/order/:id" component={OrderDetailScreen}></Route>
 
                 <Route
@@ -44,15 +46,20 @@ export default function Main() {
                 ></Route>
 
 
-                <Route
+                <PrivateRoute
                     path="/profile"
                     component={ProfileScreen}
-                ></Route>
-                <Route
+                ></PrivateRoute>
+                <AdminRoute
                     path="/admin"
                     component={AdminScreen}
                     exact
-                ></Route>
+                ></AdminRoute>
+                <AdminRoute
+                    path="/admin/:namePage"
+                    component={AdminScreen}
+                    exact
+                ></AdminRoute>
 
                 <Route path="/" component={HomeScreen} exact></Route>
             </Switch>

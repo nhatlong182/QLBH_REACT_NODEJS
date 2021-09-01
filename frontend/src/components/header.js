@@ -49,6 +49,11 @@ export default function Header() {
                             <img className="avatar" src={userInfo.avatar} alt="avatar"></img><i className="fa fa-caret-down"></i>{' '}
                         </Link>
                         <ul className="dropdown-content">
+                            {userInfo && (userInfo.isAdmin || userInfo.isWebmaster) && (
+                                <li>
+                                    <Link to="/admin">Trang quản lý</Link>
+                                </li>
+                            )}
                             <li>
                                 <Link to="/profile">User Profile</Link>
                             </li>

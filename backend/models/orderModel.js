@@ -31,6 +31,9 @@ const orderSchema = new mongoose.Schema(
         isConfirm: { type: Boolean, default: false },
         isDelivered: { type: Boolean, default: false },
         deliveredAt: { type: Date },
+    },
+    {
+        timestamps: true,
     }
 );
 const Order = mongoose.model('Order', orderSchema);

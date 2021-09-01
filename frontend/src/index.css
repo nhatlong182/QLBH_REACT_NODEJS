@@ -109,6 +109,12 @@ button.block {
   min-width: 30rem;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 /* Image */
 
 img {

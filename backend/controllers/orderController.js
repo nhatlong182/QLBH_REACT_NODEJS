@@ -17,6 +17,16 @@ export const createOrder = async (req, res) => {
     }
 }
 
+export const listOrder = async (req, res) => {
+    const orders = await Order.find({})
+    if (orders) {
+        res.send(orders);
+    }
+    else {
+        res.status(404).send({ message: 'không tìm thấy danh sách đơn hàng' })
+    }
+}
+
 export const orderDetail = async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {

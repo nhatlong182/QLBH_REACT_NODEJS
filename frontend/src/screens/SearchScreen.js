@@ -53,7 +53,6 @@ export default function SearchScreen() {
                         {x + 1}
                     </Link>
                 ))}
-
             </div>
         </div>
     )

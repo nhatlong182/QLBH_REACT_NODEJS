@@ -76,8 +76,16 @@ export const register = async (req, res) => {
 
 export const getAllAccounts = async (req, res) => {
     try {
-        const accounts = await Account.find({});
-        res.send(accounts);
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        const startIndex = (page - 1) * limit;
+
+        const count = await Account.countDocuments({});
+
+        const accounts = await Account.find().limit(limit).skip(startIndex).exec();
+
+        // const accounts = await Account.find({});
+        res.send({ page, limit, pages: Math.ceil(count / limit), accounts });
     } catch (error) {
         console.error(error);
         res.status(500).send({ message: "Lỗi server không thể lấy danh sách tài khoản!!!" });
