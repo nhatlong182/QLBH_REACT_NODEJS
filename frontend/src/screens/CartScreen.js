@@ -7,22 +7,14 @@ import MessageBox from '../components/MessageBox'
 import '../css/cart.css';
 
 export default function CartScreen(props) {
-    const productID = props.match.params.id;
-    const qty = props.location.search ? Number(props.location.search.split('=')[1]) : 1;
-    const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     const { cartItems } = cart;
 
-    useEffect(() => {
-        if (productID) {
-            dispatch(addToCart(productID, qty));
-        }
-    }, [dispatch, productID, qty]);
+    const dispatch = useDispatch();
 
     const qtyHandler = (type, item) => {
         if (type === 'plus') {
             if (item.qty >= item.countInStock) {
-                //setQty(1)
                 alert(`Chỉ còn ${item.countInStock} sản phẩm trong kho`)
             }
             else {
@@ -39,8 +31,7 @@ export default function CartScreen(props) {
         dispatch(removeFromCart(id));
     }
     const checkoutHandler = () => {
-        //props.history.push(`/signin?redirect=shipping`);
-        console.log(cart)
+        props.history.push(`/signin?redirect=shipping`);
     }
 
     return (
