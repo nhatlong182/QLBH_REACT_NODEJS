@@ -1,4 +1,4 @@
-import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_RESET, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT } from "../constants.js";
+import { USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_RESET, USER_DELETE_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_RESET, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT, USER_UPDATE_RESET, WEBMASTER_UPDATE_FAIL, WEBMASTER_UPDATE_REQUEST, WEBMASTER_UPDATE_SUCCESS } from "../constants.js";
 
 export const userSigninReducer = (state = {}, action) => {
     switch (action.type) {
@@ -20,7 +20,7 @@ export const userRegisterReducer = (state = {}, action) => {
         case USER_REGISTER_REQUEST:
             return { loading: true };
         case USER_REGISTER_SUCCESS:
-            return { loading: false, userInfo: action.payload };
+            return { loading: false, success: true };
         case USER_REGISTER_FAIL:
             return { loading: false, error: action.payload };
         default:
@@ -60,3 +60,33 @@ export const userListReducer = (state = { loading: true, users: [] }, action) =>
         default: return state;
     }
 }
+
+export const userDeleteReducer = (state = {}, action) => {
+    switch (action.type) {
+        case USER_DELETE_REQUEST:
+            return { loading: true };
+        case USER_DELETE_SUCCESS:
+            return { loading: false, success: true };
+        case USER_DELETE_FAIL:
+            return { loading: false, error: action.payload };
+        case USER_DELETE_RESET:
+            return {};
+        default:
+            return state;
+    }
+};
+
+export const userUpdateReducer = (state = {}, action) => {
+    switch (action.type) {
+        case WEBMASTER_UPDATE_REQUEST:
+            return { loading: true };
+        case WEBMASTER_UPDATE_SUCCESS:
+            return { loading: false, success: true };
+        case WEBMASTER_UPDATE_FAIL:
+            return { loading: false, error: action.payload };
+        case USER_UPDATE_RESET:
+            return {};
+        default:
+            return state;
+    }
+};

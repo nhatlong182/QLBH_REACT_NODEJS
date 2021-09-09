@@ -111,3 +111,10 @@
 .table-data3 tbody td.denied {
   color: #fa4251;
 }
+
+.img-container {
+  max-width: 150px;
+}
+.img__a {
+  width: 40px;
+}

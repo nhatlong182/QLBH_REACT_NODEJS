@@ -1,5 +1,7 @@
 import axios from "axios";
-import { USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT } from "../constants.js"
+import swal from 'sweetalert';
+
+import { USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT, WEBMASTER_UPDATE_FAIL, WEBMASTER_UPDATE_REQUEST, WEBMASTER_UPDATE_SUCCESS } from "../constants.js"
 
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
@@ -32,10 +34,15 @@ export const register = (name, email, phone, sex, avatar, password) => async (di
     try {
         const { data } = await axios.post('/api/accounts/register', { name, email, phone, sex, avatar, password });
 
-        dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+        dispatch({ type: USER_REGISTER_SUCCESS });
 
-        document.location.href = '/signin';
-
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        swal({
+            text: "Đăng ký tài khoản thành công!!!",
+            icon: "success",
+            button: false,
+            timer: 1500,
+        })
     } catch (error) {
         dispatch({
             type: USER_REGISTER_FAIL,
@@ -72,9 +79,7 @@ export const detailsUser = (userId) => async (dispatch, getState) => {
 };
 
 export const listUser = ({ pageNumber = '' }) => async (dispatch, getState) => {
-    dispatch({
-        type: USER_LIST_REQUEST,
-    })
+    dispatch({ type: USER_LIST_REQUEST })
     const {
         userSignin: { userInfo },
     } = getState();
@@ -92,3 +97,58 @@ export const listUser = ({ pageNumber = '' }) => async (dispatch, getState) => {
         });
     }
 }
+
+export const deleteUser = (userId) => async (dispatch, getState) => {
+    dispatch({ type: USER_DELETE_REQUEST, payload: userId });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.delete(`/api/accounts/${userId}`, {
+            headers: { Authorization: `Bearer ${userInfo?.token}` },
+        });
+        dispatch({ type: USER_DELETE_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: USER_DELETE_FAIL, payload: message });
+    }
+};
+
+export const authorizeWebmaster = (userId) => async (dispatch, getState) => {
+    dispatch({ type: WEBMASTER_UPDATE_REQUEST, payload: userId });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.put(`/api/accounts/webmaster/${userId}`, userId, {
+            headers: { Authorization: `Bearer ${userInfo?.token}` },
+        });
+        dispatch({ type: WEBMASTER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        const message = error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({ type: WEBMASTER_UPDATE_FAIL, payload: message });
+    }
+};
+
+export const unAuthorizeWebmaster = (userId) => async (dispatch, getState) => {
+    dispatch({ type: WEBMASTER_UPDATE_REQUEST, payload: userId });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.put(`/api/accounts/unWebmaster/${userId}`, userId, {
+            headers: { Authorization: `Bearer ${userInfo?.token}` },
+        });
+        dispatch({ type: WEBMASTER_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        const message = error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({ type: WEBMASTER_UPDATE_FAIL, payload: message });
+    }
+};

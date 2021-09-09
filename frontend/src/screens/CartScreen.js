@@ -56,9 +56,9 @@ export default function CartScreen(props) {
                                                     <Link to={`/products/${item.id}`}>{item.name}</Link>
                                                 </div>
                                                 <div className="qty_container">
-                                                    <div className="icon_cart-" onClick={() => qtyHandler('minus', item)}><i class="fas fa-minus"></i></div>
+                                                    <div className="icon_cart-" onClick={() => qtyHandler('minus', item)}><i className="fas fa-minus"></i></div>
                                                     <div className="qty_cart">{item.qty}</div>
-                                                    <div className="icon_cartplus" onClick={() => qtyHandler('plus', item)}><i class="fas fa-plus"></i></div>
+                                                    <div className="icon_cartplus" onClick={() => qtyHandler('plus', item)}><i className="fas fa-plus"></i></div>
                                                 </div>
                                                 <div className="pricee">{item.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                                 <div>

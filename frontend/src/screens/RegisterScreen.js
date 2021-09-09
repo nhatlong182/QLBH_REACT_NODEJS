@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { register } from '../actions/userAction.js';
-import swal from 'sweetalert';
 
 
 import LoadingBox from '../components/LoadingBox';
@@ -22,7 +21,7 @@ export default function RegisterScreen(props) {
         : '/';
 
     const userRegister = useSelector((state) => state.userRegister);
-    const { userInfo, loading, error } = userRegister;
+    const { success, loading, error } = userRegister;
 
     const dispatch = useDispatch();
 
@@ -38,20 +37,14 @@ export default function RegisterScreen(props) {
             alert('Mật khẩu xác nhận không khớp!!!');
         } else {
             dispatch(register(name, email, phone, sex, avatar, password));
-            swal({
-                text: "Đăng ký tài khoản thành công!!!",
-                icon: "success",
-                button: false,
-                timer: 1500,
-            });
         }
     };
 
     useEffect(() => {
-        if (userInfo) {
+        if (success) {
             props.history.push(redirect);
         }
-    }, [props.history, redirect, userInfo]);
+    }, [props.history, redirect, success]);
 
     return (
         <div>

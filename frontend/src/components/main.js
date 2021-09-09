@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
+import AdminOdDetailScreen from '../screens/AdminOdDetailScreen.js';
 import AdminScreen from '../screens/AdminScreen.js';
 import CartScreen from '../screens/CartScreen.js';
 import HomeScreen from '../screens/HomeScreen.js'
@@ -58,6 +59,11 @@ export default function Main() {
                 <AdminRoute
                     path="/admin/:namePage"
                     component={AdminScreen}
+                    exact
+                ></AdminRoute>
+                <AdminRoute
+                    path="/admin/order/:id"
+                    component={AdminOdDetailScreen}
                     exact
                 ></AdminRoute>
 

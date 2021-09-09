@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CART_EMPTY, ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS } from "../constants.js";
+import { CART_EMPTY, ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_VERIFY_FAIL, ORDER_VERIFY_REQUEST, ORDER_VERIFY_SUCCESS } from "../constants.js";
 
 export const createOrder = (order) => async (dispatch, getState) => {
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
@@ -61,5 +61,24 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
                 ? error.response.data.message
                 : error.message;
         dispatch({ type: ORDER_DETAILS_FAIL, payload: message });
+    }
+};
+
+export const verifyOrder = (orderId) => async (dispatch, getState) => {
+    dispatch({ type: ORDER_VERIFY_REQUEST, payload: orderId });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.put(`/api/orders/${orderId}`, orderId, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: ORDER_VERIFY_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: ORDER_VERIFY_FAIL, payload: message });
     }
 };

@@ -24,12 +24,24 @@ export const saleOffProducts = () => async (dispatch) => {
     }
 }
 
-export const listProducts = ({ pageNumber = '' }) => async (dispatch) => {
+export const listProducts = ({ pageNumber = '', limit = '' }) => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST,
     })
     try {
-        const { data } = await axios.get(`/api/products?page=${pageNumber}&limit=12`)
+        const { data } = await axios.get(`/api/products?page=${pageNumber}&limit=${limit}`)
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
+    }
+}
+
+export const listProductsWithoutPaginate = () => async (dispatch) => {
+    dispatch({
+        type: PRODUCT_LIST_REQUEST,
+    })
+    try {
+        const { data } = await axios.get(`/api/products`)
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });

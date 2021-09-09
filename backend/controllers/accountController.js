@@ -1,4 +1,5 @@
 import Account from '../models/accountModel.js'
+import Order from '../models/orderModel.js'
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
 
@@ -42,7 +43,7 @@ export const register = async (req, res) => {
     const user = await Account.findOne({ email: req.body.email })
 
     if (user) {
-        res.status(500).send({ message: 'Địa chỉ email đã tồn tại!!!' })
+        res.status(404).send({ message: 'Địa chỉ email đã tồn tại!!!' })
 
     } else {
         try {
@@ -100,6 +101,49 @@ export const getDetailAccount = async (req, res) => {
         res.send(account);
     } else {
         res.status(404).send({ message: 'Lỗi server không tìm thấy chi tiết tài khoản!!!' });
+    }
+}
+
+export const deleteAccount = async (req, res) => {
+    const user = await Account.findById(req.params.id);
+
+    if (user) {
+        if (user.isAdmin === true) {
+            res.status(400).send({ message: 'Không thể xóa tài khoản admin' });
+            return;
+        }
+        const order = await Order.findOne({ user: req.params.id })
+        if (order) {
+            await order.remove();
+        }
+        await user.remove();
+        res.send({ message: 'Xóa thành công' });
+    } else {
+        res.status(404).send({ message: 'Không tìm thấy tài khoản!!!' });
+    }
+}
+
+export const authorizeWebmaster = async (req, res) => {
+    const user = await Account.findById(req.params.id);
+    if (user) {
+        if (user.isWebmaster === true) { return }
+        user.isWebmaster = true;
+        await user.save();
+        res.send({ message: 'Cập nhật thành công' })
+    } else {
+        res.status(404).send({ message: 'Không tìm thấy tài khoản!!!' });
+    }
+}
+
+export const unAuthorizeWebmaster = async (req, res) => {
+    const user = await Account.findById(req.params.id);
+    if (user) {
+        if (user.isWebmaster === false) { return }
+        user.isWebmaster = false;
+        await user.save();
+        res.send({ message: 'Cập nhật thành công' })
+    } else {
+        res.status(404).send({ message: 'Không tìm thấy tài khoản!!!' });
     }
 }
 

@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { listOrder } from '../actions/orderAction.js';
+import { listOrder, verifyOrder } from '../actions/orderAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
-export default function TableOrder() {
+export default function TableOrder(props) {
     const orderList = useSelector((state) => state.listOrder);
     const { loading, error, orders } = orderList;
 
+    const orderUpdate = useSelector((state) => state.updateOrder)
+    const { error: errorVerify, success: successVerify } = orderUpdate;
 
     // const [pageNumber, setPageNumber] = useState(1)
 
     const dispatch = useDispatch()
 
-
     useEffect(() => {
         dispatch(listOrder());
-    }, [dispatch]);
+    }, [dispatch, successVerify]);
 
     return loading ? (
         <LoadingBox></LoadingBox>
@@ -25,16 +26,18 @@ export default function TableOrder() {
         <MessageBox variant="danger">{error}</MessageBox>
     ) : (
         <div className="col-md-12">
+            {errorVerify && <MessageBox variant="danger">{errorVerify}</MessageBox>}
             <div className="table-responsive">
                 <h1>Danh sách đơn hàng</h1>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>User ID</th>
+                            <th>Tên người đặt hàng</th>
+                            <th>SĐT</th>
                             <th>Ngày đặt hàng</th>
                             <th>Tổng tiền</th>
-                            <th>Xác nhận</th>
+                            <th>Trạng thái</th>
                             <th>ACTIONS</th>
                         </tr>
                     </thead>
@@ -42,23 +45,25 @@ export default function TableOrder() {
                         {orders?.map((order) => (
                             <tr key={order._id}>
                                 <td>{order._id}</td>
-                                <td>{order.user}</td>
+                                <td>{order.shippingAddress.fullName}</td>
+                                <td>{order.shippingAddress.phone}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>{order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-                                <td>{order.isConfirm ? "Đã xử lý" : "Chờ xử lý"}</td>
+                                <td>{order.isConfirm ? "Đã xác nhận" : "Chờ xử lý"}</td>
                                 <td>
                                     <button
                                         type="button"
                                         className="small"
+                                        onClick={() => props.history.push(`/admin/order/${order._id}`)}
                                     >
-                                        Detail
+                                        Chi tiết
                                     </button>
                                     <button
                                         type="button"
                                         className="small"
-
+                                        onClick={() => dispatch(verifyOrder(order._id))}
                                     >
-                                        Delete
+                                        Xác nhận
                                     </button>
                                 </td>
                             </tr>
@@ -78,6 +83,6 @@ export default function TableOrder() {
                     </button>
                 ))}
             </div> */}
-        </div>
+        </div >
     )
 }

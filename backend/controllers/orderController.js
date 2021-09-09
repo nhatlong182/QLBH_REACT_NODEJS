@@ -35,3 +35,14 @@ export const orderDetail = async (req, res) => {
         res.status(404).send({ message: 'Không tìm thấy chi tiết đơn hàng!!!' });
     }
 }
+
+export const verifyOrder = async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+        order.isConfirm = true;
+        order.save();
+        res.send({ message: 'Cập nhật thành công' })
+    } else {
+        res.status(404).send({ message: 'Không tìm thấy chi tiết đơn hàng!!!' });
+    }
+}

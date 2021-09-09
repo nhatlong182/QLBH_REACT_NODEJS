@@ -8,7 +8,7 @@ import MessageBox from '../components/MessageBox.js'
 import { Link, useParams } from 'react-router-dom';
 
 export default function SearchScreen() {
-    const { pageNumber = 1 } = useParams();
+    const { pageNumber = 1, limit = 12 } = useParams();
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
@@ -27,8 +27,8 @@ export default function SearchScreen() {
 
 
     useEffect(() => {
-        dispatch(listProducts({ pageNumber }));
-    }, [dispatch, pageNumber]);
+        dispatch(listProducts({ pageNumber, limit }));
+    }, [dispatch, pageNumber, limit]);
 
 
     return (

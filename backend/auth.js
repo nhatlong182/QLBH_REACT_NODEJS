@@ -29,8 +29,8 @@ export const isAdmin = (req, res, next) => {
     }
 };
 
-export const isWebmaster = (req, res, next) => {
-    if (req.user && req.user.isWebmaster) {
+export const isAdminOrWebmaster = (req, res, next) => {
+    if (req.user && (req.user.isAdmin || req.user.isWebmaster)) {
         next();
     } else {
         res.status(401).send({ message: 'Bạn không đủ quyền để thực hiện chức năng này' });
