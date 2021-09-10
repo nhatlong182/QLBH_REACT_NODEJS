@@ -45,7 +45,7 @@ export default function TableProduct() {
             setDisplay(false)
         }
 
-        if (text.length == 0) {
+        if (text.length === 0) {
             setDisplay(true)
         }
         setArraysFilter(matches)

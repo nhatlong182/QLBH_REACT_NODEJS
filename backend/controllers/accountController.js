@@ -74,28 +74,27 @@ export const register = async (req, res) => {
 }
 
 
-
 export const getAllAccounts = async (req, res) => {
     try {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
         const startIndex = (page - 1) * limit;
 
-        const count = await Account.countDocuments({});
+        const name = req.query.name || '';
+        const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
 
-        const accounts = await Account.find().limit(limit).skip(startIndex).exec();
+        const count = await Account.countDocuments({ ...nameFilter });
 
-        // const accounts = await Account.find({});
+        const accounts = await Account.find({ ...nameFilter }).limit(limit).skip(startIndex).exec();
+
         res.send({ page, limit, pages: Math.ceil(count / limit), accounts });
     } catch (error) {
-        console.error(error);
         res.status(500).send({ message: "Lỗi server không thể lấy danh sách tài khoản!!!" });
     }
 }
 
 export const getDetailAccount = async (req, res) => {
     //req.user từ hàm isAuth
-
     const account = await Account.findById(req.user._id);
     if (account) {
         res.send(account);

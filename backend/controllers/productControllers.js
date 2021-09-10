@@ -5,11 +5,31 @@ export const getAllProducts = async (req, res) => {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
         const startIndex = (page - 1) * limit;
-        // const endIndex = page * limit
 
-        const count = await Product.countDocuments({});
 
-        const products = await Product.find().limit(limit).skip(startIndex).exec();
+        //filter
+        const name = req.query.name || '';
+        const category = req.query.category || '';
+        const min =
+            req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
+        const max =
+            req.query.max && Number(req.query.max) !== 0 ? Number(req.query.max) : 0;
+
+        const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+        const categoryFilter = category ? { category } : {};
+        const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
+
+        const count = await Product.countDocuments({
+            ...nameFilter,
+            ...categoryFilter,
+            ...priceFilter,
+        });
+
+        const products = await Product.find({
+            ...nameFilter,
+            ...categoryFilter,
+            ...priceFilter,
+        }).limit(limit).skip(startIndex).exec();
 
         res.send({ page, limit, pages: Math.ceil(count / limit), products });
     } catch (error) {

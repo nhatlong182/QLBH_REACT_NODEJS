@@ -16,6 +16,8 @@ export default function TableUser() {
     const { error: errorUpdate, success: successUpdate } = userUpdate;
 
     const [pageNumber, setPageNumber] = useState(1)
+    const [name, setName] = useState('')
+
 
     const dispatch = useDispatch()
 
@@ -42,6 +44,8 @@ export default function TableUser() {
             <div className="col-md-12">
                 <div className="table-responsive">
                     <h1>Danh sách tài khoản</h1>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+                    <button type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
                     <table className="table table-borderless table-data3">
                         <thead>
                             <tr>
