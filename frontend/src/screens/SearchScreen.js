@@ -32,28 +32,28 @@ export default function SearchScreen() {
 
 
     return (
-        <div>
-            {
-                loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
-                    <div className="row center">
-                        {
-                            products?.map(product => (
-                                <Product key={product._id} product={product}></Product>
-                            ))
-                        }
-                    </div>
-            }
-            <div className="row center pagination">
-                {[...Array(pages).keys()].map((x) => (
-                    <Link
-                        className={x + 1 === page ? 'active' : ''}
-                        key={x + 1}
-                        to={getFilterUrl({ page: x + 1 })}
-                    >
-                        {x + 1}
-                    </Link>
-                ))}
+            <div>
+                {
+                    loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
+                        <div className="row center">
+                            {
+                                products?.map(product => (
+                                    <Product key={product._id} product={product}></Product>
+                                ))
+                            }
+                        </div>
+                }
+                <div className="row center pagination">
+                    {[...Array(pages).keys()].map((x) => (
+                        <Link
+                            className={x + 1 === page ? 'active' : ''}
+                            key={x + 1}
+                            to={getFilterUrl({ page: x + 1 })}
+                        >
+                            {x + 1}
+                        </Link>
+                    ))}
+                </div>
             </div>
-        </div>
     )
 }

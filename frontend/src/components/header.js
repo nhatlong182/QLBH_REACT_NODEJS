@@ -26,18 +26,41 @@ export default function Header() {
     return (
         <header className="row">
             <div>
-                <button
-                    type="button"
-                    className="open-sidebar"
-                    onClick={() => setSidebarIsOpen(true)}
-                >
+                <button type="button" className="open-sidebar" onClick={() => setSidebarIsOpen(true)}>
                     <i className="fa fa-bars"></i>
                 </button>
+
+                <aside className={sidebarIsOpen ? 'open' : ''}>
+                    <div className="sidebar_0">
+                        <button onClick={() => setSidebarIsOpen(false)} className="close-sidebar" type="button">X
+                            {/* <i className="fa fa-close"></i> */}
+                        </button>
+                        <div className="account">
+
+                            <img className="account_img" src="//bizweb.dktcdn.net/100/331/067/themes/823156/assets/i_user.png?1629583623533"></img>
+                            <ul className="account_header">
+                                <li>
+                                    <a href="/signin">Đăng nhập</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <ul className="ul_collection">
+                            <li className="inside"></li>
+                            <a href="/">TRANG CHỦ</a>
+                            <li className="inside"></li>
+                            <a href="/search">SẢN PHẨM</a>
+                            <li className="inside"></li>
+                            <a href="#">TÀI KHOẢN</a>
+                        </ul>
+                    </div>
+                </aside>
                 <Link className="logo" to="/">PL-STORE</Link>
                 <Link to="/category">
                     Sản phẩm
                 </Link>
             </div>
+
             <div>
                 <Link to="/cart">
                     <img className="cartIcon" src={CartIcon} alt="shopping cart icon" />
