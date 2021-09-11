@@ -7,18 +7,19 @@ import MessageBox from '../components/MessageBox';
 
 export default function TableOrder(props) {
     const orderList = useSelector((state) => state.listOrder);
-    const { loading, error, orders } = orderList;
+    const { loading, error, orders, page, pages } = orderList;
 
     const orderUpdate = useSelector((state) => state.updateOrder)
     const { error: errorVerify, success: successVerify } = orderUpdate;
 
-    // const [pageNumber, setPageNumber] = useState(1)
+    const [pageNumber, setPageNumber] = useState(1)
+    const [name, setName] = useState('')
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(listOrder());
-    }, [dispatch, successVerify]);
+        dispatch(listOrder({ pageNumber }));
+    }, [dispatch, pageNumber, successVerify]);
 
     return loading ? (
         <LoadingBox></LoadingBox>
@@ -29,6 +30,8 @@ export default function TableOrder(props) {
             {errorVerify && <MessageBox variant="danger">{errorVerify}</MessageBox>}
             <div className="table-responsive">
                 <h1>Danh sách đơn hàng</h1>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
+                <button type="button" onClick={() => dispatch(listOrder({ pageNumber, name }))}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -62,6 +65,7 @@ export default function TableOrder(props) {
                                         type="button"
                                         className="small"
                                         onClick={() => dispatch(verifyOrder(order._id))}
+                                        disabled={order.isConfirm}
                                     >
                                         Xác nhận
                                     </button>
@@ -71,18 +75,20 @@ export default function TableOrder(props) {
                     </tbody>
                 </table>
             </div>
-            {/* <div className="row center pagination">
-                {[...Array(pages).keys()].map((x) => (
-                    <button
-                        type="button"
-                        className={x + 1 === page ? 'active' : ''}
-                        key={x + 1}
-                        onClick={() => setPageNumber(x + 1)}
-                    >
-                        {x + 1}
-                    </button>
-                ))}
-            </div> */}
+            {pages > 1 && (
+                <div className="row center pagination">
+                    {[...Array(pages).keys()].map((x) => (
+                        <button
+                            type="button"
+                            className={x + 1 === page ? 'active' : ''}
+                            key={x + 1}
+                            onClick={() => setPageNumber(x + 1)}
+                        >
+                            {x + 1}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div >
     )
 }

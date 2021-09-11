@@ -32,15 +32,15 @@ export default function OrderDetailScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
     ) : (
         <div>
-            <div className="section"> 
-                    <svg width="50" height="50" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" stroke-width="2" class="check_icon">
-                        <path class="checkmark_circle" d="M25 49c13.255 0 24-10.745 24-24S38.255 1 25 1 1 11.745 1 25s10.745 24 24 24z"></path>
-                        <path class="checkmark_check" d="M15 24.51l7.307 7.308L35.125 19"></path>
-                    </svg>
+            <div className="section">
+                <svg width="50" height="50" fill="none" className="check_icon">
+                    <path className="checkmark_circle" d="M25 49c13.255 0 24-10.745 24-24S38.255 1 25 1 1 11.745 1 25s10.745 24 24 24z"></path>
+                    <path className="checkmark_check" d="M15 24.51l7.307 7.308L35.125 19"></path>
+                </svg>
                 <div className="os_heading">
                     <h2 className="heading_noti">Đặt hàng thành công</h2>
-                        <span className="os_number_order">Mã đơn hàng: {order._id}</span>
-                        <span className="os_description">Cảm ơn bạn đã mua hàng!</span>
+                    <span className="os_number_order">Mã đơn hàng: {order._id}</span>
+                    <span className="os_description">Cảm ơn bạn đã mua hàng!</span>
                 </div>
             </div>
             <div className="content">
@@ -62,96 +62,62 @@ export default function OrderDetailScreen(props) {
                                 ) : (
                                     <MessageBox variant="danger" className="arlet">Chưa giao</MessageBox>
                                 )}
-                                
+
                             </div>
                         </li>
-                        <li>
-                            {/* <div className="card card-body">
-                                <h2>Sản phẩm</h2>
-                                <ul>
-                                    {order.orderItems.map((item) => (
-                                        <li key={item.product}>
-                                            <div className="row">
-                                                <div>
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.name}
-                                                        className="small"
-                                                    ></img>
-                                                </div>
-                                                <div className="min-30">
-                                                    <Link to={`/product/${item.product}`}>
-                                                        {item.name}
-                                                    </Link>
-                                                </div>
 
-                                                <div>
-                                                    {item.qty} x {item.price} = {(item.qty * item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
-                                                </div>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div> */}
-                        </li>
                     </ul>
                 </div>
                 <div className="wrap">
                     <div className="sidebar_order">
                         <div className="sidebar_content">
-                        <h2>Sản phẩm</h2>
-                                <ul>
-                                    {order.orderItems.map((item) => (
-                                        <li key={item.product}>
-                                            <div className="">
-                                                <div className="product_table">
-                                                    <img
-                                                        src={item.image}
-                                                        alt={item.name} className="img_order">                                                       
-                                                    </img>
-                                                    <Link className="name_order" to={`/product/${item.product}`} >
-                                                        {item.name}
-                                                    </Link>
-                                                     <a className="price_order">{item.qty} x {item.price} = {(item.qty * item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</a>
-                                                    </div>
-                                                    {/* <div className="name_detail">
-                                                    <Link to={`/product/${item.product}`} className="name_order">
-                                                        {item.name}
-                                                    </Link>
-                                                    {item.qty} x {item.price} = {(item.qty * item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
-                                                    </div> */}
+                            <h2>Sản phẩm</h2>
+                            <ul>
+                                {order.orderItems.map((item) => (
+                                    <li key={item._id}>
+                                        <div className="">
+                                            <div className="product_table">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.name} className="img_order">
+                                                </img>
+                                                <Link className="_order" to={`/product/${item.product}`} >
+                                                    {item.name}
+                                                </Link>
+                                                <div className="price_order">{item.qty} x {item.price} = {(item.qty * item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                             </div>
-                                        </li>
-                                    ))}
-                                </ul>
-                        <ul>
-                            <li>
-                                <h2>Tạm tính</h2>
-                            </li>
-                            <li>
-                                <div className="detail_order">
-                                    <div>Tạm tính:</div>
-                                    <div className="text_detail">{order.itemsPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="detail_order">
-                                    <div>Phí vận chuyển:</div>
-                                    <div className="text_detail">{order.shippingPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
-                                </div>
-                            </li>
-                            <li>
-                                <div className="detail_order">
-                                    <div>
-                                        <strong> Tổng cộng:</strong>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            <ul>
+                                <li>
+                                    <h2>Tạm tính</h2>
+                                </li>
+                                <li>
+                                    <div className="detail_order">
+                                        <div>Tạm tính:</div>
+                                        <div className="text_detail">{order.itemsPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                     </div>
-                                    <div className="text_detail">
-                                        <strong>{order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong>
+                                </li>
+                                <li>
+                                    <div className="detail_order">
+                                        <div>Phí vận chuyển:</div>
+                                        <div className="text_detail">{order.shippingPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                </li>
+                                <li>
+                                    <div className="detail_order">
+                                        <div>
+                                            <strong> Tổng cộng:</strong>
+                                        </div>
+                                        <div className="text_detail">
+                                            <strong>{order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</strong>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -18,12 +18,22 @@ export const createOrder = async (req, res) => {
 }
 
 export const listOrder = async (req, res) => {
-    const orders = await Order.find({})
-    if (orders) {
-        res.send(orders);
-    }
-    else {
-        res.status(404).send({ message: 'không tìm thấy danh sách đơn hàng' })
+    try {
+        const page = parseInt(req.query.page);
+        const limit = parseInt(req.query.limit);
+        const startIndex = (page - 1) * limit;
+
+        const name = req.query.name || '';
+
+        const nameFilter = name ? { 'shippingAddress.fullName': { $regex: name, $options: 'i' } } : {};
+
+        const count = await Order.countDocuments({ ...nameFilter });
+        const orders = await Order.find({ ...nameFilter }).limit(limit).skip(startIndex).exec();
+
+        res.send({ page, limit, pages: Math.ceil(count / limit), orders });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "Lỗi server không thể lấy danh sách tài khoản!!!" });
     }
 }
 

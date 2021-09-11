@@ -8,7 +8,7 @@ import MessageBox from '../components/MessageBox.js'
 import { Link, useParams } from 'react-router-dom';
 
 export default function SearchScreen() {
-    const { pageNumber = 1, limit = 12 } = useParams();
+    const { pageNumber = 1, limit = 12, name = '' } = useParams();
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
@@ -27,22 +27,22 @@ export default function SearchScreen() {
 
 
     useEffect(() => {
-        dispatch(listProducts({ pageNumber, limit }));
-    }, [dispatch, pageNumber, limit]);
+        dispatch(listProducts({ pageNumber, limit, name }));
+    }, [dispatch, pageNumber, limit, name]);
 
 
     return (
-            <div>
-                {
-                    loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
-                        <div className="row center">
-                            {
-                                products?.map(product => (
-                                    <Product key={product._id} product={product}></Product>
-                                ))
-                            }
-                        </div>
-                }
+      <div>
+
+            {loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
+                <div className="row center">
+                    {
+                        products?.map(product => (
+                            <Product key={product._id} product={product}></Product>
+                        ))
+                    }
+                </div>}
+            {pages > 1 && (
                 <div className="row center pagination">
                     {[...Array(pages).keys()].map((x) => (
                         <Link
@@ -54,6 +54,7 @@ export default function SearchScreen() {
                         </Link>
                     ))}
                 </div>
-            </div>
-    )
+            )}
+        </div>
+               
 }

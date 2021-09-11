@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import { signout } from '../actions/userAction.js'
 import CartIcon from '../assets/shoppingCart.png'
 import UserIcon from '../assets/user.png'

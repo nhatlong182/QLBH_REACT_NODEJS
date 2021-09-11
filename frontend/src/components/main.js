@@ -26,7 +26,17 @@ export default function Main() {
                 <Route path="/order/:id" component={OrderDetailScreen}></Route>
 
                 <Route
+                    path="/name/:name?"
+                    component={SearchScreen}
+                    exact
+                ></Route>
+                <Route
                     path="/category"
+                    component={SearchScreen}
+                    exact
+                ></Route>
+                <Route
+                    path="/category/:category/name/:name"
                     component={SearchScreen}
                     exact
                 ></Route>
@@ -42,6 +52,11 @@ export default function Main() {
                 ></Route>
                 <Route
                     path="/category/:category/pageNumber/:pageNumber"
+                    component={SearchScreen}
+                    exact
+                ></Route>
+                <Route
+                    path="/category/:category/name/:name/min/:min/max/:max/pageNumber/:pageNumber"
                     component={SearchScreen}
                     exact
                 ></Route>
