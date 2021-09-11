@@ -37,6 +37,15 @@ export const listOrder = async (req, res) => {
     }
 }
 
+export const listOrderOfUser = async (req, res) => {
+    try {
+        const orders = await Order.find({ user: req.user._id });
+        res.send(orders);
+    } catch (error) {
+        res.status(404).send({ message: 'Không tìm thấy danh sách đơn hàng' })
+    }
+}
+
 export const orderDetail = async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {

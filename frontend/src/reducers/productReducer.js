@@ -1,4 +1,4 @@
-import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
+import { CATEGORY_LIST_FAIL, CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
 
 export const homePopularListReducer = (state = { loading: true, products: [] }, action) => {
     switch (action.type) {
@@ -55,6 +55,18 @@ export const productDetailReducer = (state = { loading: true, product: {} }, act
         case PRODUCT_DETAILS_SUCCESS:
             return { loading: false, product: action.payload };
         case PRODUCT_DETAILS_FAIL:
+            return { loading: false, error: action.payload };
+        default: return state;
+    }
+}
+
+export const categoryListReducer = (state = { loading: true, categories: [] }, action) => {
+    switch (action.type) {
+        case CATEGORY_LIST_REQUEST:
+            return { loading: true };
+        case CATEGORY_LIST_SUCCESS:
+            return { loading: false, categories: action.payload };
+        case CATEGORY_LIST_FAIL:
             return { loading: false, error: action.payload };
         default: return state;
     }

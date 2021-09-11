@@ -5,6 +5,7 @@ import AdminScreen from '../screens/AdminScreen.js';
 import CartScreen from '../screens/CartScreen.js';
 import HomeScreen from '../screens/HomeScreen.js'
 import OrderDetailScreen from '../screens/OrderDetailScreen.js';
+import OrderHistoryScreen from '../screens/OrderHistoryScreen.js';
 import ProductDetailScreen from '../screens/ProductDetailScreen.js'
 import ProfileScreen from '../screens/ProfileScreen.js';
 import RegisterScreen from '../screens/RegisterScreen.js';
@@ -23,6 +24,7 @@ export default function Main() {
                 <Route path="/signin" component={SinginScreen}></Route>
                 <Route path="/register" component={RegisterScreen}></Route>
                 <PrivateRoute path="/shipping" component={ShippingAddressScreen}></PrivateRoute>
+                <PrivateRoute path="/orderhistory" component={OrderHistoryScreen}></PrivateRoute>
                 <Route path="/order/:id" component={OrderDetailScreen}></Route>
 
                 <Route

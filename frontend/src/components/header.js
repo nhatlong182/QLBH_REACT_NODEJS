@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Route } from 'react-router-dom'
+import { listCategorys } from '../actions/productAction.js'
 import { signout } from '../actions/userAction.js'
 import CartIcon from '../assets/shoppingCart.png'
 import UserIcon from '../assets/user.png'
@@ -10,6 +11,9 @@ import "../css/header.css"
 export default function Header() {
     // eslint-disable-next-line
     const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+
+    const Category = useSelector((state) => state.categoryList)
+    const { categories } = Category;
 
     const Cart = useSelector((state) => state.cart);
     const { cartItems } = Cart;
@@ -23,6 +27,10 @@ export default function Header() {
         dispatch(signout())
     }
 
+    useEffect(() => {
+        dispatch(listCategorys())
+    }, [dispatch])
+
     return (
         <header className="row">
             <div>
@@ -33,10 +41,31 @@ export default function Header() {
                 >
                     <i className="fa fa-bars"></i>
                 </button>
+                <aside id="sidebar" className={sidebarIsOpen ? 'open' : ''}>
+                    <div className="sidebar_0">
+                        <button onClick={() => setSidebarIsOpen(false)} className="close-sidebar" type="button">X</button>
+                        <ul className="ul_collection">
+                            <li className="inside">
+                                <a href="/">TRANG CHỦ</a>
+                            </li>
+                            <li className="inside">
+                                <a href="/category">SẢN PHẨM</a>
+                                <ul className="ul_collection">
+                                    {categories?.map((category, index) => (
+                                        <li key={index} className="inside">
+                                            <Link to={`/category/${category}`}>{category}</Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </li>
+                            <li className="inside">
+                                <a href="#">TÀI KHOẢN</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </aside>
                 <Link className="logo" to="/">PL-STORE</Link>
-                <Link to="/category">
-                    Sản phẩm
-                </Link>
             </div>
             <div>
                 <Link to="/cart">

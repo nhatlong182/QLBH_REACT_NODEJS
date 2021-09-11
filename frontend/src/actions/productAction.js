@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
+import { CATEGORY_LIST_FAIL, CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
 
 export const popularProducts = () => async (dispatch) => {
     dispatch({
@@ -24,15 +24,26 @@ export const saleOffProducts = () => async (dispatch) => {
     }
 }
 
-export const listProducts = ({ pageNumber = '', limit = '', name = '' }) => async (dispatch) => {
+export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '' }) => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST,
     })
     try {
-        const { data } = await axios.get(`/api/products?page=${pageNumber}&limit=${limit}&name=${name}`)
+        const { data } = await axios.get(`/api/products?category=${category}&name=${name}&page=${pageNumber}&limit=${limit}`)
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
+    }
+}
+export const listCategorys = () => async (dispatch) => {
+    dispatch({
+        type: CATEGORY_LIST_REQUEST,
+    })
+    try {
+        const { data } = await axios.get(`/api/products/categories`)
+        dispatch({ type: CATEGORY_LIST_SUCCESS, payload: data })
+    } catch (error) {
+        dispatch({ type: CATEGORY_LIST_FAIL, payload: error.message });
     }
 }
 

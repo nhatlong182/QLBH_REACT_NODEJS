@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { listProducts } from '../actions/productAction.js';
+import { Link, useParams } from 'react-router-dom';
 
 import Product from '../components/Product.js'
 import LoadingBox from '../components/LoadingBox.js'
 import MessageBox from '../components/MessageBox.js'
-import { Link, useParams } from 'react-router-dom';
 
 export default function SearchScreen() {
-    const { pageNumber = 1, limit = 12, name = '' } = useParams();
+    const { pageNumber = 1, limit = 12, name = '', category = '' } = useParams();
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
@@ -27,8 +27,8 @@ export default function SearchScreen() {
 
 
     useEffect(() => {
-        dispatch(listProducts({ pageNumber, limit, name }));
-    }, [dispatch, pageNumber, limit, name]);
+        dispatch(listProducts({ pageNumber, limit, category, name }));
+    }, [dispatch, pageNumber, limit, category, name]);
 
 
     return (

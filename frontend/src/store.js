@@ -1,9 +1,9 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { homePopularListReducer, homeSaleOffListReducer, productDetailReducer, productListReducer } from './reducers/productReducer.js';
+import { categoryListReducer, homePopularListReducer, homeSaleOffListReducer, productDetailReducer, productListReducer } from './reducers/productReducer.js';
 import { cartReducer } from './reducers/cartReducer.js';
 import { userDeleteReducer, userDetailsReducer, userListReducer, userRegisterReducer, userSigninReducer, userUpdateReducer } from './reducers/userReducer.js';
-import { orderCreateReducer, orderDetailsReducer, orderListReducer, orderUpdateReducer } from './reducers/orderReducer.js';
+import { orderCreateReducer, orderDetailsReducer, orderListOfUserReducer, orderListReducer, orderUpdateReducer } from './reducers/orderReducer.js';
 
 const initialState = {
     cart: { cartItems: localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [] },
@@ -16,6 +16,7 @@ const reducer = combineReducers({
     saleOffProductList: homeSaleOffListReducer,
     productList: productListReducer,
     productDetail: productDetailReducer,
+    categoryList: categoryListReducer,
     //cart
     cart: cartReducer,
     //user
@@ -29,6 +30,7 @@ const reducer = combineReducers({
     orderCreate: orderCreateReducer,
     orderDetail: orderDetailsReducer,
     listOrder: orderListReducer,
+    listOrderOfUser: orderListOfUserReducer,
     updateOrder: orderUpdateReducer,
 });
 
