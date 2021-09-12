@@ -12,14 +12,10 @@ export default function OrderDetailScreen(props) {
     const orderId = props.match.params.id;
     const orderDetails = useSelector((state) => state.orderDetail);
     const { order, loading, error } = orderDetails;
-    const userSignin = useSelector((state) => state.userSignin);
-    const { userInfo } = userSignin;
+
 
     const dispatch = useDispatch();
 
-    const deliverHandler = () => {
-        // dispatch(deliverOrder(order._id));
-    };
 
     useEffect(() => {
         dispatch(detailsOrder(orderId))
@@ -81,7 +77,7 @@ export default function OrderDetailScreen(props) {
                                                     src={item.image}
                                                     alt={item.name} className="img_order">
                                                 </img>
-                                                <Link className="_order" to={`/product/${item.product}`} >
+                                                <Link className="_order" to={`/products/${item.id}`} >
                                                     {item.name}
                                                 </Link>
                                                 <div className="price_order">{item.qty} x {item.price} = {(item.qty * item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>

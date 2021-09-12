@@ -8,7 +8,7 @@ import LoadingBox from '../components/LoadingBox.js'
 import MessageBox from '../components/MessageBox.js'
 
 export default function SearchScreen() {
-    const { pageNumber = 1, limit = 12, name = '', category = '' } = useParams();
+    const { pageNumber = 1, limit = 12, name = '', category = '', sale = '' } = useParams();
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
@@ -27,8 +27,8 @@ export default function SearchScreen() {
 
 
     useEffect(() => {
-        dispatch(listProducts({ pageNumber, limit, category, name }));
-    }, [dispatch, pageNumber, limit, category, name]);
+        dispatch(listProducts({ pageNumber, limit, category, name, sale }));
+    }, [dispatch, pageNumber, limit, category, name, sale]);
 
 
     return (

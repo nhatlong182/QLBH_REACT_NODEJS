@@ -18,8 +18,6 @@ const initToken = (user) => {
     )
 }
 
-
-
 export const signin = async (req, res) => {
     const user = await Account.findOne({ email: req.body.email })
     if (user) {
@@ -36,14 +34,14 @@ export const signin = async (req, res) => {
         }
 
     }
-    res.status(401).send({ message: 'Sai tài khoản hoặc mật khẩu!!!' })
+    res.status(404).send({ message: 'Sai tài khoản hoặc mật khẩu!!!' })
 }
 
 export const register = async (req, res) => {
     const user = await Account.findOne({ email: req.body.email })
 
     if (user) {
-        res.status(404).send({ message: 'Địa chỉ email đã tồn tại!!!' })
+        res.status(500).send({ message: 'Địa chỉ email đã tồn tại!!!' })
 
     } else {
         try {

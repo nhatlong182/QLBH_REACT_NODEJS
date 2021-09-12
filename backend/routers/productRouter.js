@@ -1,5 +1,6 @@
 import express from 'express';
-import { getAllProducts, getAllSaleOffProducts, getCategories, getProductDetail, getRandomProducts, getSaleOffProducts } from '../controllers/productControllers.js';
+import { isAdminOrWebmaster, isAuth } from '../auth.js';
+import { createProduct, deleteProduct, getAllProducts, getAllSaleOffProducts, getCategories, getProductDetail, getRandomProducts, getSaleOffProducts } from '../controllers/productControllers.js';
 
 const productRouter = express.Router();
 
@@ -9,6 +10,10 @@ productRouter.get('/allSaleOff', getAllSaleOffProducts);
 productRouter.get('/', getAllProducts);
 productRouter.get('/categories', getCategories);
 productRouter.get('/:id', getProductDetail);
+
+productRouter.post('/', isAuth, isAdminOrWebmaster, createProduct);
+
+productRouter.delete('/:id', isAuth, isAdminOrWebmaster, deleteProduct);
 
 
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CATEGORY_LIST_FAIL, CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
+import { CATEGORY_LIST_FAIL, CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
 
 export const popularProducts = () => async (dispatch) => {
     dispatch({
@@ -24,12 +24,12 @@ export const saleOffProducts = () => async (dispatch) => {
     }
 }
 
-export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '' }) => async (dispatch) => {
+export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '', sale = 'false' }) => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST,
     })
     try {
-        const { data } = await axios.get(`/api/products?category=${category}&name=${name}&page=${pageNumber}&limit=${limit}`)
+        const { data } = await axios.get(`/api/products?category=${category}&name=${name}&page=${pageNumber}&limit=${limit}&sale=${sale}`)
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -70,3 +70,44 @@ export const productDetail = (productId) => async (dispatch) => {
         dispatch({ type: PRODUCT_DETAILS_FAIL, payload: error.message });
     }
 }
+
+export const createProduct = (name, price, image, category, countInStock, brand, description) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_CREATE_REQUEST });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.post('/api/products', { name, price, image, category, countInStock, brand, description },
+            { headers: { Authorization: `Bearer ${userInfo.token}` }, }
+        );
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data.product,
+        });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: PRODUCT_CREATE_FAIL, payload: message });
+    }
+};
+
+export const deleteProduct = (productId) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_DELETE_REQUEST, payload: productId });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        await axios.delete(`/api/products/${productId}`, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: PRODUCT_DELETE_SUCCESS });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
+    }
+};

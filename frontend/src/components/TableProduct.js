@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useParams, Link } from 'react-router-dom';
-import { listProducts } from '../actions/productAction.js';
+import { Link } from 'react-router-dom';
+import { deleteProduct, listProducts } from '../actions/productAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
@@ -9,6 +10,10 @@ import MessageBox from '../components/MessageBox';
 export default function TableProduct() {
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
+
+    const deleteProducts = useSelector((state) => state.productDelete);
+    const { error: errorDelete, success: successDelete } = deleteProducts;
+
 
     const [arraysFilter, setArraysFilter] = useState([])
     const [display, setDisplay] = useState(true)
@@ -53,18 +58,30 @@ export default function TableProduct() {
 
 
     useEffect(() => {
+        if (successDelete) {
+            swal({
+                text: "Xóa sản phẩm thành công",
+                icon: "success",
+                button: false,
+                timer: 1500,
+            });
+        }
+
         dispatch(listProducts({}));
-    }, [dispatch]);
+    }, [dispatch, successDelete]);
 
     return loading ? (
         <LoadingBox></LoadingBox>
     ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
+    ) : errorDelete ? (
+        <MessageBox variant="danger">{errorDelete}</MessageBox>
     ) : (
         <div className="col-md-12">
             <div className="table-responsive">
                 <h1>Danh sách sản phẩm</h1>
                 <input type="text" className="" onChange={(e) => onTextChangeHandler(e.target.value)}></input>
+                <Link to="/admin/tableProduct/create">Thêm sản phẩm</Link>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -96,7 +113,7 @@ export default function TableProduct() {
                                     <button
                                         type="button"
                                         className="small"
-
+                                        onClick={() => dispatch(deleteProduct(product._id))}
                                     >
                                         Delete
                                     </button>

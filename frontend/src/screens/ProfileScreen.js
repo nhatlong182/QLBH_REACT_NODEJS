@@ -10,7 +10,9 @@ import '../css/profile.css'
 
 export default function ProfileScreen() {
     const [name, setName] = useState('');
+    // eslint-disable-next-line
     const [password, setPassword] = useState('');
+    // eslint-disable-next-line
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const userSignin = useSelector((state) => state.userSignin);
