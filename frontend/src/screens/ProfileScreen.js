@@ -29,57 +29,49 @@ export default function ProfileScreen() {
     }, [dispatch, userInfo._id, user]);
 
     return (
-        <div style={{ backgroundColor: '#F2F1EF', height: '100vh' }}>
-            {
-                loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
-                    (
-                        <div className="profile-container">
-                            <div className="profile-title">
-                                <h1>Hồ sơ của tôi</h1>
-                                <h2>Quản lý thông tin hồ sơ</h2>
-                                <hr></hr>
-                            </div>
-                            <div>
-                                <label htmlFor="name">Name</label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    placeholder="Enter name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                ></input>
-                            </div>
-                            {/* <div>
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    placeholder="Enter email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                ></input>
-                            </div> */}
-                            <div>
-                                <label htmlFor="password">Password</label>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    placeholder="Enter password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                ></input>
-                            </div>
-                            <div>
-                                <label htmlFor="confirmPassword">confirm Password</label>
-                                <input
-                                    id="confirmPassword"
-                                    type="password"
-                                    placeholder="Enter confirm password"
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                ></input>
-                            </div>
-                        </div>
-                    )
-            }
+			
+        <div className="content-pf" >
+        <div class="container-fluid">
+			<div className="pf-row">
+				<div className="text_acc"><h3>Tài khoản</h3></div>
+			</div>
+		<div class="pf-row">
+			<div class="pf_text"><label for="account_last_name">Họ* </label></div>
+			<div class="pf_box"><input type="text"/></div>
+		</div>
+
+		<div class="pf-row">
+			<div class="pf_text"><label for="account_display_name">Tên hiển thị* </label></div>
+			<div class="pf_box"><input type="text"/> </div>
+		</div>
+
+		<div class="pf-row">
+			<div class="pf_text"><label for="account_email">Địa chỉ email* </label></div>
+			<div class="pf_box"><input type="email" /></div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="pf-row">
+			<div class="text_pass"><h3>Thay đổi mật khẩu</h3></div>
+		</div>	
+		<div class="pf-row">
+			<div class="pf_text"><label for="password_current">Mật khẩu hiện tại (bỏ trống nếu không đổi)</label></div>
+			<div class="pf_box"><input type="password" autocomplete="off" /></div>
+		</div>
+		<div class="pf-row">
+			<div class="pf_text"><label for="password_1">Mật khẩu mới (bỏ trống nếu không đổi)</label></div>
+			<div class="pf_box"><input type="password" autocomplete="off" /></div>
+		</div>
+		<div class="pf-row">
+			<div class="pf_text"><label for="password_2">Xác nhận mật khẩu mới</label></div>
+			<div class="pf_box"><input type="password" autocomplete="off" /></div>
+		</div>
+		
+        </div>
+			<div class="pf_btn">
+				<button type="submit" class="btn-submit">Lưu thay đổi</button>
+		</div>
         </div>
     )
 }
