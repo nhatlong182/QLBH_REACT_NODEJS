@@ -37,6 +37,7 @@ export const register = (name, email, phone, sex, avatar, password) => async (di
         dispatch({ type: USER_REGISTER_SUCCESS });
 
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        sessionStorage.setItem('userInfo', JSON.stringify(data));
         swal({
             text: "Đăng ký tài khoản thành công!!!",
             icon: "success",

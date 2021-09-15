@@ -24,11 +24,14 @@ export const listOrder = async (req, res) => {
         const startIndex = (page - 1) * limit;
 
         const name = req.query.name || '';
+        const phone = req.query.phone || '';
 
         const nameFilter = name ? { 'shippingAddress.fullName': { $regex: name, $options: 'i' } } : {};
+        const phoneFilter = phone ? { 'shippingAddress.phone': { $regex: phone, $options: 'i' } } : {};
 
-        const count = await Order.countDocuments({ ...nameFilter });
-        const orders = await Order.find({ ...nameFilter }).limit(limit).skip(startIndex).exec();
+
+        const count = await Order.countDocuments({ ...nameFilter, ...phoneFilter });
+        const orders = await Order.find({ ...nameFilter, ...phoneFilter }).limit(limit).skip(startIndex).exec();
 
         res.send({ page, limit, pages: Math.ceil(count / limit), orders });
     } catch (error) {

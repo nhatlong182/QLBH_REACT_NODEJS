@@ -13,9 +13,7 @@ export default function OrderDetailScreen(props) {
     const orderDetails = useSelector((state) => state.orderDetail);
     const { order, loading, error } = orderDetails;
 
-
     const dispatch = useDispatch();
-
 
     useEffect(() => {
         dispatch(detailsOrder(orderId))
@@ -28,6 +26,7 @@ export default function OrderDetailScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
     ) : (
         <div>
+            <Link to="/orderhistory">Trở lại</Link>
             <div className="section">
                 <svg width="50" height="50" fill="none" className="check_icon">
                     <path className="checkmark_circle" d="M25 49c13.255 0 24-10.745 24-24S38.255 1 25 1 1 11.745 1 25s10.745 24 24 24z"></path>
@@ -61,7 +60,6 @@ export default function OrderDetailScreen(props) {
 
                             </div>
                         </li>
-
                     </ul>
                 </div>
                 <div className="wrap">
@@ -77,9 +75,9 @@ export default function OrderDetailScreen(props) {
                                                     src={item.image}
                                                     alt={item.name} className="img_order">
                                                 </img>
-                                                <Link className="_order" to={`/products/${item.id}`} >
+                                                <div className="name_order">
                                                     {item.name}
-                                                </Link>
+                                                </div>
                                                 <div className="price_order">{item.qty} x {item.price} = {(item.qty * item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</div>
                                             </div>
                                         </div>

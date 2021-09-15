@@ -6,8 +6,9 @@ import { deleteProduct, listProducts } from '../actions/productAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { PRODUCT_DELETE_RESET } from '../constants.js';
 
-export default function TableProduct() {
+export default function TableProduct(props) {
     const productList = useSelector((state) => state.productList);
     const { loading, error, products } = productList;
 
@@ -36,24 +37,33 @@ export default function TableProduct() {
         pageNumbers.push(i);
     }
 
-    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+
+        setCurrentPage(pageNumber);
+    }
     //hết code phân trang
 
 
     const onTextChangeHandler = (text) => {
+        if (text.length === 0) {
+            setDisplay(true)
+        }
+
         let matches = []
         if (text.length > 0) {
             matches = products.filter(item => {
                 const regex = new RegExp(`${text}`, 'i')
-                return item.name.match(regex)
+                return item.name.match(regex) || item.brand.match(regex)
             })
             setDisplay(false)
         }
-
-        if (text.length === 0) {
-            setDisplay(true)
-        }
         setArraysFilter(matches)
+    }
+
+    const deleteUserHandler = async (productId) => {
+        if (window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
+            dispatch(deleteProduct(productId));
+        }
     }
 
 
@@ -66,7 +76,7 @@ export default function TableProduct() {
                 timer: 1500,
             });
         }
-
+        dispatch({ type: PRODUCT_DELETE_RESET },)
         dispatch(listProducts({}));
     }, [dispatch, successDelete]);
 
@@ -80,8 +90,12 @@ export default function TableProduct() {
         <div className="col-md-12">
             <div className="table-responsive">
                 <h1>Danh sách sản phẩm</h1>
-                <input type="text" className="" onChange={(e) => onTextChangeHandler(e.target.value)}></input>
-                <Link to="/admin/tableProduct/create">Thêm sản phẩm</Link>
+                <div className="row">
+                    <input type="text" className="" onChange={(e) => onTextChangeHandler(e.target.value)}></input>
+                    <button className="primary">
+                        <Link to="/admin/tableProduct/create" className="add_product_btn">Thêm sản phẩm</Link>
+                    </button>
+                </div>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -107,13 +121,14 @@ export default function TableProduct() {
                                     <button
                                         type="button"
                                         className="small"
+                                        onClick={() => props.history.push(`/admin/tableProduct/edit/${product._id}`)}
                                     >
                                         Edit
                                     </button>
                                     <button
                                         type="button"
                                         className="small"
-                                        onClick={() => dispatch(deleteProduct(product._id))}
+                                        onClick={() => deleteUserHandler(product._id)}
                                     >
                                         Delete
                                     </button>
@@ -125,15 +140,15 @@ export default function TableProduct() {
             </div>
 
             {display && (
-                <div className='row center pagination'>
+                <ul className='row center pagination'>
                     {pageNumbers.map(number => (
-                        <button key={number} type="button" onClick={() => paginate(number)} className='page-link'>
+                        <li key={number} onClick={() => paginate(number)} className={number === currentPage ? "page-link active" : "page-link"}>
                             {number}
-                        </button>
+                        </li>
                     ))}
-                </div>
+                </ul>
             )}
-        </div>
+        </div >
 
     )
 }

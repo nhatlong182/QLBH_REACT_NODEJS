@@ -62,7 +62,7 @@ export default function TableUser() {
                                     <td>{user._id}</td>
                                     <td>{user.email}</td>
                                     <td>{user.name}</td>
-                                    <td>{user.isAdmin ? "Admin" : user.isWebmaster ? "Webmaster" : "User"}</td>
+                                    <td>{user.isAdmin ? <span className="admin">Admin</span> : user.isWebmaster ? <span className="webmaster">Webmaster</span> : "User"}</td>
                                     <td>
                                         {!user.isAdmin && (
                                             user.isWebmaster ? (
@@ -97,18 +97,17 @@ export default function TableUser() {
                 </div>
                 {
                     pages > 1 && (
-                        <div className="row center pagination">
+                        <ul className="row center pagination">
                             {[...Array(pages).keys()].map((x) => (
-                                <button
-                                    type="button"
-                                    className={x + 1 === page ? 'active' : ''}
+                                <li
+                                    className={x + 1 === page ? 'page-link active' : 'page-link'}
                                     key={x + 1}
                                     onClick={() => setPageNumber(x + 1)}
                                 >
                                     {x + 1}
-                                </button>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
                     )
                 }
             </div >

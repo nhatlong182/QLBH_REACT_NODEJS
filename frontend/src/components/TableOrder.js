@@ -52,7 +52,7 @@ export default function TableOrder(props) {
                                 <td>{order.shippingAddress.phone}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>{order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-                                <td>{order.isConfirm ? "Đã xác nhận" : "Chờ xử lý"}</td>
+                                <td>{order.isConfirm ? <span className="confirm">Đã xác nhận</span> : "Chờ xử lý"}</td>
                                 <td>
                                     <button
                                         type="button"
@@ -76,18 +76,17 @@ export default function TableOrder(props) {
                 </table>
             </div>
             {pages > 1 && (
-                <div className="row center pagination">
+                <ul className="row center pagination">
                     {[...Array(pages).keys()].map((x) => (
-                        <button
-                            type="button"
-                            className={x + 1 === page ? 'active' : ''}
+                        <li
+                            className={x + 1 === page ? 'page-link active' : 'page-link'}
                             key={x + 1}
                             onClick={() => setPageNumber(x + 1)}
                         >
                             {x + 1}
-                        </button>
+                        </li>
                     ))}
-                </div>
+                </ul>
             )}
         </div >
     )

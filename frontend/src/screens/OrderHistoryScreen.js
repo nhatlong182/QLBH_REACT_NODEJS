@@ -4,6 +4,7 @@ import { listOrderOfUser } from '../actions/orderAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import '../css/orderHistory.css'
 
 export default function OrderHistoryScreen(props) {
 
@@ -16,14 +17,14 @@ export default function OrderHistoryScreen(props) {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="">
             <h1>Danh sách đơn hàng của tôi</h1>
             {loading ? (
                 <LoadingBox></LoadingBox>
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-                <table className="table table-borderless table-data3">
+                <table className="mw table table-borderless table-data3">
                     <thead>
                         <tr>
                             <th>ID</th>

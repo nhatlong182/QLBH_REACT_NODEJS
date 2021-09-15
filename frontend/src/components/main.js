@@ -4,6 +4,7 @@ import AdminOdDetailScreen from '../screens/AdminOdDetailScreen.js';
 import AdminScreen from '../screens/AdminScreen.js';
 import CartScreen from '../screens/CartScreen.js';
 import CreateProductScreen from '../screens/CreateProductScreen.js';
+import EditProductScreen from '../screens/EditProductScreen.js';
 import HomeScreen from '../screens/HomeScreen.js'
 import OrderDetailScreen from '../screens/OrderDetailScreen.js';
 import OrderHistoryScreen from '../screens/OrderHistoryScreen.js';
@@ -90,6 +91,8 @@ export default function Main() {
                     exact
                 ></AdminRoute>
                 <AdminRoute path="/admin/tableProduct/create" component={CreateProductScreen} exact></AdminRoute>
+                <AdminRoute path="/admin/tableProduct/edit/:id" component={EditProductScreen} exact></AdminRoute>
+
 
                 <Route path="/" component={HomeScreen} exact></Route>
             </Switch>

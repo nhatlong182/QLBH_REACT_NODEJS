@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CATEGORY_LIST_FAIL, CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS } from '../constants.js';
+import { CATEGORY_LIST_FAIL, CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_SUCCESS, PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SUCCESS, PRODUCT_DETAILS_FAIL, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_RANDOM_FAIL, PRODUCT_RANDOM_REQUEST, PRODUCT_RANDOM_SUCCESS, PRODUCT_SALEOFF_FAIL, PRODUCT_SALEOFF_REQUEST, PRODUCT_SALEOFF_SUCCESS, PRODUCT_UPDATE_FAIL, PRODUCT_UPDATE_REQUEST, PRODUCT_UPDATE_SUCCESS } from '../constants.js';
 
 export const popularProducts = () => async (dispatch) => {
     dispatch({
@@ -24,7 +24,7 @@ export const saleOffProducts = () => async (dispatch) => {
     }
 }
 
-export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '', sale = 'false' }) => async (dispatch) => {
+export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '', sale = '' }) => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST,
     })
@@ -109,5 +109,24 @@ export const deleteProduct = (productId) => async (dispatch, getState) => {
                 ? error.response.data.message
                 : error.message;
         dispatch({ type: PRODUCT_DELETE_FAIL, payload: message });
+    }
+};
+
+export const updateProduct = (_id, name, price, image, category, brand, countInStock, description, isSale, saleOff) => async (dispatch, getState) => {
+    dispatch({ type: PRODUCT_UPDATE_REQUEST, payload: _id });
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.put(`/api/products/${_id}`, { name, price, image, category, countInStock, brand, description, isSale, saleOff }, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: PRODUCT_UPDATE_FAIL, error: message });
     }
 };
