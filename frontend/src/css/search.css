@@ -1,0 +1,199 @@
+.shop-sidebar{
+    margin-top:20px;
+    margin-left: 19%;
+    margin-bottom: 30px;
+}
+
+.filterbtn{
+    margin-right: 22%;
+    text-align: right;
+}
+
+.btn-filterx{
+    font-weight: bolder ;
+    font-size:1.8rem;
+}
+
+.btn-filter{
+    font-weight: bolder ;
+    font-size:1.8rem;
+
+}
+
+.btn-filter:hover {
+    color:blue;
+}
+
+
+.btn-filterx:hover{
+    color:blue;
+}
+
+
+
+#filterbar{
+    width:65%;
+    display: none;
+
+}
+
+.popular_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 15%;
+    max-width: 1350px;
+  }
+  
+
+#filterbar.filter {
+    display:block;
+}
+
+
+#filterbar.filterx{
+    display:none;
+}
+
+
+
+.filter-content{
+    display: flex;
+}
+
+.filter-data{
+    flex:1 1 10rem;
+}
+
+.text-sortby{
+    font-size: 1.7rem;
+}
+
+
+@media only screen and (min-width:0px) and (max-width:400px){
+    .shop-sidebar{
+        margin-left: 19%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 12%;
+        text-align: right;
+    }
+
+    #filterbar{
+        width: 90%;
+    }
+}
+
+
+@media only screen and (min-width:401px) and (max-width:600px){
+    .shop-sidebar{
+        margin-left: 19%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 8%;
+        text-align: right;
+    }
+
+    #filterbar{
+        width: 90%;
+    }
+}
+
+
+
+@media only screen and (min-width:601px) and (max-width:750px){
+    .shop-sidebar{
+        margin-left: 26%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 15%;
+        text-align: right;
+    }
+
+    #filterbar{
+        width: 90%;
+    }
+}
+
+
+@media only screen and (min-width:751px) and (max-width:900px){
+    .shop-sidebar{
+        margin-left: 26%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 15%;
+        text-align: right;
+    }
+
+    #filterbar{
+        width: 100%;
+    }
+}
+
+
+
+@media only screen and (min-width:901px) and (max-width:1100px){
+    .shop-sidebar{
+        margin-left: 22%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 11%;
+        text-align: right;
+    }
+
+    #filterbar{
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width:1101px) and (max-width:1270px){
+    .shop-sidebar{
+        margin-left: 22%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 6%;
+        text-align: right;
+    }
+
+    #filterbar{
+        font-size:1.7rem;
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width:1270px) and (max-width:1450px){
+    .shop-sidebar{
+        margin-left: 26%;
+        margin-bottom: 30px;
+    }
+    
+    .filterbtn{
+        margin-right: 13%;
+        text-align: right;
+    }
+
+    #filterbar{
+        font-size:1.7rem;
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
