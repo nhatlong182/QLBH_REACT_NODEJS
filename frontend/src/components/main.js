@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import AdminOdDetailScreen from '../screens/AdminOdDetailScreen.js';
 import AdminScreen from '../screens/AdminScreen.js';
 import CartScreen from '../screens/CartScreen.js';
+import CreateProductScreen from '../screens/CreateProductScreen.js';
 import HomeScreen from '../screens/HomeScreen.js'
 import OrderDetailScreen from '../screens/OrderDetailScreen.js';
 import OrderHistoryScreen from '../screens/OrderHistoryScreen.js';
@@ -48,6 +49,11 @@ export default function Main() {
                     exact
                 ></Route>
                 <Route
+                    path="/category/sale/:sale"
+                    component={SearchScreen}
+                    exact
+                ></Route>
+                <Route
                     path="/category/pageNumber/:pageNumber"
                     component={SearchScreen}
                     exact
@@ -83,6 +89,7 @@ export default function Main() {
                     component={AdminOdDetailScreen}
                     exact
                 ></AdminRoute>
+                <AdminRoute path="/admin/tableProduct/create" component={CreateProductScreen} exact></AdminRoute>
 
                 <Route path="/" component={HomeScreen} exact></Route>
             </Switch>

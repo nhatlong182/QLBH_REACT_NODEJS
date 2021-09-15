@@ -1,18 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
 import { Route, Switch, Link } from 'react-router-dom';
 
 import TableProduct from '../components/TableProduct.js';
 import TableUser from '../components/TableUser.js';
 import TableOrder from '../components/TableOrder.js'
 
-
 import '../css/admin.css'
 
 export default function AdminScreen() {
 
-    const User = useSelector((state) => state.userSignin)
-    const { userInfo } = User;
 
     return (
         <div className="aa">
@@ -42,6 +38,7 @@ export default function AdminScreen() {
                 <Switch>
                     <Route path="/admin" component={TableProduct} exact></Route>
                     <Route path="/admin/tableProduct" component={TableProduct} exact></Route>
+
                     <Route path="/admin/tableOrder" component={TableOrder} exact></Route>
                     <Route path="/admin/tableUser" component={TableUser} exact></Route>
                 </Switch>

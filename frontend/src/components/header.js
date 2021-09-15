@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { listCategorys } from '../actions/productAction.js'
 import { signout } from '../actions/userAction.js'
 import CartIcon from '../assets/shoppingCart.png'
@@ -53,14 +53,13 @@ export default function Header() {
                                 <ul className="ul_collection">
                                     {categories?.map((category, index) => (
                                         <li key={index} className="inside">
-                                            <Link to={`/category/${category}`}>{category}</Link>
+                                            <a href={`/category/${category}`}>{category}</a>
                                         </li>
                                     ))}
+                                    <li><a href={`/category/sale/true`}>Các sản phẩm đang khuyến mãi</a></li>
                                 </ul>
                             </li>
-                            <li className="inside">
-                                <a href="#">TÀI KHOẢN</a>
-                            </li>
+
 
                         </ul>
                     </div>

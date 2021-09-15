@@ -9,8 +9,10 @@ import MessageBox from '../components/MessageBox.js'
 import  '../css/search.css';
 
 export default function SearchScreen() {
+
     const [filterIsOpen, setfilterIsOpen] = useState(false);
     const { pageNumber = 1, limit = 12, name = '', category = '' } = useParams();
+
 
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
@@ -29,8 +31,8 @@ export default function SearchScreen() {
 
 
     useEffect(() => {
-        dispatch(listProducts({ pageNumber, limit, category, name }));
-    }, [dispatch, pageNumber, limit, category, name]);
+        dispatch(listProducts({ pageNumber, limit, category, name, sale }));
+    }, [dispatch, pageNumber, limit, category, name, sale]);
 
 
     return (

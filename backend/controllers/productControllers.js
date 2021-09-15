@@ -10,6 +10,7 @@ export const getAllProducts = async (req, res) => {
         //filter
         const name = req.query.name || '';
         const category = req.query.category || '';
+        const sale = req.query.sale || '';
         const min =
             req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
         const max =
@@ -17,17 +18,20 @@ export const getAllProducts = async (req, res) => {
 
         const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
         const categoryFilter = category ? { category } : {};
+        const saleFilter = sale ? { isSale: sale } : {}
         const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
 
         const count = await Product.countDocuments({
             ...nameFilter,
             ...categoryFilter,
+            ...saleFilter,
             ...priceFilter,
         });
 
         const products = await Product.find({
             ...nameFilter,
             ...categoryFilter,
+            ...saleFilter,
             ...priceFilter,
         }).limit(limit).skip(startIndex).exec();
 
@@ -84,4 +88,34 @@ export const getProductDetail = async (req, res) => {
 export const getCategories = async (req, res) => {
     const categories = await Product.find().distinct('category');
     res.send(categories);
+}
+
+export const createProduct = async (req, res) => {
+    try {
+        const product = new Product({
+            name: req.body.name,
+            image: req.body.image,
+            price: Number(req.body.price),
+            category: req.body.category,
+            brand: req.body.brand,
+            countInStock: Number(req.body.countInStock),
+            description: req.body.description,
+        });
+        const createdProduct = await product.save();
+        res.send({ message: 'Thêm sản phẩm thành công', product: createdProduct });
+    } catch (error) {
+        res.status(500).send({ message: 'Sản phẩm đã tồn tại' })
+    }
+
+
+}
+
+export const deleteProduct = async (req, res) => {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+        await product.remove();
+        res.send({ message: 'Xóa sản phẩm thành công' });
+    } else {
+        res.status(404).send({ message: 'Không tìn thấy sản phẩm!!!' });
+    }
 }
