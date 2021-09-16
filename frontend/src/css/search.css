@@ -39,6 +39,7 @@
   justify-content: center;
   margin-left: 15%;
   max-width: 1350px;
+  margin-bottom: 3rem;
 }
 
 #filterbar.filter {
@@ -62,6 +63,9 @@
 }
 
 @media only screen and (min-width: 0px) and (max-width: 400px) {
+  .popular_container {
+    margin-left: 4%;
+  }
   .shop-sidebar {
     margin-left: 19%;
     margin-bottom: 30px;
@@ -78,6 +82,10 @@
 }
 
 @media only screen and (min-width: 401px) and (max-width: 600px) {
+  .popular_container {
+    margin-left: 2%;
+  }
+
   .shop-sidebar {
     margin-left: 19%;
     margin-bottom: 30px;
@@ -110,6 +118,10 @@
 }
 
 @media only screen and (min-width: 751px) and (max-width: 900px) {
+  .popular_container {
+    margin-left: 2%;
+  }
+
   .shop-sidebar {
     margin-left: 26%;
     margin-bottom: 30px;

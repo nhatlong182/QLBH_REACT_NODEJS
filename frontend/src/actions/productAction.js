@@ -24,12 +24,12 @@ export const saleOffProducts = () => async (dispatch) => {
     }
 }
 
-export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '', sale = '' }) => async (dispatch) => {
+export const listProducts = ({ pageNumber = '', limit = '', category = '', name = '', min = '', max = '', sort = '', }) => async (dispatch) => {
     dispatch({
         type: PRODUCT_LIST_REQUEST,
     })
     try {
-        const { data } = await axios.get(`/api/products?category=${category}&name=${name}&page=${pageNumber}&limit=${limit}&sale=${sale}`)
+        const { data } = await axios.get(`/api/products?page=${pageNumber}&limit=${limit}&category=${category}&name=${name}&min=${min}&max=${max}&sort=${sort}`)
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });

@@ -11,6 +11,7 @@ export const getAllProducts = async (req, res) => {
         //filter
         const name = req.query.name || '';
         const category = req.query.category || '';
+        const sort = req.query.sort || '';
         const sale = req.query.sale || '';
         const min =
             req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
@@ -21,6 +22,7 @@ export const getAllProducts = async (req, res) => {
         const categoryFilter = category ? { category } : {};
         const saleFilter = sale ? { isSale: sale } : {}
         const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
+        const sortOrder = sort === 'lowest' ? { price: 1 } : sort === 'highest' ? { price: -1 } : {}
 
         const count = await Product.countDocuments({
             ...nameFilter,
@@ -34,7 +36,7 @@ export const getAllProducts = async (req, res) => {
             ...categoryFilter,
             ...saleFilter,
             ...priceFilter,
-        }).limit(limit).skip(startIndex).exec();
+        }).sort(sortOrder).limit(limit).skip(startIndex).exec();
 
         res.send({ page, limit, pages: Math.ceil(count / limit), products });
     } catch (error) {
@@ -51,7 +53,7 @@ export const getRandomProducts = async (req, res) => {
         res.send(products);
     } catch (error) {
         console.error(error);
-        res.status(500).send({ message: "Loi server!!!" });
+        res.status(500).send({ message: "Lỗi server!!!" });
     }
 }
 export const getSaleOffProducts = async (req, res) => {
@@ -61,7 +63,7 @@ export const getSaleOffProducts = async (req, res) => {
         res.send(products);
     } catch (error) {
         console.error(error);
-        res.status(500).send({ message: "Loi server!!!" });
+        res.status(500).send({ message: "Lỗi server!!!" });
     }
 }
 export const getAllSaleOffProducts = async (req, res) => {
@@ -71,7 +73,7 @@ export const getAllSaleOffProducts = async (req, res) => {
         res.send(products);
     } catch (error) {
         console.error(error);
-        res.status(500).send({ message: "Loi server!!!" });
+        res.status(500).send({ message: "Lỗi server!!!" });
     }
 }
 
@@ -104,7 +106,7 @@ export const createProduct = async (req, res) => {
         const createdProduct = await product.save();
         res.send({ message: 'Thêm sản phẩm thành công', product: createdProduct });
     } catch (error) {
-        res.status(500).send({ message: 'Có lỗi xãy ra vui lòng kiểm tra lại thông tin' })
+        res.status(500).send({ message: 'Có lỗi xãy ra vui lòng kiểm tra lại tên sản phẩm' })
     }
 }
 
