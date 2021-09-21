@@ -49,13 +49,13 @@ export default function SearchScreen() {
 
     return (
         <div>
-            <div className="category-list">
-                <ul className="">
-                    <li>
+            <div className="">
+                <ul className="category-list">
+                    <li className="cate-sub">
                         <Link to={getFilterUrl({ category: 'all' })}>Mặc định</Link>
                     </li>
                     {categories?.map((category, index) => (
-                        <li key={index} className="">
+                        <li key={index} className="cate-sub">
                             <Link to={getFilterUrl({ category: category, })}>{category}</Link>
                         </li>
                     ))}
