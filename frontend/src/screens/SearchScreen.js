@@ -23,7 +23,6 @@ export default function SearchScreen() {
 
     const getFilterUrl = (filter) => {
         const filterPage = filter.page || pageNumber;
-
         const filterCategory = filter.category || category;
         const filterName = filter.name || name;
         const sortOrder = filter.sort || sort;
@@ -71,19 +70,18 @@ export default function SearchScreen() {
                         <ul className="filter-data">
                             <h3 className="text-sortby">Sort By</h3>
                             <li><Link to={getFilterUrl({ sort: 'default', })}>Mặc định</Link></li>
-                            <li><Link to={getFilterUrl({ sort: 'lowest', page: 1 })}>Giá: Từ Thấp đến Cao</Link></li>
-                            <li><Link to={getFilterUrl({ sort: 'highest', page: 1 })}>Giá: Từ Cao đến Thấp</Link></li>
-
+                            <li><Link to={getFilterUrl({ sort: 'lowest', page: 1 })} className={sort === 'lowest' ? 'filter-active' : ''}>Giá: Từ Thấp đến Cao</Link></li>
+                            <li><Link to={getFilterUrl({ sort: 'highest', page: 1 })} className={sort === 'highest' ? 'filter-active' : ''}>Giá: Từ Cao đến Thấp</Link></li>
                         </ul>
                         <ul className="filter-data" >
                             <h3 className="text-sortby">Giá</h3>
                             <li><Link to={getFilterUrl({ min: 0, max: 0, page: 1 })}>Mặc định</Link></li>
-                            <li><Link to={getFilterUrl({ min: 1, max: 199999, page: 1 })}>dưới 200,000₫</Link></li>
-                            <li><Link to={getFilterUrl({ min: 200000, max: 400000, page: 1 })}>200,000₫ - 400,000₫</Link></li>
-                            <li><Link to={getFilterUrl({ min: 400000, max: 600000, page: 1 })}>400,000₫ - 600,000₫</Link></li>
-                            <li><Link to={getFilterUrl({ min: 600000, max: 800000, page: 1 })}>600,000₫ - 800,000₫</Link></li>
-                            <li><Link to={getFilterUrl({ min: 800000, max: 1000000, page: 1 })}>800,000₫ - 1,000,000₫</Link></li>
-                            <li><Link to={getFilterUrl({ min: 1000000, max: 10000000, page: 1 })}>trên 1,000,000₫</Link></li>
+                            <li><Link to={getFilterUrl({ min: 1, max: 199999, page: 1 })} className={min === '1' ? 'filter-active' : ''}>dưới 200,000₫</Link></li>
+                            <li><Link to={getFilterUrl({ min: 200000, max: 400000, page: 1 })} className={min === '200000' ? 'filter-active' : ''}>200,000₫ - 400,000₫</Link></li>
+                            <li><Link to={getFilterUrl({ min: 400000, max: 600000, page: 1 })} className={min === '400000' ? 'filter-active' : ''}>400,000₫ - 600,000₫</Link></li>
+                            <li><Link to={getFilterUrl({ min: 600000, max: 800000, page: 1 })} className={min === '600000' ? 'filter-active' : ''}>600,000₫ - 800,000₫</Link></li>
+                            <li><Link to={getFilterUrl({ min: 800000, max: 1000000, page: 1 })} className={min === '800000' ? 'filter-active' : ''}>800,000₫ - 1,000,000₫</Link></li>
+                            <li><Link to={getFilterUrl({ min: 1000000, max: 10000000, page: 1 })} className={min === '1000000' ? 'filter-active' : ''}>trên 1,000,000₫</Link></li>
                         </ul>
                     </div>
                 </div>
