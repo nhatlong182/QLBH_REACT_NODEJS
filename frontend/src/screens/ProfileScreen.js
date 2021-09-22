@@ -2,7 +2,8 @@ import { set } from 'mongoose';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsUser } from '../actions/userAction.js';
-
+import { signout } from '../actions/userAction.js'
+import { Link } from 'react-router-dom'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import '../css/profile.css'
@@ -22,6 +23,10 @@ export default function ProfileScreen() {
 	const { userInfo } = userSignin;
 	const userDetails = useSelector((state) => state.userDetail);
 	const { loading, error, user } = userDetails;
+	const signoutHandler = () => {
+		dispatch(signout())
+	}
+
 
 	const dispatch = useDispatch();
 
@@ -52,9 +57,16 @@ export default function ProfileScreen() {
 					<MessageBox variant="danger">{error}</MessageBox>
 				) : (
 					<div className="content-pf" >
+						<div className="sub-pf">
+							<li><Link to="/profile">Tài khoản</Link></li>
+							<li><Link to="/orderhistory">Đơn hàng</Link></li>
+							<li><Link to="#signout" onClick={signoutHandler}>Đăng xuất</Link></li>
+						</div>
+						<div className="avatar-pf">
+							{user && (<img src={user.avatar} alt="hinh" className="avatarpf"></img>)}
+							{/* <a className="change">Thay đổi</a> */}
+						</div>
 						<div className="container-fluid">
-							<img src={avatar} alt="profile-avatar" className=""></img>
-
 							<div className="pf-row">
 								<div className="pf_text"><label htmlFor="name">Tên hiển thị* </label></div>
 								<div className="pf_box">
@@ -67,9 +79,6 @@ export default function ProfileScreen() {
 									<input id="phone" type="text" value={phone} onChange={(e) => setPhone(e.target.value)} disabled />
 								</div>
 							</div>
-						</div>
-
-						<div className="container-fluid">
 							<div className="pf-row">
 								<div className="text_pass"><h3>Thay đổi mật khẩu</h3></div>
 							</div>
@@ -86,9 +95,10 @@ export default function ProfileScreen() {
 								<div className="pf_box"><input id="password_new_confirm" type="password" onChange={(e) => setConfirmPassword(e.target.value)} /></div>
 							</div>
 
-						</div>
-						<div className="pf_btn">
-							<button type="submit" className="btn-submit">Lưu thay đổi</button>
+
+							<div className="pf_btn">
+								<button type="submit" className="btn-submit">Lưu thay đổi</button>
+							</div>
 						</div>
 					</div>
 				)}
