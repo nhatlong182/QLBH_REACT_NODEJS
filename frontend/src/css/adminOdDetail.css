@@ -1,22 +1,39 @@
 .status-bar{
     align-items: flex-start!important;
     display: flex;
-    margin-top: 4%;
-    margin-left:10%
+    margin-top: 2%;
+    margin-left:30%
 }
 
 .head-line{
     color: #7790b6!important;
     font-size: 12px;
-    margin-top: 10px;
     margin-left: 20px;
 }
+
 
 
 .status-text{
     width:100%;
     font-size:1.5rem;
     flex:0 0 22rem;
+}
+
+.deli{
+    border-top: 0.5px solid grey;
+    text-align: right;
+}
+
+.deli-btn{
+    margin-top:10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.info-box{
+    line-height: 2.1rem;
+    margin-top: 4%;
+    margin-left: 30%;
 }
 
 
@@ -33,7 +50,7 @@ th, td {
     box-shadow: 0 4px 6px rgb(0 0 0 / 12%);
 
     margin-top:4%;
-    margin-left: 10%;
+    margin-left: 30%;
 }
 
 .tble-body{
@@ -46,6 +63,11 @@ th, td {
         display: flex;
         flex-direction: column;
         margin-top: 6%;
+        margin-left: 5%;
+    }
+
+    .info-box{
+        margin-left: 5%;
     }
 
     .status-text{   
@@ -103,6 +125,10 @@ th, td {
         margin-top: 6%;
         margin-left: 4%;
     }
+    .info-box{ 
+        margin-left: 4%;
+    }
+    
 
     .status-text{   
         font-size:1.4rem;
@@ -128,6 +154,10 @@ th, td {
     .status-bar{
         display: flex;
         margin-top: 6%;
+        margin-left: 4%;
+    }
+
+    .info-box{ 
         margin-left: 4%;
     }
 
@@ -158,6 +188,10 @@ th, td {
         margin-left: 4%;
     }
 
+    .info-box{ 
+        margin-left: 4%;
+    }
+
     .status-text{   
         font-size:1.4rem;
         flex:0 0 24rem;
@@ -182,6 +216,10 @@ th, td {
     .status-bar{
         display: flex;
         margin-top: 6%;
+        margin-left: 6%;
+    }
+
+    .info-box{ 
         margin-left: 6%;
     }
 
@@ -210,6 +248,10 @@ th, td {
     .status-bar{
         display: flex;
         margin-top: 6%;
+        margin-left: 6%;
+    }
+
+    .info-box{ 
         margin-left: 6%;
     }
 
