@@ -144,3 +144,27 @@ export const unAuthorizeWebmaster = async (req, res) => {
     }
 }
 
+export const updateAccount = async (req, res) => {
+    const user = await Account.findById(req.user._id);
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.phone = req.body.phone || user.phone;
+        user.avatar = req.body.avatar || user.avatar;
+
+
+        if (req.body.newPassword) {
+            user.password = bcrypt.hashSync(req.body.newPassword, 8);
+        }
+        const updatedUser = await user.save();
+        res.send({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            avatar: updatedUser.avatar,
+            isAdmin: updatedUser.isAdmin,
+            isWebmaster: user.isWebmaster,
+            token: initToken(updatedUser),
+        });
+    }
+}
+

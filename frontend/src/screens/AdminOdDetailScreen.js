@@ -28,18 +28,18 @@ export default function AdminOdDetailScreen(props) {
                 <svg width="18px" height="18px" viewBox="0 0 17 6" className="svg-item">
                     <path d="M6.47 4L5.53 4.94L8.58333 8L5.53 11.06L6.47 12L10.47 8L6.47 4Z"></path>
                 </svg>
-                <a className="sub-orderid">{order._id}</a>
+                <span className="sub-orderid">{order._id}</span>
             </div>
 
             <div className="status-bar">
                 <div className="status-text">MÃ
-                    <div>
-                        <span>{order._id}</span></div>
+                    <div><span>{order._id}</span></div>
                 </div>
                 <div className="status-text">TRẠNG THÁI GIAO HÀNG  <MessageBox variant="danger" className="arlet-status">Chưa giao</MessageBox></div>
                 <div className="status-text">XÁC THỰC ĐƠN HÀNG
                     <div>
-                        <span>{order.isConfirm ? "Đã xác nhận" : "Chờ xử lý"}</span></div>
+                        <span>{order.isConfirm ? "Đã xác nhận" : "Chờ xử lý"}</span>
+                    </div>
                 </div>
             </div>
 

@@ -19,7 +19,7 @@ export default function EditProductScreen(props) {
     const { loading, error, product } = productDetails;
 
     const update = useSelector((state) => state.productUpdate);
-    const { loading: loadingUpdate, error: errorUpdate, success } = update;
+    const { error: errorUpdate, success } = update;
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
@@ -63,7 +63,7 @@ export default function EditProductScreen(props) {
             props.history.push('/admin/tableProduct')
         }
         //lấy thông tin sản phẩm trong db
-        if (!product || product._id !== productId) {
+        if (!product || product._id !== productId || success) {
             dispatch({ type: PRODUCT_UPDATE_RESET });
             dispatch(productDetail(productId));
         } else {
@@ -105,111 +105,112 @@ export default function EditProductScreen(props) {
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
                 {loading ? (
                     <LoadingBox></LoadingBox>
-                ) : (
-                    <>
-                        <div>
-                            <label htmlFor="name">Tên sản phẩm:</label>
-                            <input
-                                id="name"
-                                type="text"
-                                placeholder="Tên sản phẩm"
-                                value={name}
-                                required
-                                onChange={(e) => setName(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="price">Giá:</label>
-                            <input
-                                id="price"
-                                type="text"
-                                placeholder="Giá"
-                                value={price}
-                                required
-                                onChange={(e) => setPrice(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <img src={image} alt={name} className="img_edit"></img>
-                        </div>
-                        <div>
-                            <label htmlFor="imageFile">Hình ảnh:</label>
-                            <input
-                                type="file"
-                                id="imageFile"
-                                label="Choose Image"
-                                onChange={uploadFileHandler}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="category">Loại sản phẩm</label>
-                            <input
-                                id="category"
-                                type="text"
-                                placeholder="Loại sản phẩm"
-                                value={category}
-                                required
-                                onChange={(e) => setCategory(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="brand">Hãng</label>
-                            <input
-                                id="brand"
-                                type="text"
-                                placeholder="Hãng"
-                                value={brand}
-                                required
-                                onChange={(e) => setBrand(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="countInStock">Số lượng trong kho:</label>
-                            <input
-                                id="countInStock"
-                                type="text"
-                                placeholder="Số lượng trong kho"
-                                value={countInStock}
-                                required
-                                onChange={(e) => setCountInStock(e.target.value)}
-                            ></input>
-                        </div>
-                        <div className="" onChange={radioIsSaleHandler}>
-                            <label htmlFor="sale">Giảm giá</label>
-                            <input className="male" type="radio" id="sale" name="sale" value="true" />
-                            <label htmlFor="notSale">Không giảm giá</label>
-                            <input className="male" type="radio" id="notSale" name="sale" value="false" />
-                        </div>
-                        <div>
-                            <label htmlFor="saleOff">Phần trăm giảm giá:</label>
-                            <input
-                                id="saleOff"
-                                type="text"
-                                placeholder="Phần trăm giảm giá:"
-                                value={saleOff}
-                                disabled={Boolean(!isSale)}
-                                onChange={(e) => setSaleOff(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="description">Mô tả:</label>
-                            <textarea
-                                id="description"
-                                rows="3"
-                                type="text"
-                                placeholder="Mô tả"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            ></textarea>
-                        </div>
-                        <div>
-                            <label></label>
-                            <button className="primary" type="submit">
-                                Cập nhật
-                            </button>
-                        </div>
-                    </>
-                )}
+                ) : errorUpdate ? (<MessageBox variant="danger">{errorUpdate}</MessageBox>) :
+                    (
+                        <>
+                            <div>
+                                <label htmlFor="name">Tên sản phẩm:</label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    placeholder="Tên sản phẩm"
+                                    value={name}
+                                    required
+                                    onChange={(e) => setName(e.target.value)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label htmlFor="price">Giá:</label>
+                                <input
+                                    id="price"
+                                    type="text"
+                                    placeholder="Giá"
+                                    value={price}
+                                    required
+                                    onChange={(e) => setPrice(e.target.value)}
+                                ></input>
+                            </div>
+                            <div>
+                                <img src={image} alt={name} className="img_edit"></img>
+                            </div>
+                            <div>
+                                <label htmlFor="imageFile">Hình ảnh:</label>
+                                <input
+                                    type="file"
+                                    id="imageFile"
+                                    label="Choose Image"
+                                    onChange={uploadFileHandler}
+                                ></input>
+                            </div>
+                            <div>
+                                <label htmlFor="category">Loại sản phẩm</label>
+                                <input
+                                    id="category"
+                                    type="text"
+                                    placeholder="Loại sản phẩm"
+                                    value={category}
+                                    required
+                                    onChange={(e) => setCategory(e.target.value)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label htmlFor="brand">Hãng</label>
+                                <input
+                                    id="brand"
+                                    type="text"
+                                    placeholder="Hãng"
+                                    value={brand}
+                                    required
+                                    onChange={(e) => setBrand(e.target.value)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label htmlFor="countInStock">Số lượng trong kho:</label>
+                                <input
+                                    id="countInStock"
+                                    type="text"
+                                    placeholder="Số lượng trong kho"
+                                    value={countInStock}
+                                    required
+                                    onChange={(e) => setCountInStock(e.target.value)}
+                                ></input>
+                            </div>
+                            <div className="" onChange={radioIsSaleHandler}>
+                                <label htmlFor="sale">Giảm giá</label>
+                                <input className="male" type="radio" id="sale" name="sale" value="true" />
+                                <label htmlFor="notSale">Không giảm giá</label>
+                                <input className="male" type="radio" id="notSale" name="sale" value="false" />
+                            </div>
+                            <div>
+                                <label htmlFor="saleOff">Phần trăm giảm giá:</label>
+                                <input
+                                    id="saleOff"
+                                    type="text"
+                                    placeholder="Phần trăm giảm giá:"
+                                    value={saleOff}
+                                    disabled={Boolean(!isSale)}
+                                    onChange={(e) => setSaleOff(e.target.value)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label htmlFor="description">Mô tả:</label>
+                                <textarea
+                                    id="description"
+                                    rows="3"
+                                    type="text"
+                                    placeholder="Mô tả"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                ></textarea>
+                            </div>
+                            <div>
+                                <label></label>
+                                <button className="primary" type="submit">
+                                    Cập nhật
+                                </button>
+                            </div>
+                        </>
+                    )}
             </form>
         </div >
     )

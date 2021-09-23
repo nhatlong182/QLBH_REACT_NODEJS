@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { categoryListReducer, homePopularListReducer, homeSaleOffListReducer, productCreateReducer, productDeleteReducer, productDetailReducer, productListReducer, productUpdateReducer } from './reducers/productReducer.js';
 import { cartReducer } from './reducers/cartReducer.js';
-import { userDeleteReducer, userDetailsReducer, userListReducer, userRegisterReducer, userSigninReducer, userUpdateReducer } from './reducers/userReducer.js';
+import { userDeleteReducer, userDetailsReducer, userListReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducer.js';
 import { orderCreateReducer, orderDetailsReducer, orderListOfUserReducer, orderListReducer, orderUpdateReducer } from './reducers/orderReducer.js';
 
 const initialState = {
@@ -29,6 +29,7 @@ const reducer = combineReducers({
     listUser: userListReducer,
     deleteUser: userDeleteReducer,
     updateUser: userUpdateReducer,
+    updateProfile: userUpdateProfileReducer,
     //order
     orderCreate: orderCreateReducer,
     orderDetail: orderDetailsReducer,

@@ -1,7 +1,7 @@
 import axios from "axios";
 import swal from 'sweetalert';
 
-import { USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT, WEBMASTER_UPDATE_FAIL, WEBMASTER_UPDATE_REQUEST, WEBMASTER_UPDATE_SUCCESS } from "../constants.js"
+import { USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT, USER_UPDATE_PROFILE_FAIL, USER_UPDATE_PROFILE_SUCCESS, WEBMASTER_UPDATE_FAIL, WEBMASTER_UPDATE_REQUEST, WEBMASTER_UPDATE_SUCCESS } from "../constants.js"
 
 export const signin = (email, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST });
@@ -147,5 +147,25 @@ export const unAuthorizeWebmaster = (userId) => async (dispatch, getState) => {
             ? error.response.data.message
             : error.message;
         dispatch({ type: WEBMASTER_UPDATE_FAIL, payload: message });
+    }
+};
+
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+    const {
+        userSignin: { userInfo },
+    } = getState();
+    try {
+        const { data } = await axios.put(`/api/accounts/profile`, user, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: USER_UPDATE_PROFILE_FAIL, payload: message });
     }
 };
