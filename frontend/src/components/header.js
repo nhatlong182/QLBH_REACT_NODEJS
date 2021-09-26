@@ -12,6 +12,8 @@ export default function Header() {
     // eslint-disable-next-line
     const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
+    const [listIsOpen, setlistIsOpen] = useState(false);
+
     const Category = useSelector((state) => state.categoryList)
     const { categories } = Category;
 
@@ -49,16 +51,21 @@ export default function Header() {
                                 <a href="/">TRANG CHỦ</a>
                             </li>
                             <li className="inside">
-                                <a href="/category">SẢN PHẨM</a>
-                                <ul className="ul_collection">
+                                <a onClick={() => setlistIsOpen(!listIsOpen)} className="feat-btn" >SẢN PHẨM
+                                    <span className="fas fa-caret-down" id="btn-drop"></span>
+                                </a>
+                                <ul className={listIsOpen ? 'list' : ''} id="listbar">
                                     {categories?.map((category, index) => (
                                         <li key={index} className="inside">
-                                            <a href={`/category/${category}`}>{category}</a>
+                                            <a className="" href={`/category/${category}`}>{category}</a>
                                         </li>
                                     ))}
                                     <li><a href={`/category/sale/true`}>Các sản phẩm đang khuyến mãi</a></li>
                                 </ul>
                             </li>
+                            <ul className="ul_collection">
+                                
+                            </ul>
 
 
                         </ul>
