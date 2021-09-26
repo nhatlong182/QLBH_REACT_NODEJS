@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsOrder, verifyOrder} from '../actions/orderAction.js';
+import { detailsOrder } from '../actions/orderAction.js';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ export default function AdminOdDetailScreen(props) {
                 <svg width="18px" height="18px" viewBox="0 0 17 6" className="svg-item">
                     <path d="M6.47 4L5.53 4.94L8.58333 8L5.53 11.06L6.47 12L10.47 8L6.47 4Z"></path>
                 </svg>
-                <a className="sub-orderid">{order._id}</a>
+                <div className="sub-orderid">{order._id}</div>
             </div>
 
             <div className="info-box">
@@ -52,7 +52,7 @@ export default function AdminOdDetailScreen(props) {
                     {order.isDelivered ? (<MessageBox variant="danger" className="arlet">Chưa giao</MessageBox>
                     ) : (
                         <MessageBox variant="success" className="arlet">Đã giao vào ngày {order.deliveredAt}</MessageBox>
-                        
+
                     )}
                 </div>
                 <div className="status-text">

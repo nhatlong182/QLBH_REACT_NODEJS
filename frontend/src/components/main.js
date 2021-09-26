@@ -71,7 +71,7 @@ export default function Main() {
                     exact
                 ></Route>
                 <Route
-                    path="/category/:category/name/:name/min/:min/max/:max/sort/:sort/pageNumber/:pageNumber"
+                    path="/category/:category/name/:name/min/:min/max/:max/sort/:sort/sale/:sale/pageNumber/:pageNumber"
                     component={SearchScreen}
                     exact
                 ></Route>

@@ -51,9 +51,11 @@ export default function Header() {
                                 <a href="/">TRANG CHỦ</a>
                             </li>
                             <li className="inside">
-                                <a onClick={() => setlistIsOpen(!listIsOpen)} className="feat-btn" >SẢN PHẨM
-                                    <span className="fas fa-caret-down" id="btn-drop"></span>
-                                </a>
+                                <div>
+                                    <a href="/category" className="feat-btn" >SẢN PHẨM
+                                    </a>
+                                    <span className="fas fa-caret-down" id="btn-drop" onClick={() => setlistIsOpen(!listIsOpen)}></span>
+                                </div>
                                 <ul className={listIsOpen ? 'list' : ''} id="listbar">
                                     {categories?.map((category, index) => (
                                         <li key={index} className="inside">
@@ -64,7 +66,7 @@ export default function Header() {
                                 </ul>
                             </li>
                             <ul className="ul_collection">
-                                
+
                             </ul>
 
 

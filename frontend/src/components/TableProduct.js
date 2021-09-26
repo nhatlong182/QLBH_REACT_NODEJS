@@ -104,6 +104,7 @@ export default function TableProduct(props) {
                             <th>Giá</th>
                             <th>Loại</th>
                             <th>Hãng</th>
+                            <th>Số lượng</th>
                             <th>Sale off</th>
                             <th>ACTIONS</th>
                         </tr>
@@ -116,6 +117,7 @@ export default function TableProduct(props) {
                                 <td>{product.price}</td>
                                 <td>{product.category}</td>
                                 <td>{product.brand}</td>
+                                <td>{product.countInStock}</td>
                                 <td>{product.saleOff}%</td>
                                 <td>
                                     <button
