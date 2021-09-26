@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { detailsOrder } from '../actions/orderAction.js';
+import { detailsOrder, verifyOrder} from '../actions/orderAction.js';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { Link } from 'react-router-dom';
@@ -49,9 +49,10 @@ export default function AdminOdDetailScreen(props) {
                 </div>
                 <div className="status-text">
                     <strong>TRẠNG THÁI GIAO HÀNG</strong>
-                    {order.isDelivered ? (<MessageBox variant="success" className="arlet">Đã giao vào ngày {order.deliveredAt}</MessageBox>
+                    {order.isDelivered ? (<MessageBox variant="danger" className="arlet">Chưa giao</MessageBox>
                     ) : (
-                        <MessageBox variant="danger" className="arlet">Chưa giao</MessageBox>
+                        <MessageBox variant="success" className="arlet">Đã giao vào ngày {order.deliveredAt}</MessageBox>
+                        
                     )}
                 </div>
                 <div className="status-text">
@@ -89,7 +90,8 @@ export default function AdminOdDetailScreen(props) {
                     </tbody>
                 </table>
                 <div className="deli">
-                    <button className="deli-btn">Giao hàng</button>
+                    <button className="deli-btn">
+                        Giao hàng</button>
                 </div>
             </div>
         </div>

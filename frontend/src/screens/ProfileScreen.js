@@ -104,11 +104,11 @@ export default function ProfileScreen() {
 					(
 						<div className="content-pf" >
 							<div className="sub-pf">
-								{/* <ul>
+								<ul>
 								<li><Link to="/profile">Tài khoản</Link></li>
 								<li><Link to="/orderhistory">Đơn hàng</Link></li>
 								<li><Link to="#signout" onClick={signoutHandler}>Đăng xuất</Link></li>
-							</ul> */}
+							</ul>
 							</div>
 							<div className="avatar-pf">
 								{user && (<img src={image ? image : user.avatar} alt="hinh" className="avatarpf"></img>)}
