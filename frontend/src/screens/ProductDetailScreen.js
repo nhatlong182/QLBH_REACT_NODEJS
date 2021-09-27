@@ -64,7 +64,7 @@ export default function ProductDetailScreen(props) {
                                         <span className="detail-price-title">Giá:</span>
                                         <span className="detail-price-new">{(product.price - (product.price * product.saleOff / 100)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
                                         <span className="detail-price-old">{(product.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
-                                        <span className="discount_">-40%</span>
+                                        <span className="discount_">{product.saleOff}%</span>
                                     </div>
                                 ) : (<span className="price">Giá: {(product.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>)}
                                 </li>

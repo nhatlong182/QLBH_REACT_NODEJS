@@ -53,15 +53,15 @@ export default function SearchScreen() {
             <div className="">
                 <ul className="category-list">
                     <li className="cate-sub">
-                        <Link to={getFilterUrl({ category: 'all', sale: 'default', min: 0, max: 0 })}>Mặc định</Link>
+                        <Link to={getFilterUrl({ category: 'all', sale: 'default', min: 0, max: 0 })} className={category === 'all' && sale === 'default' ? 'filter-active' : ''}>Mặc định</Link>
                     </li>
-                    {categories?.map((category, index) => (
+                    {categories?.map((item, index) => (
                         <li key={index} className="cate-sub">
-                            <Link to={getFilterUrl({ category: category, page: 1, sale: 'default' })}>{category}</Link>
+                            <Link to={getFilterUrl({ category: item, page: 1, sale: 'default' })} className={category === item ? 'filter-active' : ''}>{item}</Link>
                         </li>
                     ))}
                     <li className="cate-sub">
-                        <Link to={getFilterUrl({ category: 'all', sale: 'true', min: 0, max: 0 })}>Khuyến mãi</Link>
+                        <Link to={getFilterUrl({ category: 'all', sale: 'true', min: 0, max: 0 })} className={sale === 'true' ? 'filter-active' : ''}>Khuyến mãi</Link>
                     </li>
                 </ul>
             </div>
