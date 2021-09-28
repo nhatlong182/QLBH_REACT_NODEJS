@@ -164,6 +164,10 @@ img.large {
   color: red;
   background-color: #ffe0e0e0;
 }
+.alert-success {
+  color: #20a020;
+  background-color: #e0fff7e0;
+}
 /* Pagination */
 
 .pagination {

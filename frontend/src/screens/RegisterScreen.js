@@ -80,7 +80,6 @@ export default function RegisterScreen(props) {
                         type="phone"
                         id="phone"
                         placeholder="Nhập Số điện thoại"
-                        required
                         onChange={(e) => setPhone(e.target.value)}
                     ></input>
                 </div>

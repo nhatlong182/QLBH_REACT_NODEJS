@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import swal from 'sweetalert';
 import { deleteUser, listUser, authorizeWebmaster, unAuthorizeWebmaster } from '../actions/userAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { USER_DELETE_RESET } from '../constants.js';
 
 export default function TableUser() {
     const userList = useSelector((state) => state.listUser);
@@ -28,6 +30,15 @@ export default function TableUser() {
     }
 
     useEffect(() => {
+        if (successDelete) {
+            swal({
+                text: "Xóa tài khoản thành công",
+                icon: "success",
+                button: false,
+                timer: 1500,
+            });
+            dispatch({ type: USER_DELETE_RESET });
+        }
         dispatch(listUser({ pageNumber }));
     }, [dispatch, pageNumber, successDelete, successUpdate]);
 

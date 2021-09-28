@@ -13,6 +13,7 @@ export default function CartScreen(props) {
     const { cartItems } = cart;
 
 
+
     const qtyHandler = (type, item) => {
         if (type === 'plus') {
             if (item.qty >= item.countInStock) {

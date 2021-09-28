@@ -1,4 +1,5 @@
 import Order from "../models/orderModel.js";
+import Product from '../models/productModel.js'
 
 export const createOrder = async (req, res) => {
     if (req.body.orderItems.length === 0) {
@@ -66,5 +67,34 @@ export const verifyOrder = async (req, res) => {
         res.send({ message: 'Cập nhật thành công' })
     } else {
         res.status(404).send({ message: 'Không tìm thấy chi tiết đơn hàng!!!' });
+    }
+}
+
+export const verifyDeliver = async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+        order.isDelivered = true;
+        order.deliveredAt = Date.now();
+
+        order.orderItems.forEach(async (item) => {
+            const product = await Product.findById(item.id);
+            product.countInStock = product.countInStock - item.qty;
+            await product.save();
+        })
+
+        await order.save();
+        res.send({ message: 'Cập nhật thành công' });
+    } else {
+        res.status(404).send({ message: 'Không tìm thấy chi tiết đơn hàng!!!' });
+    }
+}
+
+export const deleteOrder = async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+        await order.remove();
+        res.send({ message: 'Xóa thành công' });
+    } else {
+        res.status(404).send({ message: 'Không tìm thấy đơn hàng!!!' });
     }
 }

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
-import { listOrder, verifyOrder } from '../actions/orderAction.js';
+import { deleteOrder, listOrder, verifyOrder } from '../actions/orderAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { ORDER_DELETE_RESET } from '../constants.js';
 
 export default function TableOrder(props) {
     const orderList = useSelector((state) => state.listOrder);
@@ -12,14 +14,35 @@ export default function TableOrder(props) {
     const orderUpdate = useSelector((state) => state.updateOrder)
     const { error: errorVerify, success: successVerify } = orderUpdate;
 
+    const orderDelete = useSelector((state) => state.deleteOrder);
+    const {
+        error: errorDelete,
+        success: successDelete,
+    } = orderDelete;
+
     const [pageNumber, setPageNumber] = useState(1)
     const [name, setName] = useState('')
 
     const dispatch = useDispatch()
 
     useEffect(() => {
+        if (successDelete) {
+            swal({
+                text: "Xóa đơn hàng thành công",
+                icon: "success",
+                button: false,
+                timer: 1500,
+            });
+            dispatch({ type: ORDER_DELETE_RESET });
+        }
         dispatch(listOrder({ pageNumber }));
-    }, [dispatch, pageNumber, successVerify]);
+    }, [dispatch, pageNumber, successVerify, successDelete]);
+
+    const deleteHandler = (order) => {
+        if (window.confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')) {
+            dispatch(deleteOrder(order._id));
+        }
+    };
 
     return loading ? (
         <LoadingBox></LoadingBox>
@@ -28,6 +51,7 @@ export default function TableOrder(props) {
     ) : (
         <div className="col-md-12">
             {errorVerify && <MessageBox variant="danger">{errorVerify}</MessageBox>}
+            {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
             <div className="table-responsive">
                 <h1>Danh sách đơn hàng</h1>
                 <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
@@ -68,6 +92,13 @@ export default function TableOrder(props) {
                                         disabled={order.isConfirm}
                                     >
                                         Xác nhận
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="small"
+                                        onClick={() => deleteHandler(order)}
+                                    >
+                                        Xóa
                                     </button>
                                 </td>
                             </tr>
