@@ -19,16 +19,19 @@ export default function AdminScreen() {
 
                             <li>
                                 <Link to="/admin/tableProduct">
-                                    <i className="fas fa-table"></i>Sản phẩm</Link>
+                                    <i className="fas fa-tag"></i>
+                                    <i className="pzpz"></i>Sản phẩm</Link>
                             </li>
                             <li>
                                 <Link to="/admin/tableOrder">
-                                    <i className="fas fa-table"></i>Đơn hàng</Link>
+                                    <i className="fas fa-shopping-cart"></i>
+                                    <i className="pzpz"></i>Đơn hàng</Link>
                             </li>
 
                             <li>
                                 <Link to="/admin/tableUser">
-                                    <i className="fas fa-table"></i>Tài khoản</Link>
+                                    <i className="fas fa-user"></i>
+                                    <i className="pzpz"></i>Tài khoản</Link>
                             </li>
                         </ul>
                     </nav>

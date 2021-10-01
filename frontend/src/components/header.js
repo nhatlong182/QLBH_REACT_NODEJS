@@ -45,7 +45,7 @@ export default function Header() {
                 </button>
                 <aside id="sidebar" className={sidebarIsOpen ? 'open' : ''}>
                     <div className="sidebar_0">
-                        <button onClick={() => setSidebarIsOpen(false)} className="close-sidebar" type="button">X</button>
+                        <span onClick={() => setSidebarIsOpen(false)} className="close-sidebar" type="button">x</span>
                         <ul className="ul_collection">
                             <li className="inside">
                                 <a href="/">TRANG CHỦ</a>
