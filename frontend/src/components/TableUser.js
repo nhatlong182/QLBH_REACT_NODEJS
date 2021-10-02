@@ -54,9 +54,10 @@ export default function TableUser() {
         (
             <div className="col-md-12">
                 <div className="table-responsive">
-                    <h1>Danh sách tài khoản</h1>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
-                    <button type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
+                    <h1 className="title-order">Danh sách tài khoản</h1>
+                    <i class="fas fa-search"></i>
+                    <input className="search-text" placeholder="Tìm kiếm..."type="search" placeholder="Tìm kiếm" value={name} onChange={(e) => setName(e.target.value)}></input>
+                    <button className="sp-search" type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
                     <table className="table table-borderless table-data3">
                         <thead>
                             <tr>
@@ -80,6 +81,7 @@ export default function TableUser() {
                                                 <button
                                                     type="button"
                                                     className="small"
+                                                    id="btn-1"
                                                     onClick={() => dispatch(unAuthorizeWebmaster(user._id))}
                                                 >
                                                     Thu quyền
@@ -88,6 +90,7 @@ export default function TableUser() {
                                                 <button
                                                     type="button"
                                                     className="small"
+                                                    id="btn-2"
                                                     onClick={() => dispatch(authorizeWebmaster(user._id))}
                                                 >
                                                     Cấp quyền
@@ -96,6 +99,7 @@ export default function TableUser() {
                                         <button
                                             type="button"
                                             className="small"
+                                            id="btn-3"
                                             onClick={() => deleteUserHandler(user._id)}
                                         >
                                             Xóa

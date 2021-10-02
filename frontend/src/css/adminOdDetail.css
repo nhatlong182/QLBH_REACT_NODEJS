@@ -12,14 +12,19 @@
 }
 
 
-
 .status-text{
     width:100%;
     font-size:1.5rem;
     flex:0 0 22rem;
 }
 
+.total-price{
+    margin-right: 6%;
+
+}
+
 .deli{
+    margin-top: 10px;
     border-top: 0.5px solid grey;
     text-align: right;
 }
@@ -40,6 +45,36 @@
 
 th, td {  
     padding: 10px; 
+}
+
+.product-table {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1.5rem;
+}
+
+.img-order {
+    max-width: 5rem;
+    width: 100%;
+}
+
+.name-order {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.qty-order{
+    text-align:center;
+}
+
+
+.price-order {
+    text-align: center;
+}
+
+.tble-order{
+    border-collapse: collapse;
 }
 
 .tble-main{

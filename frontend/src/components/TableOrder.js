@@ -53,9 +53,10 @@ export default function TableOrder(props) {
             {errorVerify && <MessageBox variant="danger">{errorVerify}</MessageBox>}
             {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
             <div className="table-responsive">
-                <h1>Danh sách đơn hàng</h1>
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)}></input>
-                <button type="button" onClick={() => dispatch(listOrder({ pageNumber, name }))}>Tìm kiếm</button>
+                <h1 className="title-order">Danh sách đơn hàng</h1>
+                <i class="fas fa-search"></i>
+                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name} onChange={(e) => setName(e.target.value)}></input>
+                <button className="sp-search" type="button" onClick={() => dispatch(listOrder({ pageNumber, name }))}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -81,6 +82,7 @@ export default function TableOrder(props) {
                                     <button
                                         type="button"
                                         className="small"
+                                        id="btn-1"
                                         onClick={() => props.history.push(`/admin/order/${order._id}`)}
                                     >
                                         Chi tiết
@@ -88,6 +90,7 @@ export default function TableOrder(props) {
                                     <button
                                         type="button"
                                         className="small"
+                                        id="btn-2"
                                         onClick={() => dispatch(verifyOrder(order._id))}
                                         disabled={order.isConfirm}
                                     >
@@ -96,6 +99,7 @@ export default function TableOrder(props) {
                                     <button
                                         type="button"
                                         className="small"
+                                        id="btn-3"
                                         onClick={() => deleteHandler(order)}
                                     >
                                         Xóa

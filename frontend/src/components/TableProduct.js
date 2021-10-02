@@ -89,13 +89,16 @@ export default function TableProduct(props) {
     ) : (
         <div className="col-md-12">
             <div className="table-responsive">
-                <h1>Danh sách sản phẩm</h1>
+                <h1 className="title-order">Danh sách sản phẩm</h1>
                 <div className="row">
-                    <input type="text" className="" onChange={(e) => onTextChangeHandler(e.target.value)}></input>
-                    <button className="primary">
+                <div>
+                <i class="fas fa-search"></i>
+                    <input type="search" className="search-text" placeholder="Tìm kiếm..." onChange={(e) => onTextChangeHandler(e.target.value)}></input>
+                    </div>
+                    <button className="btn-primary">
                         <Link to="/admin/tableProduct/create" className="add_product_btn">Thêm sản phẩm</Link>
                     </button>
-                </div>
+                    </div>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -122,14 +125,14 @@ export default function TableProduct(props) {
                                 <td>
                                     <button
                                         type="button"
-                                        className="small"
+                                        className="small" id="btn-x"
                                         onClick={() => props.history.push(`/admin/tableProduct/edit/${product._id}`)}
                                     >
                                         Edit
                                     </button>
                                     <button
                                         type="button"
-                                        className="small"
+                                        className="small" id="btn-y"
                                         onClick={() => deleteUserHandler(product._id)}
                                     >
                                         Delete
