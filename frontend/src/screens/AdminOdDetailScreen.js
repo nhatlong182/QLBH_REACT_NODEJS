@@ -52,6 +52,7 @@ export default function AdminOdDetailScreen(props) {
                 <strong>Thông tin đơn hàng</strong>
                 <div>
                     <strong>Tên:</strong> {order.shippingAddress.fullName} <br />
+                    <strong>Số điện thoại:</strong> {order.shippingAddress.phone} <br />
                     <strong>Địa chỉ: </strong> {order.shippingAddress.address},
                     {order.shippingAddress.city},{' '}
                     {order.shippingAddress.district}
@@ -89,7 +90,6 @@ export default function AdminOdDetailScreen(props) {
                     <tbody className="tble-body">
                         {order.orderItems.map((item) => (
                             <tr key={item._id}>
-
                                 <td className="product_table">
                                     <img
                                         src={item.image}

@@ -1,20 +1,42 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { listOrderOfUser } from '../actions/orderAction.js';
+import swal from 'sweetalert';
+import { deleteOrder, listOrderOfUser } from '../actions/orderAction.js';
 
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { ORDER_DELETE_RESET } from '../constants.js';
 import '../css/orderHistory.css'
 
 export default function OrderHistoryScreen(props) {
 
     const orderMineList = useSelector((state) => state.listOrderOfUser);
     const { loading, error, orders } = orderMineList;
+    const orderDelete = useSelector((state) => state.deleteOrder);
+    const {
+        error: errorDelete,
+        success: successDelete,
+    } = orderDelete;
     const dispatch = useDispatch();
 
     useEffect(() => {
+        if (successDelete) {
+            swal({
+                text: "Đã hủy đơn hàng",
+                icon: "success",
+                button: false,
+                timer: 1500,
+            });
+            dispatch({ type: ORDER_DELETE_RESET });
+        }
         dispatch(listOrderOfUser());
-    }, [dispatch]);
+    }, [dispatch, successDelete]);
+
+    const cancelOrderHandler = (order) => {
+        if (window.confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')) {
+            dispatch(deleteOrder(order._id));
+        }
+    };
 
     return (
         <div className="">
@@ -23,6 +45,8 @@ export default function OrderHistoryScreen(props) {
                 <LoadingBox></LoadingBox>
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
+            ) : errorDelete ? (
+                <MessageBox variant="danger">{errorDelete}</MessageBox>
             ) : (
                 <table className="mw table table-borderless table-data3">
                     <thead>
@@ -51,6 +75,15 @@ export default function OrderHistoryScreen(props) {
                                     >
                                         Chi tiết
                                     </button>
+                                    {!order.isConfirm && (
+                                        <button
+                                            type="button"
+                                            className="small"
+                                            onClick={() => { cancelOrderHandler(order) }}
+                                        >
+                                            Hủy đơn
+                                        </button>
+                                    )}
 
                                 </td>
                             </tr>

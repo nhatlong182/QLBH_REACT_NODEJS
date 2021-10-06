@@ -91,14 +91,14 @@ export default function TableProduct(props) {
             <div className="table-responsive">
                 <h1 className="title-order">Danh sách sản phẩm</h1>
                 <div className="row">
-                <div>
-                <i class="fas fa-search"></i>
-                    <input type="search" className="search-text" placeholder="Tìm kiếm..." onChange={(e) => onTextChangeHandler(e.target.value)}></input>
+                    <div>
+                        <i class="fas fa-search"></i>
+                        <input type="search" className="search-text" placeholder="Tìm kiếm..." onChange={(e) => onTextChangeHandler(e.target.value)}></input>
                     </div>
                     <button className="btn-primary">
                         <Link to="/admin/tableProduct/create" className="add_product_btn">Thêm sản phẩm</Link>
                     </button>
-                    </div>
+                </div>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>
@@ -108,8 +108,8 @@ export default function TableProduct(props) {
                             <th>Loại</th>
                             <th>Hãng</th>
                             <th>Số lượng</th>
-                            <th>Sale off</th>
-                            <th>ACTIONS</th>
+                            <th>Khuyển mãi</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>

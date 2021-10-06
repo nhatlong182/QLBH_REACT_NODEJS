@@ -66,7 +66,7 @@ export default function TableOrder(props) {
                             <th>Ngày đặt hàng</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
-                            <th>ACTIONS</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -77,7 +77,7 @@ export default function TableOrder(props) {
                                 <td>{order.shippingAddress.phone}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>{order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-                                <td>{order.isConfirm ? <span className="confirm">Đã xác nhận</span> : "Chờ xử lý"}</td>
+                                <td>{order.isDelivered ? <span className="deliver">Đã giao</span> : order.isConfirm ? <span className="confirm">Đã xác nhận</span> : "Chờ xử lý"}</td>
                                 <td>
                                     <button
                                         type="button"

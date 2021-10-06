@@ -53,14 +53,11 @@
   max-width: 100%;
   margin-bottom: 1rem;
   background-color: transparent;
-
 }
 .table-data3 thead {
   color: white;
   background: #333;
 }
-
-
 
 .table-data3 thead tr th {
   font-size: 16px;
@@ -68,10 +65,10 @@
   font-weight: 400;
   text-transform: capitalize;
   padding: 18px 40px;
-  padding-right:30px;
+  padding-right: 30px;
 }
 
-#btn-y{
+#btn-y {
   margin-left: 15px;
 }
 
@@ -118,34 +115,33 @@
   width: 50%;
 }
 
-.title-order{
-  font-size:3rem;
+.title-order {
+  font-size: 3rem;
   margin-left: 4px;
 }
 
-.pzpz{
+.pzpz {
   margin-left: 10px;
 }
 
-.pxpx:hover{
+.pxpx:hover {
   color: #fa4251;
 }
 
-.search-text{
+.search-text {
   margin-bottom: 4px;
   margin-left: 4px;
   border: none;
   border-bottom: 1px solid #302f2f;
-  
 }
 
-.search-text:focus{
+.search-text:focus {
   border: none !important;
 }
 
-.sp-search{
-  color:white;
-  border: none ;
+.sp-search {
+  color: white;
+  border: none;
   background-color: #302f2f;
   margin-left: 10px;
 }
@@ -162,13 +158,13 @@
   margin-left: 10px;
 }
 
-.btn-primary{
-    background: #302f2f;
-    outline: none;
-    border: none;
-    -ms-flex-align: end;
+.btn-primary {
+  background: #302f2f;
+  outline: none;
+  border: none;
+  -ms-flex-align: end;
 }
-.btn-primary:hover{
+.btn-primary:hover {
   border: none;
 }
 
@@ -186,4 +182,8 @@
 
 .confirm {
   color: #00ad5f;
+}
+
+.deliver {
+  color: #ecec0e;
 }

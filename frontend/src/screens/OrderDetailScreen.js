@@ -26,7 +26,7 @@ export default function OrderDetailScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
     ) : (
         <div>
-            <Link to="/orderhistory">Trở lại</Link>
+            <Link to="/orderhistory">Đơn hàng</Link>
             <div className="section">
                 <svg width="50" height="50" fill="none" className="check_icon">
                     <path className="checkmark_circle" d="M25 49c13.255 0 24-10.745 24-24S38.255 1 25 1 1 11.745 1 25s10.745 24 24 24z"></path>

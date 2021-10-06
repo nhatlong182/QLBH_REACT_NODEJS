@@ -12,7 +12,7 @@ orderRouter.get('/', isAuth, listOrder);
 orderRouter.get('/mine', isAuth, listOrderOfUser);
 orderRouter.get('/:id', isAuth, orderDetail);
 
-orderRouter.delete('/:id', isAuth, isAdminOrWebmaster, deleteOrder);
+orderRouter.delete('/:id', isAuth, deleteOrder);
 
 orderRouter.put('/:id', isAuth, isAdminOrWebmaster, verifyOrder);
 

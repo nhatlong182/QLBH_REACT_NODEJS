@@ -50,81 +50,92 @@ export default function TableUser() {
         <MessageBox variant="danger">{errorDelete}</MessageBox>
     ) : errorUpdate ? (
         <MessageBox variant="danger">{errorUpdate}</MessageBox>
-    ) :
-        (
-            <div className="col-md-12">
-                <div className="table-responsive">
-                    <h1 className="title-order">Danh sách tài khoản</h1>
-                    <i class="fas fa-search"></i>
-                    <input className="search-text" placeholder="Tìm kiếm..."type="search" placeholder="Tìm kiếm" value={name} onChange={(e) => setName(e.target.value)}></input>
-                    <button className="sp-search" type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
-                    <table className="table table-borderless table-data3">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>EMAIL</th>
-                                <th>TÊN</th>
-                                <th>Chức vụ</th>
-                                <th>ACTIONS</th>
+    ) : (
+        <div className="col-md-12">
+            <div className="table-responsive">
+                <h1 className="title-order">Danh sách tài khoản</h1>
+                <i class="fas fa-search"></i>
+                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name} onChange={(e) => setName(e.target.value)}></input>
+                <button className="sp-search" type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
+                <table className="table table-borderless table-data3">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>EMAIL</th>
+                            <th>TÊN</th>
+                            <th>Chức vụ</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users?.map((user) => (
+                            <tr key={user._id}>
+                                <td>{user._id}</td>
+                                <td>{user.email}</td>
+                                <td>{user.name}</td>
+                                <td>{user.isAdmin ? <span className="admin">Admin</span> : user.isWebmaster ? <span className="webmaster">Webmaster</span> : "User"}</td>
+                                <td>
+                                    {!user.isAdmin && (
+                                        user.isWebmaster ? (
+                                            <button
+                                                type="button"
+                                                className="small"
+                                                id="btn-1"
+                                                onClick={() => dispatch(unAuthorizeWebmaster(user._id))}
+                                            >
+                                                Thu quyền
+                                            </button>
+                                        ) : (
+                                            <button
+                                                type="button"
+                                                className="small"
+                                                id="btn-2"
+                                                onClick={() => dispatch(authorizeWebmaster(user._id))}
+                                            >
+                                                Cấp quyền
+                                            </button>
+                                        ))}
+                                    {
+                                        user.isAdmin ? (
+                                            <button
+                                                type="button"
+                                                className="small"
+                                                id="btn-3"
+                                                disabled
+                                                onClick={() => deleteUserHandler(user._id)}
+                                            >
+                                                Xóa
+                                            </button>
+                                        ) : (
+                                            <button
+                                                type="button"
+                                                className="small"
+                                                id="btn-3"
+                                                onClick={() => deleteUserHandler(user._id)}
+                                            >
+                                                Xóa
+                                            </button>
+                                        )
+                                    }
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {users?.map((user) => (
-                                <tr key={user._id}>
-                                    <td>{user._id}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.name}</td>
-                                    <td>{user.isAdmin ? <span className="admin">Admin</span> : user.isWebmaster ? <span className="webmaster">Webmaster</span> : "User"}</td>
-                                    <td>
-                                        {!user.isAdmin && (
-                                            user.isWebmaster ? (
-                                                <button
-                                                    type="button"
-                                                    className="small"
-                                                    id="btn-1"
-                                                    onClick={() => dispatch(unAuthorizeWebmaster(user._id))}
-                                                >
-                                                    Thu quyền
-                                                </button>
-                                            ) : (
-                                                <button
-                                                    type="button"
-                                                    className="small"
-                                                    id="btn-2"
-                                                    onClick={() => dispatch(authorizeWebmaster(user._id))}
-                                                >
-                                                    Cấp quyền
-                                                </button>
-                                            ))}
-                                        <button
-                                            type="button"
-                                            className="small"
-                                            id="btn-3"
-                                            onClick={() => deleteUserHandler(user._id)}
-                                        >
-                                            Xóa
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                {
-                    pages > 1 && (
-                        <ul className="row center pagination">
-                            {[...Array(pages).keys()].map((x) => (
-                                <li
-                                    className={x + 1 === page ? 'page-link active' : 'page-link'}
-                                    key={x + 1}
-                                    onClick={() => setPageNumber(x + 1)}
-                                >
-                                    {x + 1}
-                                </li>
-                            ))}
-                        </ul>
-                    )
-                }
-            </div >
-        )
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            {pages > 1 && (
+                <ul className="row center pagination">
+                    {[...Array(pages).keys()].map((x) => (
+                        <li
+                            className={x + 1 === page ? 'page-link active' : 'page-link'}
+                            key={x + 1}
+                            onClick={() => setPageNumber(x + 1)}
+                        >
+                            {x + 1}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div >
+    )
 }

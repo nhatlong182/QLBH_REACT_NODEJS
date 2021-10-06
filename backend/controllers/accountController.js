@@ -42,7 +42,6 @@ export const register = async (req, res) => {
 
     if (user) {
         res.status(500).send({ message: 'Địa chỉ email đã tồn tại!!!' })
-
     } else {
         try {
             const user = new Account({
