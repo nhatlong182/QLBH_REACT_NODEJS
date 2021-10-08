@@ -54,7 +54,7 @@ export default function TableUser() {
         <div className="col-md-12">
             <div className="table-responsive">
                 <h1 className="title-order">Danh sách tài khoản</h1>
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
                 <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name} onChange={(e) => setName(e.target.value)}></input>
                 <button className="sp-search" type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">

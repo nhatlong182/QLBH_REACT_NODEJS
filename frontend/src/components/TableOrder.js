@@ -14,6 +14,9 @@ export default function TableOrder(props) {
     const orderUpdate = useSelector((state) => state.updateOrder)
     const { error: errorVerify, success: successVerify } = orderUpdate;
 
+    const orderDeliver = useSelector((state) => state.deliverOrder)
+    const { error: errorDeliver } = orderDeliver;
+
     const orderDelete = useSelector((state) => state.deleteOrder);
     const {
         error: errorDelete,
@@ -22,6 +25,7 @@ export default function TableOrder(props) {
 
     const [pageNumber, setPageNumber] = useState(1)
     const [name, setName] = useState('')
+    const [phone, setPhone] = useState('')
 
     const dispatch = useDispatch()
 
@@ -38,6 +42,15 @@ export default function TableOrder(props) {
         dispatch(listOrder({ pageNumber }));
     }, [dispatch, pageNumber, successVerify, successDelete]);
 
+    const searchHandler = (e) => {
+
+        if (isNaN(e.target.value)) {
+            setName(e.target.value)
+        } else {
+            setPhone(e.target.value)
+        }
+    }
+
     const deleteHandler = (order) => {
         if (window.confirm('Bạn có chắc chắn muốn xóa đơn hàng này?')) {
             dispatch(deleteOrder(order._id));
@@ -52,11 +65,12 @@ export default function TableOrder(props) {
         <div className="col-md-12">
             {errorVerify && <MessageBox variant="danger">{errorVerify}</MessageBox>}
             {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
+            {errorDeliver && <MessageBox variant="danger">{errorDeliver}</MessageBox>}
             <div className="table-responsive">
                 <h1 className="title-order">Danh sách đơn hàng</h1>
-                <i class="fas fa-search"></i>
-                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name} onChange={(e) => setName(e.target.value)}></input>
-                <button className="sp-search" type="button" onClick={() => dispatch(listOrder({ pageNumber, name }))}>Tìm kiếm</button>
+                <i className="fas fa-search"></i>
+                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name !== '' ? name : phone} onChange={searchHandler}></input>
+                <button className="sp-search" type="button" onClick={() => dispatch(listOrder({ pageNumber, name, phone }))}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>

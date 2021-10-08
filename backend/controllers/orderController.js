@@ -13,6 +13,14 @@ export const createOrder = async (req, res) => {
             totalPrice: req.body.totalPrice,
             user: req.user._id,
         });
+
+
+        order.orderItems.forEach(async (item) => {
+            const product = await Product.findById(item.id);
+            product.countInStock = product.countInStock - item.qty;
+            await product.save();
+        })
+
         const createdOrder = await order.save();
         res.status(201).send({ message: 'Đặt hàng thành công!!!', order: createdOrder });
     }
@@ -74,13 +82,8 @@ export const verifyDeliver = async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
         order.isDelivered = true;
+        order.isConfirm = true;
         order.deliveredAt = Date.now();
-
-        order.orderItems.forEach(async (item) => {
-            const product = await Product.findById(item.id);
-            product.countInStock = product.countInStock - item.qty;
-            await product.save();
-        })
 
         await order.save();
         res.send({ message: 'Cập nhật thành công' });
@@ -92,6 +95,13 @@ export const verifyDeliver = async (req, res) => {
 export const deleteOrder = async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
+        if (!order.isDelivered) {
+            order.orderItems.forEach(async (item) => {
+                const product = await Product.findById(item.id);
+                product.countInStock = product.countInStock + item.qty;
+                await product.save();
+            })
+        }
         await order.remove();
         res.send({ message: 'Xóa thành công' });
     } else {

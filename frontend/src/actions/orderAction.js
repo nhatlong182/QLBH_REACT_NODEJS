@@ -26,13 +26,13 @@ export const createOrder = (order) => async (dispatch, getState) => {
     }
 };
 
-export const listOrder = ({ pageNumber = '', name = '' }) => async (dispatch, getState) => {
+export const listOrder = ({ pageNumber = '', name = '', phone = '' }) => async (dispatch, getState) => {
     dispatch({ type: ORDER_LIST_REQUEST });
     const {
         userSignin: { userInfo },
     } = getState();
     try {
-        const { data } = await axios.get(`/api/orders?page=${pageNumber}&limit=10&name=${name}`, {
+        const { data } = await axios.get(`/api/orders?page=${pageNumber}&limit=10&name=${name}&phone=${phone}`, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: ORDER_LIST_SUCCESS, payload: data });

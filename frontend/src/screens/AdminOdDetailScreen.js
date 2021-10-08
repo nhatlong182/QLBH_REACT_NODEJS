@@ -29,6 +29,7 @@ export default function AdminOdDetailScreen(props) {
 
 
     const deliverHandler = () => {
+
         dispatch(deliverOrder(order._id));
     };
 

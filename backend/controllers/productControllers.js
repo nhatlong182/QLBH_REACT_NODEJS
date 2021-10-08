@@ -113,12 +113,12 @@ export const createProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
     const product = await Product.findById(req.params.id);
     if (product) {
-        const order = await Order.find({ "orderItems.name": product.name })
-        if (order) {
-            order.forEach(element => {
-                element.remove();
-            });
-        }
+        // const order = await Order.find({ "orderItems.name": product.name })
+        // if (order) {
+        //     order.forEach(element => {
+        //         element.remove();
+        //     });
+        // }
 
         await product.remove();
 
