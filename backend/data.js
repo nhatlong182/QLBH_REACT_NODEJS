@@ -8,7 +8,7 @@ const data = {
             password: bcrypt.hashSync('1234', 8),
             sex: 'male',
             avatar: '/images/avatar.jpg',
-            phone:'070276372',
+            phone: '070276372',
             isAdmin: true,
             isWebmaster: true,
         },
@@ -18,7 +18,7 @@ const data = {
             password: bcrypt.hashSync('1234', 8),
             sex: 'male',
             avatar: '/images/avt.jpg',
-            phone:'0926352621',
+            phone: '0926352621',
             isAdmin: false,
             isWebmaster: true,
         },
@@ -28,7 +28,7 @@ const data = {
             password: bcrypt.hashSync('1234', 8),
             sex: 'male',
             avatar: '/images/avatar.jpg',
-            phone:'0376347223',
+            phone: '0376347223',
             isAdmin: false,
             isWebmaster: false,
         },
@@ -299,7 +299,7 @@ const data = {
             brand: 'Gamble',
             description: 'Một chiếc quần Khaki được phát triển trên form Bootcut. Chi tiết vải trắng và đen đan xen nhau ở gối được lấy ý tưởng từ bàn cờ vua, đây là một chi tiết mà Gamble rất tâm đắc. Khi mua sản phẩm bạn sẽ được tặng kèm Belt dành riêng cho quần Chessy',
             isSale: true,
-            saleOff:20,
+            saleOff: 20,
         },
         {
             name: 'Quần Chessy White',
@@ -310,7 +310,7 @@ const data = {
             brand: 'Gamble',
             description: 'Một chiếc quần Khaki được phát triển trên form Bootcut. Chi tiết vải trắng và đen đan xen nhau ở gối được lấy ý tưởng từ bàn cờ vua, đây là một chi tiết mà Gamble rất tâm đắc. Khi mua sản phẩm bạn sẽ được tặng kèm Belt dành riêng cho quần Chessy',
             isSale: true,
-            saleOff:20,
+            saleOff: 20,
         },
         {
             name: 'Quần Sweatpants Gamble Black',
@@ -386,7 +386,7 @@ const data = {
         },
         {
             name: 'Quần JOGGER BLACK',
-            category:'Quần',
+            category: 'Quần',
             image: '/images/quanjoggerowstblack.jpg',
             price: 390000,
             countInStock: 15,
@@ -528,18 +528,18 @@ const data = {
             brand: 'LIDER',
             description: 'Áo khoác phom rộng có nón, tay áo bo chun. Thiết kế unisex.',
             isSale: true,
-            saleOff:20,
+            saleOff: 20,
         },
         {
             name: 'Áo Khoác SIVINA Pink',
-            category:'Áo Khoác',
+            category: 'Áo Khoác',
             image: '/images/aokhoacsivinapink.jpg',
             price: 850000,
             countInStock: 25,
             brand: 'LIDER',
             description: 'Áo khoác phom rộng có nón, tay áo bo chun. Thiết kế unisex.',
             isSale: true,
-            saleOff:20,
+            saleOff: 20,
         },
         {
             name: 'Áo Khoác SUNSET',
@@ -550,7 +550,7 @@ const data = {
             brand: 'LIDER',
             description: 'Áo khoác cổ cao có mũ trùm đầu kèm dây rút, có túi đắp phía trước.',
             isSale: true,
-            saleOff:10,
+            saleOff: 10,
         },
         {
             name: 'Áo Blazer COMTE',
@@ -669,7 +669,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Gamble Track Jacket/Black',
@@ -680,7 +680,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Gamble Track Jacket/Dark Grey',
@@ -691,7 +691,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Gamble Track Jacket/Grey',
@@ -702,7 +702,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Gamble Track Jacket/Lavender',
@@ -713,7 +713,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Gamble Track Jacket/Red',
@@ -724,7 +724,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Gamble Track Jacket/White',
@@ -735,7 +735,7 @@ const data = {
             brand: 'Gamble',
             description: 'Gamble Track Jacket. Là chiếc Track Jacket đầu tiên được GAMBLE ra mắt, Gamble Track Jacket cũng không thể thiếu chi tiết đặc trưng được ưa chuộng của dòng áo khoác GAMBLE:  2-Way Zipper - Khóa kéo 2 đầu thời trang  Inside Pocket - Thiết kế túi trong tiện dụng. Dòng chữ GAMBLE và logo ở 2 cánh tay được thêu chất lượng cao Đặc biệt, với form dáng Oversize và chất vải thể thao Tricot vừa bền chắc, vừa thoáng mát, Gamble Track Jacket chắc hẳn là item mà bạn có thể diện ở trong bất kì thời tiết cũng như hoạt động nào.',
             isSale: true,
-            saleOff:30,
+            saleOff: 30,
         },
         {
             name: 'Áo Hoodie Washed Cream',
@@ -871,7 +871,7 @@ const data = {
             countInStock: 20,
             brand: 'Gamble',
             description: 'Nếu bạn cần tìm một chiếc hoodie nổi bật, oversized và đứng form thì Big Logo Hoodie chắc chắn là sản phẩm bạn không thể bỏ qua. Từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.',
-        },   
+        },
         {
             name: 'GW Full Zip Hoodie/Blood',
             category: 'Hoodie',
@@ -880,7 +880,7 @@ const data = {
             countInStock: 0,
             brand: 'Gamble',
             description: 'GW FULLZIP HOODIE là dòng sản phẩm đặc trưng của Gamble Worldwide. Là Local Brand đầu tiên khởi xướng và phát triển dòng sản phẩm FULLZIP HOODIE với form dáng OVERSIZED thoải mái, không kén dáng người mặc. Với những chi tiết được đầu tư tỉ mỉ như 2-WAY ZIPPER - Khóa kéo 2 đầu tiện lợi và INSIDE POCKET - Thiết kế túi trong do chính Gamble sáng tạo. GW FULLZIP HOODIE đã được release hơn 50 phiên bản màu khác nhau, từng phiên bản là từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.Đây chắc chắn là chiếc FULLZIP HOODIE mà bạn đang tìm kiếm!',
-        },   
+        },
         {
             name: 'GW Full Zip Hoodie/Capuchino',
             category: 'Hoodie',
@@ -889,7 +889,7 @@ const data = {
             countInStock: 10,
             brand: 'Gamble',
             description: 'GW FULLZIP HOODIE là dòng sản phẩm đặc trưng của Gamble Worldwide. Là Local Brand đầu tiên khởi xướng và phát triển dòng sản phẩm FULLZIP HOODIE với form dáng OVERSIZED thoải mái, không kén dáng người mặc. Với những chi tiết được đầu tư tỉ mỉ như 2-WAY ZIPPER - Khóa kéo 2 đầu tiện lợi và INSIDE POCKET - Thiết kế túi trong do chính Gamble sáng tạo. GW FULLZIP HOODIE đã được release hơn 50 phiên bản màu khác nhau, từng phiên bản là từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.Đây chắc chắn là chiếc FULLZIP HOODIE mà bạn đang tìm kiếm!',
-        }, 
+        },
         {
             name: 'GW Full Zip Hoodie/Cookie',
             category: 'Hoodie',
@@ -898,7 +898,7 @@ const data = {
             countInStock: 0,
             brand: 'Gamble',
             description: 'GW FULLZIP HOODIE là dòng sản phẩm đặc trưng của Gamble Worldwide. Là Local Brand đầu tiên khởi xướng và phát triển dòng sản phẩm FULLZIP HOODIE với form dáng OVERSIZED thoải mái, không kén dáng người mặc. Với những chi tiết được đầu tư tỉ mỉ như 2-WAY ZIPPER - Khóa kéo 2 đầu tiện lợi và INSIDE POCKET - Thiết kế túi trong do chính Gamble sáng tạo. GW FULLZIP HOODIE đã được release hơn 50 phiên bản màu khác nhau, từng phiên bản là từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.Đây chắc chắn là chiếc FULLZIP HOODIE mà bạn đang tìm kiếm!',
-        },  
+        },
         {
             name: 'GW Full Zip Hoodie/Grey',
             category: 'Hoodie',
@@ -907,7 +907,7 @@ const data = {
             countInStock: 10,
             brand: 'Gamble',
             description: 'GW FULLZIP HOODIE là dòng sản phẩm đặc trưng của Gamble Worldwide. Là Local Brand đầu tiên khởi xướng và phát triển dòng sản phẩm FULLZIP HOODIE với form dáng OVERSIZED thoải mái, không kén dáng người mặc. Với những chi tiết được đầu tư tỉ mỉ như 2-WAY ZIPPER - Khóa kéo 2 đầu tiện lợi và INSIDE POCKET - Thiết kế túi trong do chính Gamble sáng tạo. GW FULLZIP HOODIE đã được release hơn 50 phiên bản màu khác nhau, từng phiên bản là từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.Đây chắc chắn là chiếc FULLZIP HOODIE mà bạn đang tìm kiếm!',
-        },  
+        },
         {
             name: 'GW Full Zip Hoodie/Maroon',
             category: 'Hoodie',
@@ -916,7 +916,7 @@ const data = {
             countInStock: 20,
             brand: 'Gamble',
             description: 'GW FULLZIP HOODIE là dòng sản phẩm đặc trưng của Gamble Worldwide. Là Local Brand đầu tiên khởi xướng và phát triển dòng sản phẩm FULLZIP HOODIE với form dáng OVERSIZED thoải mái, không kén dáng người mặc. Với những chi tiết được đầu tư tỉ mỉ như 2-WAY ZIPPER - Khóa kéo 2 đầu tiện lợi và INSIDE POCKET - Thiết kế túi trong do chính Gamble sáng tạo. GW FULLZIP HOODIE đã được release hơn 50 phiên bản màu khác nhau, từng phiên bản là từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.Đây chắc chắn là chiếc FULLZIP HOODIE mà bạn đang tìm kiếm!',
-        }, 
+        },
         {
             name: 'GW Full Zip Hoodie/Mint',
             category: 'Hoodie',
@@ -945,6 +945,30 @@ const data = {
             description: 'GW FULLZIP HOODIE là dòng sản phẩm đặc trưng của Gamble Worldwide. Là Local Brand đầu tiên khởi xướng và phát triển dòng sản phẩm FULLZIP HOODIE với form dáng OVERSIZED thoải mái, không kén dáng người mặc. Với những chi tiết được đầu tư tỉ mỉ như 2-WAY ZIPPER - Khóa kéo 2 đầu tiện lợi và INSIDE POCKET - Thiết kế túi trong do chính Gamble sáng tạo. GW FULLZIP HOODIE đã được release hơn 50 phiên bản màu khác nhau, từng phiên bản là từng chất liệu vải được Gamble dày công chọn lựa, với mong muốn đem đến một trải nghiệm tốt nhất cho khách hàng.Đây chắc chắn là chiếc FULLZIP HOODIE mà bạn đang tìm kiếm!',
         },
     ],
+    orders: [
+        {
+            shippingPrice: 0,
+            isConfirm: false,
+            isDelivered: false,
+            orderItems: [{
+                name: "GRADATION JEANS",
+                image: "/images/gradationjeanowst.jpg",
+                price: 749000,
+                id: "6162b7e978d60b37747b0f1f",
 
+                qty: 1
+            }],
+            shippingAddress: {
+                fullName: "Trần Nhật Long",
+                phone: "0967867570",
+                address: "27/2d đường Nguyễn Thị Sáu",
+                city: "Thành phố Hà Nội",
+                district: "Quận Ba Đình"
+            },
+            itemsPrice: 749000,
+            totalPrice: 749000,
+            user: "6162b5cd86697a2a0423a117"
+        },
+    ]
 };
 export default data;

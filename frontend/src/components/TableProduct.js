@@ -10,55 +10,18 @@ import { PRODUCT_DELETE_RESET } from '../constants.js';
 
 export default function TableProduct(props) {
     const productList = useSelector((state) => state.productList);
-    const { loading, error, products } = productList;
+    const { loading, error, products, page, pages } = productList;
 
     const deleteProducts = useSelector((state) => state.productDelete);
     const { error: errorDelete, success: successDelete } = deleteProducts;
 
-
-    const [arraysFilter, setArraysFilter] = useState([])
-    const [display, setDisplay] = useState(true)
-
+    const [pageNumber, setPageNumber] = useState(1)
+    const [limit] = useState(10)
+    const [name, setName] = useState('')
+    const [category, setCategory] = useState('')
     const dispatch = useDispatch()
 
-    //phân trang
-    const [currentPage, setCurrentPage] = useState(1);
-    const [pPerPage] = useState(10);
 
-
-    const indexOfLast = currentPage * pPerPage;
-    const indexOfFirst = indexOfLast - pPerPage;
-    const currentProducts = products?.slice(indexOfFirst, indexOfLast);
-
-
-    const pageNumbers = [];
-
-    for (let i = 1; i <= Math.ceil(products?.length / pPerPage); i++) {
-        pageNumbers.push(i);
-    }
-
-    const paginate = (pageNumber) => {
-
-        setCurrentPage(pageNumber);
-    }
-    //hết code phân trang
-
-
-    const onTextChangeHandler = (text) => {
-        if (text.length === 0) {
-            setDisplay(true)
-        }
-
-        let matches = []
-        if (text.length > 0) {
-            matches = products.filter(item => {
-                const regex = new RegExp(`${text}`, 'i')
-                return item.name.match(regex) || item.brand.match(regex)
-            })
-            setDisplay(false)
-        }
-        setArraysFilter(matches)
-    }
 
     const deleteUserHandler = async (productId) => {
         if (window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
@@ -77,8 +40,9 @@ export default function TableProduct(props) {
             });
         }
         dispatch({ type: PRODUCT_DELETE_RESET },)
-        dispatch(listProducts({}));
-    }, [dispatch, successDelete]);
+        dispatch(listProducts({ pageNumber, limit, category, name }));
+        // eslint-disable-next-line
+    }, [dispatch, pageNumber, limit, successDelete]);
 
     return loading ? (
         <LoadingBox></LoadingBox>
@@ -93,7 +57,8 @@ export default function TableProduct(props) {
                 <div className="row">
                     <div>
                         <i className="fas fa-search"></i>
-                        <input type="search" className="search-text" placeholder="Tìm kiếm..." onChange={(e) => onTextChangeHandler(e.target.value)}></input>
+                        <input type="search" className="search-text" placeholder="Tìm kiếm..." value={name} onChange={(e) => setName(e.target.value)}></input>
+                        <button className="sp-search" type="button" onClick={() => { dispatch(listProducts({ pageNumber, limit, category, name })) }}>Tìm kiếm</button>
                     </div>
                     <button className="btn-primary">
                         <Link to="/admin/tableProduct/create" className="add_product_btn">Thêm sản phẩm</Link>
@@ -113,7 +78,7 @@ export default function TableProduct(props) {
                         </tr>
                     </thead>
                     <tbody>
-                        {(arraysFilter.length > 0 ? arraysFilter : currentProducts).map((product) => (
+                        {products.map((product) => (
                             <tr key={product._id}>
                                 <td className="img-container"><img className="img__a" src={product.image} alt={product.name} /></td>
                                 <td>{product.name}</td>
@@ -144,11 +109,15 @@ export default function TableProduct(props) {
                 </table>
             </div>
 
-            {display && (
-                <ul className='row center pagination'>
-                    {pageNumbers.map(number => (
-                        <li key={number} onClick={() => paginate(number)} className={number === currentPage ? "page-link active" : "page-link"}>
-                            {number}
+            {pages > 1 && (
+                <ul className="row center pagination">
+                    {[...Array(pages).keys()].map((x) => (
+                        <li
+                            className={x + 1 === page ? 'page-link active' : 'page-link'}
+                            key={x + 1}
+                            onClick={() => setPageNumber(x + 1)}
+                        >
+                            {x + 1}
                         </li>
                     ))}
                 </ul>

@@ -7,7 +7,6 @@ export const getAllProducts = async (req, res) => {
         const limit = parseInt(req.query.limit);
         const startIndex = (page - 1) * limit;
 
-
         //filter
         const name = req.query.name || '';
         const category = req.query.category || '';
@@ -18,7 +17,7 @@ export const getAllProducts = async (req, res) => {
         const max =
             req.query.max && Number(req.query.max) !== 0 ? Number(req.query.max) : 0;
 
-        const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+        const nameFilter = name ? { $text: { $search: name } } : {};
         const categoryFilter = category ? { category } : {};
         const saleFilter = sale ? { isSale: sale } : {}
         const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
@@ -119,9 +118,7 @@ export const deleteProduct = async (req, res) => {
         //         element.remove();
         //     });
         // }
-
         await product.remove();
-
         res.send({ message: 'Xóa sản phẩm thành công' });
     } else {
         res.status(404).send({ message: 'Không tìn thấy sản phẩm!!!' });

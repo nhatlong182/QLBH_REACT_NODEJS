@@ -35,9 +35,9 @@ export const listOrder = async (req, res) => {
         const name = req.query.name || '';
         const phone = req.query.phone || '';
 
-        const nameFilter = name ? { 'shippingAddress.fullName': { $regex: name, $options: 'i' } } : {};
+        //full-text search
+        const nameFilter = name ? { $text: { $search: name } } : {};
         const phoneFilter = phone ? { 'shippingAddress.phone': { $regex: phone, $options: 'i' } } : {};
-
 
         const count = await Order.countDocuments({ ...nameFilter, ...phoneFilter });
         const orders = await Order.find({ ...nameFilter, ...phoneFilter }).limit(limit).skip(startIndex).exec();
@@ -45,7 +45,7 @@ export const listOrder = async (req, res) => {
         res.send({ page, limit, pages: Math.ceil(count / limit), orders });
     } catch (error) {
         console.error(error);
-        res.status(500).send({ message: "Lỗi server không thể lấy danh sách tài khoản!!!" });
+        res.status(500).send({ message: "Lỗi server không thể lấy danh sách đơn hàng!!!" });
     }
 }
 

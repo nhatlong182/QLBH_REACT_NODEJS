@@ -39,15 +39,20 @@ export default function TableOrder(props) {
             });
             dispatch({ type: ORDER_DELETE_RESET });
         }
-        dispatch(listOrder({ pageNumber }));
+        dispatch(listOrder({ pageNumber, name, phone }));
+        // eslint-disable-next-line
     }, [dispatch, pageNumber, successVerify, successDelete]);
 
     const searchHandler = (e) => {
-
-        if (isNaN(e.target.value)) {
+        const regexString = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+/;
+        const regexNumber = /^[0-9]+/;
+        if (e.target.value.match(regexString)) {
             setName(e.target.value)
-        } else {
+        } else if (e.target.value.match(regexNumber)) {
             setPhone(e.target.value)
+        } else {
+            setName('');
+            setPhone('');
         }
     }
 
@@ -69,7 +74,7 @@ export default function TableOrder(props) {
             <div className="table-responsive">
                 <h1 className="title-order">Danh sách đơn hàng</h1>
                 <i className="fas fa-search"></i>
-                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name !== '' ? name : phone} onChange={searchHandler}></input>
+                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={phone !== '' ? phone : name} onChange={searchHandler}></input>
                 <button className="sp-search" type="button" onClick={() => dispatch(listOrder({ pageNumber, name, phone }))}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">
                     <thead>
@@ -91,7 +96,7 @@ export default function TableOrder(props) {
                                 <td>{order.shippingAddress.phone}</td>
                                 <td>{order.createdAt.substring(0, 10)}</td>
                                 <td>{order.totalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</td>
-                                <td>{order.isDelivered ? <span className="deliver">Đã giao</span> : order.isConfirm ? <span className="confirm">Đã xác nhận</span> : "Chờ xử lý"}</td>
+                                <td>{order.isDelivered ? <span className="deliver">Đã giao</span> : order.isConfirm ? <span className="confirm">Đã xác nhận</span> : <span className="wait">Chờ xử lý</span>}</td>
                                 <td>
                                     <button
                                         type="button"

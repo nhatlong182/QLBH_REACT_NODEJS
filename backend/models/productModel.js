@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema(
         saleOff: { type: Number, default: 0 }
     }
 );
+productSchema.index({ name: 'text' });
 
 const Product = mongoose.model('Product', productSchema);
-
 export default Product;

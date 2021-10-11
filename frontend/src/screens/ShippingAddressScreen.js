@@ -44,7 +44,7 @@ export default function ShippingAddressScreen(props) {
     const selectHandler = (e) => {
         setCity(e.target.value)
         setIsDisable(false)
-        setArrayDistricts(data[e.target.selectedIndex - 1].districts)
+        e.target.selectedIndex - 1 < 0 ? setArrayDistricts(data[0].districts) : setArrayDistricts(data[e.target.selectedIndex - 1].districts)
     }
 
     const submitHandler = (e) => {
@@ -134,7 +134,7 @@ export default function ShippingAddressScreen(props) {
                     <div className='option-custom'>
                         <label htmlFor="city">Tỉnh thành</label>
                         <select id='city' className='select-input' value={city} onChange={selectHandler}>
-                            <option key={0} value={''}> {"---"}</option>
+                            <option key={0} value={0} onClick={() => setArrayDistricts([])}> {"---"}</option>
                             {data.map((item, index) => (
                                 <option key={index} value={item.name}> {item.name} </option>
                             ))}
@@ -144,7 +144,7 @@ export default function ShippingAddressScreen(props) {
                         <label htmlFor="district">Quận huyện</label>
                         <select id='district' className='select-input' value={district} onChange={(e) => setDistrict(e.target.value)} disabled={isDisable}>
                             <option key={0} value={''}> {"---"}</option>
-                            {arrayDistricts.map((item, index) => (
+                            {arrayDistricts?.map((item, index) => (
                                 <option key={index} value={item.name}> {item.name} </option>
                             ))}
                         </select>

@@ -12,5 +12,6 @@ const accountSchema = new mongoose.Schema(
         isWebmaster: { type: Boolean, default: false, required: true },
     }
 );
+accountSchema.index({ name: 'text' });
 const Account = mongoose.model('Account', accountSchema);
 export default Account;

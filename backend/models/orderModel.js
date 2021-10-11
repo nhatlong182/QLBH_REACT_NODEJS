@@ -36,5 +36,6 @@ const orderSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+orderSchema.index({ 'shippingAddress.fullName': 'text' });
 const Order = mongoose.model('Order', orderSchema);
 export default Order;

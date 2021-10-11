@@ -78,7 +78,7 @@ export const getAllAccounts = async (req, res) => {
         const startIndex = (page - 1) * limit;
 
         const name = req.query.name || '';
-        const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+        const nameFilter = name ? { $text: { $search: name } } : {};
 
         const count = await Account.countDocuments({ ...nameFilter });
 
