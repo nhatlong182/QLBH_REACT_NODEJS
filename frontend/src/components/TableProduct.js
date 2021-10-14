@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deleteProduct, listProducts } from '../actions/productAction.js';
-
+import { listCategorys } from '../actions/productAction.js'
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { PRODUCT_DELETE_RESET } from '../constants.js';
@@ -15,10 +15,13 @@ export default function TableProduct(props) {
     const deleteProducts = useSelector((state) => state.productDelete);
     const { error: errorDelete, success: successDelete } = deleteProducts;
 
+    const Category = useSelector((state) => state.categoryList)
+    const { categories } = Category;
+
     const [pageNumber, setPageNumber] = useState(1)
     const [limit] = useState(10)
     const [name, setName] = useState('')
-    const [category, setCategory] = useState('')
+    const [category] = useState('')
     const dispatch = useDispatch()
 
 
@@ -29,6 +32,9 @@ export default function TableProduct(props) {
         }
     }
 
+    useEffect(() => {
+        dispatch(listCategorys())
+    }, [dispatch])
 
     useEffect(() => {
         if (successDelete) {
@@ -59,7 +65,14 @@ export default function TableProduct(props) {
                         <i className="fas fa-search"></i>
                         <input type="search" className="search-text" placeholder="Tìm kiếm..." value={name} onChange={(e) => setName(e.target.value)}></input>
                         <button className="sp-search" type="button" onClick={() => { dispatch(listProducts({ pageNumber, limit, category, name })) }}>Tìm kiếm</button>
+                        <select className="select-cate" >
+                            <option value="" disabled selected  >Loại</option>
+                            {categories?.map((category, index) => (
+                                <option key={index}>{category}</option>
+                            ))}
+                        </select>
                     </div>
+
                     <button className="btn-primary">
                         <Link to="/admin/tableProduct/create" className="add_product_btn">Thêm sản phẩm</Link>
                     </button>

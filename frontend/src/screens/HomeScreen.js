@@ -26,7 +26,7 @@ export default function HomeScreen() {
                 <img className="slider" src="/images/slider_1.jpg" alt="slider"></img>
             </div>
             <div>
-                <h2 className="popular_title">SẢN PHẢM NỔI BẬT</h2>
+                <h2 className="popular_title">SẢN PHẨM NỔI BẬT</h2>
                 {
                     loading ? <LoadingBox></LoadingBox> : error ? <MessageBox variant="danger">{error}</MessageBox> :
                         <div className="popular_container">

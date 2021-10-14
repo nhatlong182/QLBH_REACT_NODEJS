@@ -96,6 +96,12 @@ button.close-sidebar {
   margin-left: 26rem;
 }
 
+.close-sidebar{
+  font-size:1.7rem;
+  color: white;
+  margin-left:28rem;
+}
+
 #listbar{
   display: none;
 }
@@ -112,6 +118,7 @@ button.close-sidebar {
 }
 
 #btn-drop{
+  color: #ffffff;
   position: absolute;
   margin-top:8px;
   margin-left: 10px;
