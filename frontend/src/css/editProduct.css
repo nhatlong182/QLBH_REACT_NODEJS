@@ -1,0 +1,68 @@
+textarea{
+    resize: none;
+}
+
+.ui-group{
+   display: flex;
+   flex-direction: row;
+}
+
+.label-input{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #6c798f;
+}
+
+.label-input-1{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #6c798f;
+    padding-left:30px;
+}
+
+.label-input-sale{
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    color: #6c798f;
+    padding-left:15px;
+}
+
+
+.next-input{
+    border: 1px solid #e3e9ed;
+    color: #212121;
+    font-size: 14px;
+    padding: 10px;
+    height: 20px;
+    border-radius: 4px;
+    line-height: 18px;
+    display: block;
+    width: 100%;
+    transition: all .2s ease-out;
+    outline: none;
+}
+
+.next-input-1{
+    border: 1px solid #e3e9ed;
+    color: #212121;
+    font-size: 14px;
+    padding: 10px;
+    margin-left: 5px;
+}
+
+.next-input-2{
+    border: 1px solid #e3e9ed;
+    color: #212121;
+    font-size: 14px;
+    padding: 10px;
+    height: 60px;
+    border-radius: 4px;
+    line-height: 18px;
+    display: block;
+    width: 100%;
+    transition: all .2s ease-out;
+    outline: none;
+}

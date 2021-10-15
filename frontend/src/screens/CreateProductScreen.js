@@ -11,6 +11,7 @@ import { PRODUCT_CREATE_RESET } from '../constants.js';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
+import '../css/editProduct.css';
 
 
 export default function CreateProductScreen(props) {
@@ -65,7 +66,7 @@ export default function CreateProductScreen(props) {
 
     return (
         <div>
-            <Link to="/admin/tableProduct">Trở lại</Link>
+            <Link to="/admin/tableProduct"> <i class="fas fa-arrow-left"></i> Trở lại</Link>
             <form className="form" onSubmit={submitHandler}>
                 <div>
                     <h1>Thêm sản phẩm</h1>
@@ -75,88 +76,116 @@ export default function CreateProductScreen(props) {
                     <LoadingBox></LoadingBox>
                 ) : (
                     <>
-                        <div>
-                            <label htmlFor="name">Tên sản phẩm:</label>
-                            <input
-                                id="name"
-                                type="text"
-                                placeholder="Tên sản phẩm"
-                                value={name}
-                                required
-                                onChange={(e) => setName(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="price">Giá:</label>
-                            <input
-                                id="price"
-                                type="text"
-                                placeholder="Giá"
-                                value={price}
-                                required
-                                onChange={(e) => setPrice(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="imageFile">Hình ảnh:</label>
-                            <input
-                                type="file"
-                                id="imageFile"
-                                label="Choose Image"
-                                required
-                                onChange={uploadFileHandler}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="category">Loại sản phẩm</label>
-                            <input
-                                id="category"
-                                type="text"
-                                placeholder="Loại sản phẩm"
-                                value={category}
-                                required
-                                onChange={(e) => setCategory(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="brand">Hãng</label>
-                            <input
-                                id="brand"
-                                type="text"
-                                placeholder="Hãng"
-                                value={brand}
-                                required
-                                onChange={(e) => setBrand(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="countInStock">Số lượng trong kho:</label>
-                            <input
-                                id="countInStock"
-                                type="text"
-                                placeholder="Số lượng trong kho"
-                                value={countInStock}
-                                required
-                                onChange={(e) => setCountInStock(e.target.value)}
-                            ></input>
-                        </div>
-                        <div>
-                            <label htmlFor="description">Mô tả:</label>
-                            <textarea
-                                id="description"
-                                rows="3"
-                                type="text"
-                                placeholder="Mô tả"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            ></textarea>
-                        </div>
-                        <div>
-                            <label></label>
-                            <button className="primary" type="submit">
-                                Thêm
-                            </button>
-                        </div>
+                        <div className="ui-info-head">
+                                <label className="label-input" htmlFor="name">Tên sản phẩm:</label>
+                                <input
+                                    className="next-input"
+                                    id="name"
+                                    type="text"
+                                    placeholder="Tên sản phẩm"
+                                    value={name}
+                                    required
+                                    onChange={(e) => setName(e.target.value)}
+                                ></input>
+                            </div>   
+                            <div className="ui-group">
+                            <div className="ui-item">
+                            <label className="label-input" htmlFor="brand">Hãng:</label>
+                                <input
+                                    className="next-input-1"
+                                    id="brand"
+                                    type="text"
+                                    placeholder="Hãng"
+                                    value={brand}
+                                    required
+                                    onChange={(e) => setBrand(e.target.value)}
+                                ></input>
+                                <label className="label-input-1" htmlFor="category">Loại sản phẩm:</label>
+                                <input
+                                    className="next-input-1"
+                                    id="category"
+                                    type="text"
+                                    placeholder="Loại sản phẩm"
+                                    value={category}
+                                    required
+                                    onChange={(e) => setCategory(e.target.value)}
+                                ></input>
+                                </div>
+                            </div>
+                            <div>
+                                <label className="label-input" htmlFor="price">Giá bán:</label>
+                                <input
+                                    className="next-input"
+                                    id="price"
+                                    type="text"
+                                    placeholder="Giá"
+                                    value={price}
+                                    required
+                                    onChange={(e) => setPrice(e.target.value)}
+                                ></input>
+                            </div>
+                            {/* <div className="" onChange={radioIsSaleHandler}>
+                                <div>
+                                <label className="label-input" htmlFor="sale">Giảm giá</label>
+                                <input className="male" type="radio" id="sale" name="sale" value="true" />
+                                <label className="label-input" htmlFor="notSale">Không giảm giá</label>
+                                <input className="male" type="radio" id="notSale" name="sale" value="false" />
+                                <label className="label-input-sale" htmlFor="saleOff">Phần trăm giảm giá:</label>
+                                <input
+                                    className="next-input-1"
+                                    id="saleOff"
+                                    type="text"
+                                    placeholder="Phần trăm giảm giá:"
+                                    value={saleOff}
+                                    disabled={Boolean(!isSale)}
+                                    onChange={(e) => setSaleOff(e.target.value)}
+                                ></input>
+                                </div>
+                                
+                            </div> */}
+                            <div>
+                                <label className="label-input" htmlFor="countInStock">Số lượng trong kho:</label>
+                                <input
+                                    className="next-input"
+                                    id="countInStock"
+                                    type="text"
+                                    placeholder="Số lượng trong kho"
+                                    value={countInStock}
+                                    required
+                                    onChange={(e) => setCountInStock(e.target.value)}
+                                ></input>
+                            </div>
+                            <div>
+                                <label className="label-input" htmlFor="description">Mô tả:</label>
+                                <textarea
+                                    className="next-input-2"
+                                    id="description"
+                                    rows="3"
+                                    type="text"
+                                    placeholder="Mô tả"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                ></textarea>
+                            </div>
+                            <div>
+                                <label className="label-input" htmlFor="imageFile">Hình ảnh:</label>
+                                <input
+                                    type="file"
+                                    id="imageFile"
+                                    label="Choose Image"
+                                    onChange={uploadFileHandler}
+                                ></input>
+                            </div>
+                            {/* <div className="ui-img">
+                                <img src={image} alt={name} className="img_edit"></img>
+                            </div> */}
+                            
+                            <div>
+                                <label></label>
+                                <button className="primary" type="submit">
+                                    Cập nhật
+                                </button>
+                            </div>
                     </>
                 )}
             </form>
