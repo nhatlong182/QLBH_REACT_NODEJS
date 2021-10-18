@@ -15,13 +15,11 @@ export default function TableProduct(props) {
     const deleteProducts = useSelector((state) => state.productDelete);
     const { error: errorDelete, success: successDelete } = deleteProducts;
 
-    const Category = useSelector((state) => state.categoryList)
-    const { categories } = Category;
 
     const [pageNumber, setPageNumber] = useState(1)
     const [limit] = useState(10)
     const [name, setName] = useState('')
-    const [category] = useState('')
+
     const dispatch = useDispatch()
 
 
@@ -46,9 +44,9 @@ export default function TableProduct(props) {
             });
         }
         dispatch({ type: PRODUCT_DELETE_RESET },)
-        dispatch(listProducts({ pageNumber, limit, category, name }));
+        dispatch(listProducts({ pageNumber, limit, name }));
         // eslint-disable-next-line
-    }, [dispatch, pageNumber, limit, successDelete]);
+    }, [dispatch, pageNumber, limit, successDelete,]);
 
     return loading ? (
         <LoadingBox></LoadingBox>
@@ -64,15 +62,9 @@ export default function TableProduct(props) {
                     <div>
                         <i className="fas fa-search"></i>
                         <input type="search" className="search-text" placeholder="Tìm kiếm..." value={name} onChange={(e) => setName(e.target.value)}></input>
-                        <button className="sp-search" type="button" onClick={() => { dispatch(listProducts({ pageNumber, limit, category, name })) }}>Tìm kiếm</button>
-                        <select className="select-cate" >
-                            <option value="" disabled selected  >Loại</option>
-                            {categories?.map((category, index) => (
-                                <option key={index}>{category}</option>
-                            ))}
-                        </select>
-                    </div>
+                        <button className="sp-search" type="button" onClick={() => { dispatch(listProducts({ name })) }}>Tìm kiếm</button>
 
+                    </div>
                     <button className="btn-primary">
                         <Link to="/admin/tableProduct/create" className="add_product_btn">Thêm sản phẩm</Link>
                     </button>
