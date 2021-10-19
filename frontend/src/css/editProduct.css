@@ -27,7 +27,7 @@ textarea{
     font-size: 14px;
     line-height: 18px;
     color: #6c798f;
-    padding-left:15px;
+    padding-left:px;
 }
 
 
@@ -51,6 +51,12 @@ textarea{
     font-size: 14px;
     padding: 10px;
     margin-left: 5px;
+}
+.next-input-sale{
+    border: 1px solid #e3e9ed;
+    color: #212121;
+    font-size: 14px;
+    padding: 10px;
 }
 
 .next-input-2{
