@@ -7,6 +7,8 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import '../css/form.css'
 
+import '../css/signin.css'
+
 export default function SigninScreen(props) {
 
     const redirect = props.location.search
@@ -41,8 +43,9 @@ export default function SigninScreen(props) {
                 {loading && <LoadingBox></LoadingBox>}
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label className="sigin-label" htmlFor="email">Email:</label>
                     <input
+                        className="signin-input"
                         type="email"
                         id="email"
                         placeholder="Email"
@@ -51,8 +54,9 @@ export default function SigninScreen(props) {
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="password">Mật khẩu:</label>
+                    <label className="sigin-label" htmlFor="password">Mật khẩu:</label>
                     <input
+                        className="signin-input"
                         type="password"
                         id="password"
                         placeholder="Mật khẩu"
@@ -70,7 +74,7 @@ export default function SigninScreen(props) {
                     <label />
                     <div>
                         Chưa có tài khoản?{' '}
-                        <Link to={`/register`}>
+                        <Link className="reg-link" to={`/register`}>
                             Tạo mới tài khoản
                         </Link>
                     </div>

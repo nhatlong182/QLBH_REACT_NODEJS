@@ -92,7 +92,7 @@ export default function Header() {
                                 </li>
                             )}
                             <li>
-                                <Link to="/profile">User Profile</Link>
+                                <Link to="/profile">Tài khoản</Link>
                             </li>
                             <li>
                                 <Link to="/orderhistory">Đơn hàng</Link>

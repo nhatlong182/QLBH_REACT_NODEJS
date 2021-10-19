@@ -56,7 +56,7 @@ export default function OrderHistoryScreen(props) {
                             <th>SĐT</th>
                             <th>Ngày đặt hàng</th>
                             <th>Tổng tiền</th>
-                            <th>ACTIONS</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
