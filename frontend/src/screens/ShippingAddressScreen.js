@@ -25,6 +25,9 @@ export default function ShippingAddressScreen(props) {
     const orderCreate = useSelector((state) => state.orderCreate);
     const { loading, success, error, order } = orderCreate;
 
+    const userSignin = useSelector((state) => state.userSignin);
+    const { userInfo } = userSignin;
+
 
     const [data, setData] = useState([]);
 
@@ -73,6 +76,7 @@ export default function ShippingAddressScreen(props) {
 
             dispatch({ type: ORDER_CREATE_RESET });
         }
+
     }, [dispatch, success, order, props.history])
 
     useEffect(() => {
@@ -81,6 +85,9 @@ export default function ShippingAddressScreen(props) {
             setData(response.data)
         }
         fetchAPI()
+        setFullName(userInfo.name)
+        setPhone(userInfo.phone)
+        // eslint-disable-next-line
     }, [])
 
     return (

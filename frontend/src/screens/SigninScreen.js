@@ -7,8 +7,6 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import '../css/form.css'
 
-import '../css/signin.css'
-
 export default function SigninScreen(props) {
 
     const redirect = props.location.search

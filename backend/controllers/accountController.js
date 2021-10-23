@@ -24,7 +24,10 @@ export const signin = async (req, res) => {
         if (bcrypt.compareSync(req.body.password, user.password)) {
             res.send({
                 _id: user._id,
+                name: user.name,
                 email: user.email,
+                phone: user.phone,
+                sex: user.sex,
                 avatar: user.avatar,
                 isAdmin: user.isAdmin,
                 isWebmaster: user.isWebmaster,
