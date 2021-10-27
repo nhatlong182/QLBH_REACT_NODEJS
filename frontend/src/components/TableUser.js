@@ -29,6 +29,15 @@ export default function TableUser() {
         }
     }
 
+    const searchHandle = () => {
+        if (name === '') {
+            dispatch(listUser({ pageNumber, name }))
+        }
+        else {
+            dispatch(listUser({ name }))
+        }
+    }
+
     useEffect(() => {
         if (successDelete) {
             swal({
@@ -56,7 +65,7 @@ export default function TableUser() {
                 <h1 className="title-order">Danh sách tài khoản</h1>
                 <i className="fas fa-search"></i>
                 <input className="search-text" placeholder="Tìm kiếm..." type="search" value={name} onChange={(e) => setName(e.target.value)}></input>
-                <button className="sp-search" type="button" onClick={() => dispatch(listUser({ pageNumber, name }))}>Tìm kiếm</button>
+                <button className="sp-search" type="button" onClick={() => searchHandle()}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>

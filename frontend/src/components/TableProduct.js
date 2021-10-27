@@ -30,6 +30,16 @@ export default function TableProduct(props) {
         }
     }
 
+    const searchHandle = () => {
+        console.log(name)
+        if (name === '') {
+            dispatch(listProducts({ pageNumber, limit, name }))
+        }
+        else {
+            dispatch(listProducts({ name }))
+        }
+    }
+
     useEffect(() => {
         dispatch(listCategorys())
     }, [dispatch])
@@ -44,7 +54,7 @@ export default function TableProduct(props) {
             });
         }
         dispatch({ type: PRODUCT_DELETE_RESET },)
-        dispatch(listProducts({ pageNumber, limit, name }));
+        dispatch(listProducts({ pageNumber, limit }));
         // eslint-disable-next-line
     }, [dispatch, pageNumber, limit, successDelete,]);
 
@@ -62,7 +72,7 @@ export default function TableProduct(props) {
                     <div>
                         <i className="fas fa-search"></i>
                         <input type="search" className="search-text" placeholder="Tìm kiếm..." value={name} onChange={(e) => setName(e.target.value)}></input>
-                        <button className="sp-search" type="button" onClick={() => { dispatch(listProducts({ name })) }}>Tìm kiếm</button>
+                        <button className="sp-search" type="button" onClick={() => searchHandle()}>Tìm kiếm</button>
 
                     </div>
                     <button className="btn-primary">

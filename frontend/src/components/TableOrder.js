@@ -29,6 +29,15 @@ export default function TableOrder(props) {
 
     const dispatch = useDispatch()
 
+    const searchHandle = () => {
+        if (name === '' && phone === '') {
+            dispatch(listOrder({ pageNumber, name, phone }))
+        }
+        else {
+            dispatch(listOrder({ name, phone }))
+        }
+    }
+
     useEffect(() => {
         if (successDelete) {
             swal({
@@ -43,7 +52,7 @@ export default function TableOrder(props) {
         // eslint-disable-next-line
     }, [dispatch, pageNumber, successVerify, successDelete]);
 
-    const searchHandler = (e) => {
+    const textChangeHandler = (e) => {
         const regexString = /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ ]+/;
         const regexNumber = /^[0-9]+/;
         if (e.target.value.match(regexString)) {
@@ -74,8 +83,8 @@ export default function TableOrder(props) {
             <div className="table-responsive">
                 <h1 className="title-order">Danh sách đơn hàng</h1>
                 <i className="fas fa-search"></i>
-                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={phone !== '' ? phone : name} onChange={searchHandler}></input>
-                <button className="sp-search" type="button" onClick={() => dispatch(listOrder({ pageNumber, name, phone }))}>Tìm kiếm</button>
+                <input className="search-text" placeholder="Tìm kiếm..." type="search" value={phone !== '' ? phone : name} onChange={textChangeHandler}></input>
+                <button className="sp-search" type="button" onClick={() => searchHandle()}>Tìm kiếm</button>
                 <table className="table table-borderless table-data3">
                     <thead>
                         <tr>

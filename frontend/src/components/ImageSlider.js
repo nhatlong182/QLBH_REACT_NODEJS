@@ -26,14 +26,14 @@ const ImageSlider = ({ slides }) => {
             {/* <i class="fas fa-angle-left" className="left-arrow" onClick={prevSlide} ></i>
             <i class="fas fa-angle-right" className="right-arrow" onClick={nextSlide}></i> */}
             {SliderData.map((slide, index) => {
-                return ( <div
+                return (<div
                     className={index === current ? 'slide active' : 'slide'}
                     key={index}
-                  >
+                >
                     {index === current && (
-                      <img src={slide.image} alt='slider' className='slider-img' />
+                        <img src={slide.image} alt='slider' className='slider-img' />
                     )}
-                  </div>)
+                </div>)
             }
             )}
         </section>
