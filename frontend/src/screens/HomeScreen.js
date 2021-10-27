@@ -4,6 +4,8 @@ import LoadingBox from '../components/LoadingBox.js'
 import MessageBox from '../components/MessageBox.js'
 import { useDispatch, useSelector } from 'react-redux';
 import { popularProducts, saleOffProducts } from '../actions/productAction.js';
+import ImageSlider from '../components/ImageSlider.js';
+import { SliderData } from '../components/SliderData.js';
 import "../css/home.css"
 
 export default function HomeScreen() {
@@ -22,9 +24,7 @@ export default function HomeScreen() {
 
     return (
         <div>
-            <div className="">
-                <img className="slider" src="/images/slider_1.jpg" alt="slider"></img>
-            </div>
+            <ImageSlider slides={SliderData}></ImageSlider>
             <div>
                 <h2 className="popular_title">SẢN PHẨM NỔI BẬT</h2>
                 {
