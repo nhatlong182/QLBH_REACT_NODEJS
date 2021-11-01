@@ -77,6 +77,11 @@ export default function SigninScreen(props) {
                         </Link>
                     </div>
                 </div>
+                <div>
+                    <Link className="reg-link" to={`/forgot`}>
+                        Quên mật khẩu
+                    </Link>
+                </div>
             </form>
         </div>
     )

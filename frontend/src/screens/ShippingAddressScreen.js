@@ -76,7 +76,6 @@ export default function ShippingAddressScreen(props) {
 
             dispatch({ type: ORDER_CREATE_RESET });
         }
-
     }, [dispatch, success, order, props.history])
 
     useEffect(() => {
@@ -163,7 +162,6 @@ export default function ShippingAddressScreen(props) {
                         </button>
                     </div>
                 </form>
-
             </div>
         </div >
     )

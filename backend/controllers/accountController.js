@@ -2,9 +2,10 @@ import Account from '../models/accountModel.js'
 import Order from '../models/orderModel.js'
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
+import nodemailer from 'nodemailer';
 
 
-const initToken = (user) => {
+const initToken = (user, expiresIn) => {
     return jwt.sign(
         {
             _id: user._id,
@@ -14,7 +15,7 @@ const initToken = (user) => {
             isWebmaster: user.isWebmaster,
         },
         process.env.JWT_SECRET || 'mabimat',
-        { expiresIn: '1d' }
+        { expiresIn: expiresIn }
     )
 }
 
@@ -31,7 +32,7 @@ export const signin = async (req, res) => {
                 avatar: user.avatar,
                 isAdmin: user.isAdmin,
                 isWebmaster: user.isWebmaster,
-                token: initToken(user)
+                token: initToken(user, '1d')
             })
             return;
         }
@@ -168,5 +169,69 @@ export const updateAccount = async (req, res) => {
             token: initToken(updatedUser),
         });
     }
+}
+
+export const forgotPassword = async (req, res) => {
+    const user = await Account.findOne({ email: req.body.email })
+
+    if (user) {
+        const token = initToken(user, '1d')
+        const link = `http://localhost:3000/reset/${user._id}/${token}`
+
+
+        const output = `
+        <h3>Bấm vào link bên dưới để đặt lại mật khẩu</h3>
+        <h3>Link: ${link}</h3>
+    `;
+        let transporter = nodemailer.createTransport({
+            host: "smtp.gmail.com",
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'davidpham2000z@gmail.com', // generated ethereal user
+                pass: 'luuphihung1', // generated ethereal password
+            },
+            tls: {
+                rejectUnauthorized: false,
+            }
+        });
+
+        // send mail with defined transport object
+        await transporter.sendMail({
+            from: 'PL-STORE', // sender address
+            to: req.body.email, // list of receivers
+            subject: "Lấy lại mật khẩu", // Subject line
+            text: "Quên mật khẩu", // plain text body
+            html: output, // html body
+        });
+
+
+        res.send({ message: 'Link đổi mật khẩu đã được gửi tới email của bạn' })
+    } else {
+        res.send({ error: 'Tài khoản không tồn tại' })
+    }
+}
+
+export const resetPassword = async (req, res) => {
+    const user = await Account.findById(req.body.userId)
+    const token = req.body.token
+    const newPassword = req.body.newPassword
+
+    if (user) {
+        jwt.verify(
+            token,
+            process.env.JWT_SECRET || 'mabimat',
+            (err) => {
+                if (err) {
+                    res.status(500).send({ message: 'Lỗi token' });
+                } else {
+                    user.password = bcrypt.hashSync(newPassword, 8)
+                }
+            }
+        )
+        await user.save();
+    }
+
+    res.send({ message: 'Đổi mật khẩu thành công' })
 }
 
