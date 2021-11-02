@@ -5,19 +5,28 @@ import MessageBox from '../components/MessageBox';
 
 export default function ForgotPasswordScreen() {
     const [email, setEmail] = useState('')
-    const [active, setActive] = useState(true)
+    const [active, setActive] = useState(false)
 
     const [message, setMessage] = useState('')
     const [error, setError] = useState('')
 
 
+    const inputHandler = (e) => {
+        setEmail(e.target.value)
+
+        if (email) {
+            setActive(false)
+        }
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        setActive(false);
+        setActive(true);
+
         const data = await axios.post('/api/accounts/forgot', { email: email })
         setMessage(data.data.message)
-        setError(data.data.error ? (data.data.error) : '')
+        setError(data.data.error)
     }
 
     return (
@@ -36,14 +45,14 @@ export default function ForgotPasswordScreen() {
                         id="email"
                         placeholder="Email"
                         required
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={inputHandler}
                     ></input>
                 </div>
                 <div>
                     <label />
-                    {active && <button className="primary" type="submit">
+                    <button type="submit" disabled={active}>
                         Gửi
-                    </button>}
+                    </button>
                 </div>
             </form>
         </div>

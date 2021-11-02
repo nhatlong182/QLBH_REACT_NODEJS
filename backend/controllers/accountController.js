@@ -175,7 +175,14 @@ export const forgotPassword = async (req, res) => {
     const user = await Account.findOne({ email: req.body.email })
 
     if (user) {
-        const token = initToken(user, '1d')
+        const token = jwt.sign(
+            {
+                _id: user._id,
+                email: user.email,
+            },
+            process.env.JWT_SECRET || 'mabimat',
+            { expiresIn: '5m' }
+        )
         const link = `http://localhost:3000/reset/${user._id}/${token}`
 
 
@@ -205,7 +212,6 @@ export const forgotPassword = async (req, res) => {
             html: output, // html body
         });
 
-
         res.send({ message: 'Link đổi mật khẩu đã được gửi tới email của bạn' })
     } else {
         res.send({ error: 'Tài khoản không tồn tại' })
@@ -218,20 +224,17 @@ export const resetPassword = async (req, res) => {
     const newPassword = req.body.newPassword
 
     if (user) {
-        jwt.verify(
-            token,
-            process.env.JWT_SECRET || 'mabimat',
-            (err) => {
-                if (err) {
-                    res.status(500).send({ message: 'Lỗi token' });
-                } else {
-                    user.password = bcrypt.hashSync(newPassword, 8)
-                }
-            }
-        )
-        await user.save();
-    }
+        try {
+            jwt.verify(token, process.env.JWT_SECRET || 'mabimat')
+            user.password = bcrypt.hashSync(newPassword, 8)
+            await user.save();
 
-    res.send({ message: 'Đổi mật khẩu thành công' })
+            res.send({ success: true, message: 'Đổi mật khẩu thành công' })
+
+        } catch (error) {
+            res.send({ error: 'Token hết hiệu lực' })
+        }
+
+    }
 }
 

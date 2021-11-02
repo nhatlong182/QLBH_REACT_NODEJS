@@ -1,11 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import swal from 'sweetalert';
+import MessageBox from '../components/MessageBox';
+
 
 export default function ResetPasswordScreen(props) {
     const id = props.match.params.id
     const token = props.match.params.token
 
+    const [error, setError] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
@@ -15,20 +18,25 @@ export default function ResetPasswordScreen(props) {
         if (password !== confirmPassword) {
             alert('Mật khẩu xác nhận không khớp')
         } else {
-            await axios.post('/api/accounts/reset', { userId: id, token: token, newPassword: password });
-            swal({
-                text: "Thay đổi mật khẩu thành công",
-                icon: "success",
-                button: false,
-                timer: 1500,
-            });
-            props.history.push('/signin')
+            const data = await axios.post('/api/accounts/reset', { userId: id, token: token, newPassword: password });
+            setError(data.data.error)
+
+            if (data.data.success) {
+                swal({
+                    text: "Thay đổi mật khẩu thành công",
+                    icon: "success",
+                    button: false,
+                    timer: 1500,
+                });
+                props.history.push('/signin')
+            }
         }
     }
 
     return (
         <div>
             <form className="form" onSubmit={submitHandler}>
+                {error && <MessageBox variant="danger">{error}</MessageBox>}
                 <div>
                     <h1>Đổi mật khẩu</h1>
                 </div>
