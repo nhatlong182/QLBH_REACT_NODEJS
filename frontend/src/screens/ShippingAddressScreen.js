@@ -65,6 +65,10 @@ export default function ShippingAddressScreen(props) {
     };
 
     useEffect(() => {
+
+        setFullName(userInfo.name)
+        setPhone(userInfo.phone)
+
         if (success) {
             swal({
                 text: "Đăt hàng thành công!!!",
@@ -76,6 +80,7 @@ export default function ShippingAddressScreen(props) {
 
             dispatch({ type: ORDER_CREATE_RESET });
         }
+        // eslint-disable-next-line
     }, [dispatch, success, order, props.history])
 
     useEffect(() => {
@@ -84,9 +89,7 @@ export default function ShippingAddressScreen(props) {
             setData(response.data)
         }
         fetchAPI()
-        setFullName(userInfo.name)
-        setPhone(userInfo.phone)
-        // eslint-disable-next-line
+
     }, [])
 
     return (
@@ -140,7 +143,7 @@ export default function ShippingAddressScreen(props) {
                     <div className='option-custom'>
                         <label htmlFor="city">Tỉnh thành</label>
                         <select id='city' className='select-input' value={city} onChange={selectHandler}>
-                            <option key={0} value={0} onClick={() => setArrayDistricts([])}> {"---"}</option>
+                            <option key={0} value={0}> {"---"}</option>
                             {data.map((item, index) => (
                                 <option key={index} value={item.name}> {item.name} </option>
                             ))}

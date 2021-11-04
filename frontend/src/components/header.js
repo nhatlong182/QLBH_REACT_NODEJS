@@ -9,7 +9,6 @@ import UserIcon from '../assets/user.png'
 import "../css/header.css"
 
 export default function Header() {
-    // eslint-disable-next-line
     const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
 
     const [listIsOpen, setlistIsOpen] = useState(false);
@@ -65,10 +64,6 @@ export default function Header() {
                                     <li><a href={`/category/sale/true`}>Các sản phẩm đang khuyến mãi</a></li>
                                 </ul>
                             </li>
-                            <ul className="ul_collection">
-
-                            </ul>
-
 
                         </ul>
                     </div>

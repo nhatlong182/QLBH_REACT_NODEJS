@@ -17,6 +17,9 @@ export default function EditProductScreen(props) {
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
 
+    const Category = useSelector((state) => state.categoryList)
+    const { categories } = Category;
+
     const productDetails = useSelector((state) => state.productDetail);
     const { loading, error, product } = productDetails;
 
@@ -98,7 +101,7 @@ export default function EditProductScreen(props) {
 
     return (
         <div>
-            <Link to="/admin/tableProduct"> <i class="fas fa-arrow-left"></i> Trở lại</Link>
+            <Link to="/admin/tableProduct"> <i className="fas fa-arrow-left"></i> Trở lại</Link>
 
             <form className="form" onSubmit={submitHandler}>
                 <div>
@@ -110,7 +113,6 @@ export default function EditProductScreen(props) {
                 ) : errorUpdate ? (<MessageBox variant="danger">{errorUpdate}</MessageBox>) :
                     (
                         <>
-                        
                             <div className="ui-info-head">
                                 <label className="label-input" htmlFor="name">Tên sản phẩm:</label>
                                 <input
@@ -122,29 +124,25 @@ export default function EditProductScreen(props) {
                                     required
                                     onChange={(e) => setName(e.target.value)}
                                 ></input>
-                            </div>   
+                            </div>
                             <div className="ui-group">
-                            <div className="ui-item">
-                            <label className="label-input" htmlFor="brand">Hãng:</label>
-                                <input
-                                    className="next-input-1"
-                                    id="brand"
-                                    type="text"
-                                    placeholder="Hãng"
-                                    value={brand}
-                                    required
-                                    onChange={(e) => setBrand(e.target.value)}
-                                ></input>
-                                <label className="label-input-1" htmlFor="category">Loại sản phẩm:</label>
-                                <input
-                                    className="next-input-1"
-                                    id="category"
-                                    type="text"
-                                    placeholder="Loại sản phẩm"
-                                    value={category}
-                                    required
-                                    onChange={(e) => setCategory(e.target.value)}
-                                ></input>
+                                <div className="ui-item">
+                                    <label className="label-input" htmlFor="brand">Hãng:</label>
+                                    <input
+                                        className="next-input-1"
+                                        id="brand"
+                                        type="text"
+                                        placeholder="Hãng"
+                                        value={brand}
+                                        required
+                                        onChange={(e) => setBrand(e.target.value)}
+                                    ></input>
+                                    <label className="label-input-1" htmlFor="category">Loại sản phẩm:</label>
+                                    <select id='category' className='next-input-1' value={category} onChange={(e) => setCategory(e.target.value)}>
+                                        {categories?.map((item, index) => (
+                                            <option key={index} value={item}> {item} </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
                             <div>
@@ -161,22 +159,22 @@ export default function EditProductScreen(props) {
                             </div>
                             <div className="" onChange={radioIsSaleHandler}>
                                 <div>
-                                <label className="label-input" htmlFor="sale">Giảm giá</label>
-                                <input className="male" type="radio" id="sale" name="sale" value="true" />
-                                <label className="label-input" htmlFor="notSale">Không giảm giá</label>
-                                <input className="male" type="radio" id="notSale" name="sale" value="false" />
-                                <label className="label-input-sale" htmlFor="saleOff">Phần trăm giảm giá:</label>
-                                <input
-                                    className="next-input-1"
-                                    id="saleOff"
-                                    type="text"
-                                    placeholder="Phần trăm giảm giá:"
-                                    value={saleOff}
-                                    disabled={Boolean(!isSale)}
-                                    onChange={(e) => setSaleOff(e.target.value)}
-                                ></input>
+                                    <label className="label-input" htmlFor="sale">Giảm giá</label>
+                                    <input className="male" type="radio" id="sale" name="sale" value="true" />
+                                    <label className="label-input" htmlFor="notSale">Không giảm giá</label>
+                                    <input className="male" type="radio" id="notSale" name="sale" value="false" />
+                                    <label className="label-input-sale" htmlFor="saleOff">Phần trăm giảm giá:</label>
+                                    <input
+                                        className="next-input-1"
+                                        id="saleOff"
+                                        type="text"
+                                        placeholder="Phần trăm giảm giá:"
+                                        value={saleOff}
+                                        disabled={Boolean(!isSale)}
+                                        onChange={(e) => setSaleOff(e.target.value)}
+                                    ></input>
                                 </div>
-                                
+
                             </div>
                             <div>
                                 <label className="label-input" htmlFor="countInStock">Số lượng trong kho:</label>
@@ -214,14 +212,14 @@ export default function EditProductScreen(props) {
                             <div className="ui-img">
                                 <img src={image} alt={name} className="img_edit"></img>
                             </div>
-                            
+
                             <div>
                                 <label></label>
                                 <button className="primary" type="submit">
                                     Cập nhật
                                 </button>
                             </div>
-                            
+
                         </>
                     )}
             </form>
