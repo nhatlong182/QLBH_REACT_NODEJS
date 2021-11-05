@@ -144,6 +144,10 @@ img.large {
   width: 100%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 /*Alert*/
 .success {
   color: #20a020;

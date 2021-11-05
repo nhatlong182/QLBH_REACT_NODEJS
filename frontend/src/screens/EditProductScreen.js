@@ -86,9 +86,9 @@ export default function EditProductScreen(props) {
     }, [dispatch, productId, product, success, props.history]);
 
     const radioIsSaleHandler = (e) => {
-        if (e.target.value === "true") { setIsSale(true); }
+        if (e.target.value === "true") { setIsSale(true) }
         else {
-            setIsSale(false);
+            setIsSale(false)
             setSaleOff('0')
         }
     }
@@ -140,7 +140,7 @@ export default function EditProductScreen(props) {
                                     <label className="label-input-1" htmlFor="category">Loại sản phẩm:</label>
                                     <select id='category' className='next-input-1' value={category} onChange={(e) => setCategory(e.target.value)}>
                                         {categories?.map((item, index) => (
-                                            <option key={index} value={item}> {item} </option>
+                                            <option key={index} value={item.categoryId}> {item.categoryName} </option>
                                         ))}
                                     </select>
                                 </div>
@@ -157,24 +157,29 @@ export default function EditProductScreen(props) {
                                     onChange={(e) => setPrice(e.target.value)}
                                 ></input>
                             </div>
-                            <div className="" onChange={radioIsSaleHandler}>
-                                <div>
+                            <div>
+                                <div onChange={radioIsSaleHandler}>
                                     <label className="label-input" htmlFor="sale">Giảm giá</label>
-                                    <input className="male" type="radio" id="sale" name="sale" value="true" />
+                                    <input className="male" type="radio" id="sale" name="sale" value={true} />
                                     <label className="label-input" htmlFor="notSale">Không giảm giá</label>
-                                    <input className="male" type="radio" id="notSale" name="sale" value="false" />
+                                    <input className="male" type="radio" id="notSale" name="sale" value={false} />
+                                </div>
+                                <div>
                                     <label className="label-input-sale" htmlFor="saleOff">Phần trăm giảm giá:</label>
-                                    <input
-                                        className="next-input-1"
-                                        id="saleOff"
-                                        type="text"
-                                        placeholder="Phần trăm giảm giá:"
+                                    <select id='saleOff' className='next-input-1'
                                         value={saleOff}
                                         disabled={Boolean(!isSale)}
                                         onChange={(e) => setSaleOff(e.target.value)}
-                                    ></input>
+                                    >
+                                        {[...Array(10).keys()].map(
+                                            (x) => (
+                                                <option key={x} value={x * 10}>
+                                                    {x * 10} %
+                                                </option>
+                                            )
+                                        )}
+                                    </select>
                                 </div>
-
                             </div>
                             <div>
                                 <label className="label-input" htmlFor="countInStock">Số lượng trong kho:</label>

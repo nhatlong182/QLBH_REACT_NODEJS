@@ -3,11 +3,15 @@ import connectDB from './config/connectDB.js'
 import Product from './models/productModel.js'
 import Account from './models/accountModel.js'
 import Order from './models/orderModel.js';
+import Category from './models/categoryModel.js';
 
 connectDB();
 
 const importData = async () => {
     try {
+        await Category.deleteMany({});
+        await Category.insertMany(data.categorys);
+
         await Product.deleteMany({});
         await Product.insertMany(data.products);
 

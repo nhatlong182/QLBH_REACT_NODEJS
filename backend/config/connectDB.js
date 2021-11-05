@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost/PLSTORE', {
+        await mongoose.connect('mongodb://localhost/PLSTORE1', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,

@@ -66,7 +66,7 @@ export const register = async (req, res) => {
                 avatar: createdUser.avatar,
                 isAdmin: createdUser.isAdmin,
                 isWebmaster: createdUser.isWebmaster,
-                token: initToken(createdUser),
+                token: initToken(createdUser, '1d'),
             });
         } catch (error) {
             res.status(500).send({ message: 'Lỗi server!!!' })
@@ -166,7 +166,7 @@ export const updateAccount = async (req, res) => {
             avatar: updatedUser.avatar,
             isAdmin: updatedUser.isAdmin,
             isWebmaster: user.isWebmaster,
-            token: initToken(updatedUser),
+            token: initToken(updatedUser, '1d'),
         });
     }
 }

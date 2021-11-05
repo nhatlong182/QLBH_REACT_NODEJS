@@ -58,7 +58,7 @@ export default function Header() {
                                 <ul className={listIsOpen ? 'list' : ''} id="listbar">
                                     {categories?.map((category, index) => (
                                         <li key={index} className="inside">
-                                            <a className="" href={`/category/${category}`}>{category}</a>
+                                            <a className="" href={`/category/${category.categoryId}`}>{category.categoryName}</a>
                                         </li>
                                     ))}
                                     <li><a href={`/category/sale/true`}>Các sản phẩm đang khuyến mãi</a></li>

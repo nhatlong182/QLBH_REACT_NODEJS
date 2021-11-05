@@ -33,10 +33,40 @@ const data = {
             isWebmaster: false,
         },
     ],
+    categorys: [
+        {
+            categoryId: 1,
+            categoryName: 'Áo thun'
+        },
+        {
+            categoryId: 2,
+            categoryName: 'Áo khoác'
+        },
+        {
+            categoryId: 3,
+            categoryName: 'Hoodie'
+        },
+        {
+            categoryId: 4,
+            categoryName: 'Blazer'
+        },
+        {
+            categoryId: 5,
+            categoryName: 'Áo sơ mi'
+        },
+        {
+            categoryId: 6,
+            categoryName: 'Quần'
+        },
+        {
+            categoryId: 7,
+            categoryName: 'Phụ kiện'
+        },
+    ],
     products: [
         {
             name: 'Áo Thun Paul Polo Mint',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/paulpolomint.jpg',
             price: 500000,
             countInStock: 20,
@@ -47,7 +77,7 @@ const data = {
         },
         {
             name: 'Áo Thun Knit Tanktop White',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/knittanktopwhite.jpg',
             price: 300000,
             countInStock: 25,
@@ -56,7 +86,7 @@ const data = {
         },
         {
             name: 'Áo Thun Basic Tanktop White',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/basictanktopwhite.jpg',
             price: 250000,
             countInStock: 20,
@@ -65,7 +95,7 @@ const data = {
         },
         {
             name: 'Áo Thun Basic Tanktop Black',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/basictanktopblack.jpg',
             price: 250000,
             countInStock: 19,
@@ -74,7 +104,7 @@ const data = {
         },
         {
             name: 'Áo Sơ Mi Oversize Trắng',
-            category: 'Áo Sơ Mi',
+            category: 5,
             image: '/images/somitrangowst.jpg',
             price: 450000,
             countInStock: 10,
@@ -85,7 +115,7 @@ const data = {
         },
         {
             name: 'Áo Sơ Mi Trắng Lider 2021',
-            category: 'Áo Sơ Mi',
+            category: 5,
             image: '/images/somitranglider.jpg',
             price: 500000,
             countInStock: 15,
@@ -96,7 +126,7 @@ const data = {
         },
         {
             name: 'Áo Thun Polo Multicolor',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aopoloowst.jpg',
             price: 400000,
             countInStock: 20,
@@ -107,7 +137,7 @@ const data = {
         },
         {
             name: 'Áo Sơ Mi Ngắn Tay O Logo',
-            category: 'Áo Sơ Mi',
+            category: 5,
             image: '/images/aosomingantaylogoowst.jpg',
             price: 450000,
             countInStock: 10,
@@ -118,7 +148,7 @@ const data = {
         },
         {
             name: 'Áo Sơ Mi Oversize Ngắn Tay',
-            category: 'Áo Sơ Mi',
+            category: 5,
             image: '/images/aosomingantayowst.jpg',
             price: 450000,
             countInStock: 30,
@@ -129,7 +159,7 @@ const data = {
         },
         {
             name: 'Áo Thun Astmmetrical',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunasmmetricalowst.jpg',
             price: 320000,
             countInStock: 16,
@@ -138,7 +168,7 @@ const data = {
         },
         {
             name: 'Áo Thun Basic Premium Black',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunbasicowstblack.jpg',
             price: 280000,
             countInStock: 20,
@@ -149,7 +179,7 @@ const data = {
         },
         {
             name: 'Áo Thun Basic Premium Gray',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunbasicowstgray.jpg',
             price: 280000,
             countInStock: 20,
@@ -160,7 +190,7 @@ const data = {
         },
         {
             name: 'Áo Thun Basic Premium Dark Green',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunbasicowstgreen.jpg',
             price: 280000,
             countInStock: 20,
@@ -171,7 +201,7 @@ const data = {
         },
         {
             name: 'Áo Thun Basic Premium White',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunbasicowstwhite.jpg',
             price: 280000,
             countInStock: 20,
@@ -182,7 +212,7 @@ const data = {
         },
         {
             name: 'Áo Thun Raw-Cut Oversize',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunrawcutowst.jpg',
             price: 330000,
             countInStock: 25,
@@ -191,7 +221,7 @@ const data = {
         },
         {
             name: 'Áo Thun Striped Logo',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunstripedowst.jpg',
             price: 350000,
             countInStock: 20,
@@ -200,7 +230,7 @@ const data = {
         },
         {
             name: 'Áo Thun Waffle Oversize',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunwaffleowst.jpg',
             price: 320000,
             countInStock: 10,
@@ -211,7 +241,7 @@ const data = {
         },
         {
             name: 'Áo Thun University Black',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aouniversityblack.jpg',
             price: 350000,
             countInStock: 25,
@@ -220,7 +250,7 @@ const data = {
         },
         {
             name: 'Áo Thun University Pink',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aouniversitypink.jpg',
             price: 350000,
             countInStock: 25,
@@ -229,7 +259,7 @@ const data = {
         },
         {
             name: 'Áo Thun University Turquoise',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aouniversityturquoise.jpg',
             price: 350000,
             countInStock: 25,
@@ -238,7 +268,7 @@ const data = {
         },
         {
             name: 'Áo Thun University White',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aouniversitywhite.jpg',
             price: 350000,
             countInStock: 25,
@@ -247,7 +277,7 @@ const data = {
         },
         {
             name: 'Pelican Hoodie',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/pelicanhoodie.jpg',
             price: 550000,
             countInStock: 20,
@@ -256,7 +286,7 @@ const data = {
         },
         {
             name: 'Rainbow Logo Hoodie',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/rainbowhoodie.jpg',
             price: 550000,
             countInStock: 20,
@@ -265,7 +295,7 @@ const data = {
         },
         {
             name: 'Áo Thun Alone Ted',
-            category: 'Áo Thun',
+            category: 1,
             image: '/images/aothunalonegamble.jpg',
             price: 500000,
             countInStock: 10,
@@ -274,7 +304,7 @@ const data = {
         },
         {
             name: 'Quần Burning G White',
-            category: 'Quần',
+            category: 6,
             image: '/images/burninggpants.jpg',
             price: 500000,
             countInStock: 20,
@@ -283,7 +313,7 @@ const data = {
         },
         {
             name: 'Quần Half Tie-Dye Blue',
-            category: 'Quần',
+            category: 6,
             image: '/images/halftiedyepants.jpg',
             price: 500000,
             countInStock: 20,
@@ -292,7 +322,7 @@ const data = {
         },
         {
             name: 'Quần Chessy Black',
-            category: 'Quần',
+            category: 6,
             image: '/images/chessypantsblack.jpg',
             price: 500000,
             countInStock: 10,
@@ -303,7 +333,7 @@ const data = {
         },
         {
             name: 'Quần Chessy White',
-            category: 'Quần',
+            category: 6,
             image: '/images/chessypantswhite.jpg',
             price: 500000,
             countInStock: 10,
@@ -314,7 +344,7 @@ const data = {
         },
         {
             name: 'Quần Sweatpants Gamble Black',
-            category: 'Quần',
+            category: 6,
             image: '/images/gwsweatpantsblack.jpg',
             price: 450000,
             countInStock: 20,
@@ -323,7 +353,7 @@ const data = {
         },
         {
             name: 'Quần Sweatpants Gamble Maya',
-            category: 'Quần',
+            category: 6,
             image: '/images/gwsweatpantsmaya.jpg',
             price: 450000,
             countInStock: 20,
@@ -332,7 +362,7 @@ const data = {
         },
         {
             name: 'Quần Sweatpants Gamble Sahara',
-            category: 'Quần',
+            category: 6,
             image: '/images/gwsweatpantssahara.jpg',
             price: 450000,
             countInStock: 20,
@@ -341,7 +371,7 @@ const data = {
         },
         {
             name: 'Quần Track Pants Blue',
-            category: 'Quần',
+            category: 6,
             image: '/images/gwtrackpantsblue.jpg',
             price: 450000,
             countInStock: 20,
@@ -350,7 +380,7 @@ const data = {
         },
         {
             name: 'Quần Track Pants Orange',
-            category: 'Quần',
+            category: 6,
             image: '/images/gwtrackpantsorange.jpg',
             price: 450000,
             countInStock: 20,
@@ -359,7 +389,7 @@ const data = {
         },
         {
             name: 'Quần Track Pants Red',
-            category: 'Quần',
+            category: 6,
             image: '/images/gwtrackpantsred.jpg',
             price: 450000,
             countInStock: 20,
@@ -368,7 +398,7 @@ const data = {
         },
         {
             name: 'GRADATION JEANS',
-            category: 'Quần',
+            category: 6,
             image: '/images/gradationjeanowst.jpg',
             price: 749000,
             countInStock: 20,
@@ -377,7 +407,7 @@ const data = {
         },
         {
             name: 'CURVE JEANS BLACK',
-            category: 'Quần',
+            category: 6,
             image: '/images/curvejeanblackowst.jpg',
             price: 749000,
             countInStock: 20,
@@ -386,7 +416,7 @@ const data = {
         },
         {
             name: 'Quần JOGGER BLACK',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanjoggerowstblack.jpg',
             price: 390000,
             countInStock: 15,
@@ -395,7 +425,7 @@ const data = {
         },
         {
             name: 'Quần JOGGER LIGHT GRAY',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanjoggerowstlightgray.jpg',
             price: 390000,
             countInStock: 18,
@@ -404,7 +434,7 @@ const data = {
         },
         {
             name: 'Quần JOGGER DARK GRAY',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanjoggerowstdarkgray.jpg',
             price: 390000,
             countInStock: 20,
@@ -413,7 +443,7 @@ const data = {
         },
         {
             name: 'Quần SWEATSHORT BLACK',
-            category: 'Quần',
+            category: 6,
             image: '/images/shortowstblack.jpg',
             price: 350000,
             countInStock: 15,
@@ -422,7 +452,7 @@ const data = {
         },
         {
             name: 'Quần SWEATSHORT NAVY',
-            category: 'Quần',
+            category: 6,
             image: '/images/shortowstnavy.jpg',
             price: 350000,
             countInStock: 18,
@@ -431,7 +461,7 @@ const data = {
         },
         {
             name: 'Quần BASIC SWEATSHORT GRAY',
-            category: 'Quần',
+            category: 6,
             image: '/images/shortowstgray.jpg',
             price: 350000,
             countInStock: 15,
@@ -440,7 +470,7 @@ const data = {
         },
         {
             name: 'Quần PATTERN LACVIET',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanlacvietowst.jpg',
             price: 590000,
             countInStock: 20,
@@ -449,7 +479,7 @@ const data = {
         },
         {
             name: 'Quần TAPO Shorts BLACK',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanshortliderden.jpg',
             price: 620000,
             countInStock: 20,
@@ -458,7 +488,7 @@ const data = {
         },
         {
             name: 'Quần TAPO Shorts WHITE',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanshortlidertrang.jpg',
             price: 620000,
             countInStock: 15,
@@ -467,7 +497,7 @@ const data = {
         },
         {
             name: 'UNCLE Jeans',
-            category: 'Quần',
+            category: 6,
             image: '/images/unclejeanlider.jpg',
             price: 790000,
             countInStock: 20,
@@ -476,7 +506,7 @@ const data = {
         },
         {
             name: 'TOM Jeans',
-            category: 'Quần',
+            category: 6,
             image: '/images/tomjeanlider.jpg',
             price: 820000,
             countInStock: 25,
@@ -485,7 +515,7 @@ const data = {
         },
         {
             name: 'Quần ORI Black',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanoridenlider.jpg',
             price: 720000,
             countInStock: 16,
@@ -494,7 +524,7 @@ const data = {
         },
         {
             name: 'Quần ORI White',
-            category: 'Quần',
+            category: 6,
             image: '/images/quanoritranglider.jpg',
             price: 720000,
             countInStock: 20,
@@ -503,7 +533,7 @@ const data = {
         },
         {
             name: 'Quần CARGO CEMENT',
-            category: 'Quần',
+            category: 6,
             image: '/images/quancargolider.jpg',
             price: 580000,
             countInStock: 25,
@@ -512,7 +542,7 @@ const data = {
         },
         {
             name: 'Quần DEEP SEA',
-            category: 'Quần',
+            category: 6,
             image: '/images/quandeepsealider.jpg',
             price: 750000,
             countInStock: 20,
@@ -521,7 +551,7 @@ const data = {
         },
         {
             name: 'Áo Khoác SIVINA Black',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacsivinablack.jpg',
             price: 850000,
             countInStock: 20,
@@ -532,7 +562,7 @@ const data = {
         },
         {
             name: 'Áo Khoác SIVINA Pink',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacsivinapink.jpg',
             price: 850000,
             countInStock: 25,
@@ -543,7 +573,7 @@ const data = {
         },
         {
             name: 'Áo Khoác SUNSET',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacsunset.jpg',
             price: 700000,
             countInStock: 25,
@@ -554,7 +584,7 @@ const data = {
         },
         {
             name: 'Áo Blazer COMTE',
-            category: 'Blazer',
+            category: 4,
             image: '/images/aocometblazer.jpg',
             price: 850000,
             countInStock: 30,
@@ -563,7 +593,7 @@ const data = {
         },
         {
             name: 'Áo Blazer GREYLINE',
-            category: 'Blazer',
+            category: 4,
             image: '/images/aogreylineblazer.jpg',
             price: 990000,
             countInStock: 30,
@@ -572,7 +602,7 @@ const data = {
         },
         {
             name: 'Áo Khoác BLUEBERRY',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacblueberry.jpg',
             price: 820000,
             countInStock: 25,
@@ -581,7 +611,7 @@ const data = {
         },
         {
             name: 'Áo Khoác COOKIE',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aocookiecoat.jpg',
             price: 999000,
             countInStock: 25,
@@ -590,7 +620,7 @@ const data = {
         },
         {
             name: 'Áo Khoác GINGHAM',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacgingham.jpg',
             price: 590000,
             countInStock: 20,
@@ -599,7 +629,7 @@ const data = {
         },
         {
             name: 'Áo Khoác LOGO Gray',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoaclogoowstgray.jpg',
             price: 599000,
             countInStock: 25,
@@ -608,7 +638,7 @@ const data = {
         },
         {
             name: 'Áo Khoác LOGO Black',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoaclogoowstden.jpg',
             price: 599000,
             countInStock: 25,
@@ -617,7 +647,7 @@ const data = {
         },
         {
             name: 'Áo Khoác LACVIET',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoaclacviet.jpg',
             price: 650000,
             countInStock: 25,
@@ -626,7 +656,7 @@ const data = {
         },
         {
             name: 'Áo Khoác GARNITURE',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacgarnitureblack.jpg',
             price: 750000,
             countInStock: 30,
@@ -635,7 +665,7 @@ const data = {
         },
         {
             name: 'Áo Gamble Varsity/Blood',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwvarsityjacketblood.jpg',
             price: 990000,
             countInStock: 0,
@@ -644,7 +674,7 @@ const data = {
         },
         {
             name: 'Áo Gamble Varsity/Hunter',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwvarsityjackethunter.jpg',
             price: 990000,
             countInStock: 5,
@@ -653,7 +683,7 @@ const data = {
         },
         {
             name: 'Áo Gamble Varsity/Nightmare',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwvarsityjacketnightmare.jpg',
             price: 990000,
             countInStock: 10,
@@ -662,7 +692,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/Baby Blue',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketbabyblue.jpg',
             price: 650000,
             countInStock: 10,
@@ -673,7 +703,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/Black',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketblack.jpg',
             price: 650000,
             countInStock: 10,
@@ -684,7 +714,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/Dark Grey',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketdarkgrey.jpg',
             price: 650000,
             countInStock: 10,
@@ -695,7 +725,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/Grey',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketdarkgrey.jpg',
             price: 650000,
             countInStock: 10,
@@ -706,7 +736,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/Lavender',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketlavender.jpg',
             price: 650000,
             countInStock: 20,
@@ -717,7 +747,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/Red',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketred.jpg',
             price: 650000,
             countInStock: 15,
@@ -728,7 +758,7 @@ const data = {
         },
         {
             name: 'Gamble Track Jacket/White',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/gwtrackjacketwhite.jpg',
             price: 650000,
             countInStock: 15,
@@ -739,7 +769,7 @@ const data = {
         },
         {
             name: 'Áo Hoodie Washed Cream',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/0912hoodiewashedbe.jpg',
             price: 629000,
             countInStock: 30,
@@ -748,7 +778,7 @@ const data = {
         },
         {
             name: 'Áo Hoodie Washed Black',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/0912hoodiewashedblack.jpg',
             price: 629000,
             countInStock: 0,
@@ -757,7 +787,7 @@ const data = {
         },
         {
             name: 'Áo Hoodie Washed Logo',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/0912logohoodiewashed.jpg',
             price: 629000,
             countInStock: 0,
@@ -766,7 +796,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Blue',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstblue.jpg',
             price: 230000,
             countInStock: 15,
@@ -775,7 +805,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Blue/Grey ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstbluegrey.jpg',
             price: 230000,
             countInStock: 15,
@@ -784,7 +814,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Maroon ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstmaroon.jpg',
             price: 230000,
             countInStock: 15,
@@ -793,7 +823,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Red/Black ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstredblack.jpg',
             price: 230000,
             countInStock: 15,
@@ -802,7 +832,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Black ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstblack.jpg',
             price: 230000,
             countInStock: 15,
@@ -811,7 +841,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Gray/Black ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstblackgray.jpg',
             price: 230000,
             countInStock: 15,
@@ -820,7 +850,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Black/Grey ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstblackgrey.jpg',
             price: 230000,
             countInStock: 15,
@@ -829,7 +859,7 @@ const data = {
         },
         {
             name: 'Nón T-Logo Gray ',
-            category: 'Phụ Kiện',
+            category: 7,
             image: '/images/nonowstgrey.jpg',
             price: 230000,
             countInStock: 15,
@@ -838,7 +868,7 @@ const data = {
         },
         {
             name: 'Áo Khoác Denim DNA',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacdnadenim.jpg',
             price: 900000,
             countInStock: 0,
@@ -847,7 +877,7 @@ const data = {
         },
         {
             name: 'Áo Khoác Monogram Bomber',
-            category: 'Áo Khoác',
+            category: 2,
             image: '/images/aokhoacmonogramlv.jpg',
             price: 900000,
             countInStock: 0,
@@ -856,7 +886,7 @@ const data = {
         },
         {
             name: 'AOS Hoodie Black',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/aoshoodieblack.jpg',
             price: 750000,
             countInStock: 10,
@@ -865,7 +895,7 @@ const data = {
         },
         {
             name: 'Big Logo Full Zip Hoodie/Eastern',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwbiglogohoodie.jpg',
             price: 700000,
             countInStock: 20,
@@ -874,7 +904,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Blood',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodieblood.jpg',
             price: 500000,
             countInStock: 0,
@@ -883,7 +913,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Capuchino',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodiecapuchino.jpg',
             price: 500000,
             countInStock: 10,
@@ -892,7 +922,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Cookie',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodiecookie.jpg',
             price: 500000,
             countInStock: 0,
@@ -901,7 +931,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Grey',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodiegrey.jpg',
             price: 500000,
             countInStock: 10,
@@ -910,7 +940,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Maroon',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodiemaroon.jpg',
             price: 500000,
             countInStock: 20,
@@ -919,7 +949,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Mint',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodiemint.jpg',
             price: 500000,
             countInStock: 0,
@@ -928,7 +958,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/Rosie',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodierosie.jpg',
             price: 500000,
             countInStock: 10,
@@ -937,7 +967,7 @@ const data = {
         },
         {
             name: 'GW Full Zip Hoodie/White',
-            category: 'Hoodie',
+            category: 3,
             image: '/images/gwfullziphoodiewhite.jpg',
             price: 500000,
             countInStock: 10,

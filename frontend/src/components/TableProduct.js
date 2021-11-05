@@ -9,6 +9,9 @@ import MessageBox from '../components/MessageBox';
 import { PRODUCT_DELETE_RESET } from '../constants.js';
 
 export default function TableProduct(props) {
+    const Category = useSelector((state) => state.categoryList)
+    const { categories } = Category;
+
     const productList = useSelector((state) => state.productList);
     const { loading, error, products, page, pages } = productList;
 
@@ -98,7 +101,7 @@ export default function TableProduct(props) {
                                 <td className="img-container"><img className="img__a" src={product.image} alt={product.name} /></td>
                                 <td>{product.name}</td>
                                 <td>{product.price}</td>
-                                <td>{product.category}</td>
+                                <td>{categories[product.category - 1].categoryName}</td>
                                 <td>{product.brand}</td>
                                 <td>{product.countInStock}</td>
                                 <td>{product.saleOff}%</td>

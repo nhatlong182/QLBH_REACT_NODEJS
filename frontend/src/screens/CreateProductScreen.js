@@ -105,7 +105,7 @@ export default function CreateProductScreen(props) {
                                 <label className="label-input-1" htmlFor="category">Loại sản phẩm:</label>
                                 <select id='category' className='next-input-1' value={category} onChange={(e) => setCategory(e.target.value)}>
                                     {categories?.map((item, index) => (
-                                        <option key={index} value={item}> {item} </option>
+                                        <option key={index} value={item.categoryId}> {item.categoryName} </option>
                                     ))}
                                 </select>
                             </div>
@@ -163,7 +163,7 @@ export default function CreateProductScreen(props) {
                         <div>
                             <label></label>
                             <button className="primary" type="submit">
-                                Cập nhật
+                                Thêm
                             </button>
                         </div>
                     </>

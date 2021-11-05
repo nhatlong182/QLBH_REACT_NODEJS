@@ -1,5 +1,6 @@
 import Product from '../models/productModel.js'
 import Order from '../models/orderModel.js'
+import Category from '../models/categoryModel.js';
 
 export const getAllProducts = async (req, res) => {
     try {
@@ -87,7 +88,7 @@ export const getProductDetail = async (req, res) => {
 }
 
 export const getCategories = async (req, res) => {
-    const categories = await Product.find().distinct('category');
+    const categories = await Category.find({});
     res.send(categories);
 }
 
