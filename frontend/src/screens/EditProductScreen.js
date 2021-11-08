@@ -105,7 +105,7 @@ export default function EditProductScreen(props) {
 
             <form className="form" onSubmit={submitHandler}>
                 <div>
-                    <h1>Thêm sản phẩm</h1>
+                    <h1>Sửa sản phẩm</h1>
                 </div>
                 {error && <MessageBox variant="danger">{error}</MessageBox>}
                 {loading ? (
