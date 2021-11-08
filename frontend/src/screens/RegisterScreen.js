@@ -70,6 +70,8 @@ export default function RegisterScreen(props) {
                         type="email"
                         id="email"
                         placeholder="Nhập email"
+                        pattern="^[a-zA-Z0-9]+@gmail.com$"
+                        title="email phải là của google"
                         required
                         onChange={(e) => setEmail(e.target.value)}
                     ></input>

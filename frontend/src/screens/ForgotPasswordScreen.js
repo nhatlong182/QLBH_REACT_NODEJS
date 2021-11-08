@@ -44,6 +44,8 @@ export default function ForgotPasswordScreen() {
                         type="email"
                         id="email"
                         placeholder="Email"
+                        pattern="^[a-zA-Z0-9]+@gmail.com$"
+                        title=" bạn phải nhập mail của google"
                         required
                         onChange={inputHandler}
                     ></input>

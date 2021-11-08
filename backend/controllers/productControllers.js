@@ -88,7 +88,7 @@ export const getProductDetail = async (req, res) => {
 }
 
 export const getCategories = async (req, res) => {
-    const categories = await Category.find({});
+    const categories = await Category.find({ active: true });
     res.send(categories);
 }
 
